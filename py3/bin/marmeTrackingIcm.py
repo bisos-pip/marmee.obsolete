@@ -96,11 +96,11 @@ from unisos.x822Msg import msgOut
 from unisos.x822Msg import msgIn
 #from unisos.x822Msg import msgLib
 
-from unisos.marme import marmeAcctsLib
-from unisos.marme import marmeSendLib
+from bisos.marmee import marmeAcctsLib
+from bisos.marmee import marmeSendLib
 
 
-from unisos.marme import marmeTrackingLib
+from bisos.marmee import marmeTrackingLib
 
 
 g_importedCmnds = {        # Enumerate modules from which CMNDs become invokable

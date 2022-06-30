@@ -5,7 +5,7 @@
 
 ####+BEGIN: bx:icm:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
 """
-*  This file:/acct/smb/com/dev-py/LUE/Sync/pypi/pkgs/unisos/marme/dev/unisos/marme/icmsPkgThis.py :: [[elisp:(org-cycle)][| ]]
+*  This file:/acct/smb/com/dev-py/LUE/Sync/pypi/pkgs/bisos.marmee/dev/bisos.marmee/icmsPkgThis.py :: [[elisp:(org-cycle)][| ]]
  is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
  *CopyLeft*  This Software is a Libre-Halaal Poly-Existential. See http://www.freeprotocols.org
  A Python Interactively Command Module (PyICM). Part Of ByStar.
@@ -103,9 +103,9 @@ from unisos.x822Msg import msgOut
 #from bxMsg import msgIn
 #from bxMsg import msgLib
 
-from unisos.marme import marmeAcctsLib
-from unisos.marme import marmeSendLib
-from unisos.marme import marmeTrackingLib
+from bisos.marmee import marmeAcctsLib
+from bisos.marmee import marmeSendLib
+from bisos.marmee import marmeTrackingLib
 
 import re
 

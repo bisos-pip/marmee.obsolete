@@ -5,7 +5,7 @@
 
 ####+BEGIN: bx:icm:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
 """
-*  This file:/bisos/git/auth/bxRepos/bisos-pip/marme/dev/unisos/marme/newLibIcm.py :: [[elisp:(org-cycle)][| ]]
+*  This file:/bisos/git/auth/bxRepos/bisos-pip/marme/dev/bisos.marmee/newLibIcm.py :: [[elisp:(org-cycle)][| ]]
  is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
  *CopyLeft*  This Software is a Libre-Halaal Poly-Existential. See http://www.freeprotocols.org
  A Python Interactively Command Module (PyICM).
@@ -88,7 +88,7 @@ G.icmCmndsLibsAppend = __file__
 
 ####+END:
 
-from unisos.marme import marmeAcctsLib
+from bisos.marmee import marmeAcctsLib
 from bisos.currents import bxCurrentsConfig
 
 from datetime import datetime

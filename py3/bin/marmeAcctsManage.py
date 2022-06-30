@@ -72,7 +72,7 @@ from unisos import icm
 
 from blee.icmPlayer import bleep
 
-from unisos.marme import marmeAcctsLib
+from bisos.marmee import marmeAcctsLib
 
 from bisos.common import serviceObject
 
