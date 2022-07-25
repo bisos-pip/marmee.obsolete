@@ -116,7 +116,7 @@ import flufl.bounce
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.MIMEBase import MIMEBase
+from email.mime.base import MIMEBase
 
 
 

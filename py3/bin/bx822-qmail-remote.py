@@ -77,8 +77,8 @@ import flufl.bounce
 from email.mime.text import MIMEText
 #from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
-from email.MIMEBase import MIMEBase
-from email import Encoders
+from email.mime.base import MIMEBase
+from email import encoders
 
 #from yapsy.PluginManager import PluginManager
 import yapsy.PluginManager

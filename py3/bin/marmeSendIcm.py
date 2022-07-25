@@ -74,8 +74,8 @@ import email
 from email.mime.text import MIMEText
 #from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
-from email.MIMEBase import MIMEBase
-from email import Encoders
+from email.mime.base import MIMEBase
+from email import encoders
 
 
 import collections
@@ -687,7 +687,7 @@ Please find example of an attached file\n
 
         part = MIMEBase('application', "octet-stream")
         part.set_payload(open("/etc/resolv.conf", "rb").read())
-        Encoders.encode_base64(part)
+        encoders.encode_base64(part)
 
         part.add_header('Content-Disposition', 'attachment; filename="/etc/resolv.conf"')
 
