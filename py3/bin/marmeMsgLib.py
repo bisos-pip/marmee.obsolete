@@ -3,7 +3,7 @@
 * *[Summary]* ::  A /library/ to identify *this* ICM Pkg in the general context of icmPkgs
 """
 
-####+BEGIN: bx:icm:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
+####+BEGIN: bx:cs:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
 """
 *  This file:/acct/smb/com/dev-py/LUE/Sync/pypi/pkgs/bisos.marmee/dev/bisos.marmee/icmsPkgThis.py :: [[elisp:(org-cycle)][| ]]
  is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
@@ -32,8 +32,8 @@ __status__ = "Production"
 
 __credits__ = [""]
 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/icmInfo-mbNedaGpl.py"
-icmInfo = {
+####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/csInfo-mbNedaGpl.py"
+csInfo = {
     'authors':         ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]"],
     'copyright':       "Copyright 2017, [[http://www.neda.com][Neda Communications, Inc.]]",
     'licenses':        ["[[https://www.gnu.org/licenses/agpl-3.0.en.html][Affero GPL]]", "Libre-Halaal Services License", "Neda Commercial License"],
@@ -43,7 +43,7 @@ icmInfo = {
 }
 ####+END:
 
-####+BEGIN: bx:icm:python:topControls 
+####+BEGIN: bx:cs:python:topControls 
 """
 *  [[elisp:(org-cycle)][|/Controls/| ]] :: [[elisp:(org-show-subtree)][|=]]  [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[file:Panel.org][Panel]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(delete-other-windows)][(1)]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
 ** /Version Control/ ::  [[elisp:(call-interactively (quote cvs-update))][cvs-update]]  [[elisp:(vc-update)][vc-update]] | [[elisp:(bx:org:agenda:this-file-otherWin)][Agenda-List]]  [[elisp:(bx:org:todo:this-file-otherWin)][ToDo-List]]
@@ -57,7 +57,7 @@ icmInfo = {
 """
 ####+END:
 
-####+BEGIN: bx:icm:python:section :title "ContentsList"
+####+BEGIN: bx:cs:python:section :title "ContentsList"
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *ContentsList*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
 """
@@ -80,9 +80,9 @@ from unisos import icm
 
 icm.unusedSuppressForEval(ucf.__file__)  # in case icm and ucf are not used
 
-G = icm.IcmGlobalContext()
+G = cs.globalContext.get()
 G.icmLibsAppend = __file__
-G.icmCmndsLibsAppend = __file__
+G.csCmndsLibsAppend = __file__
 
 ####+END:
 
@@ -126,16 +126,16 @@ from email.mime.base import MIMEBase
 """
 ####+END:
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "marmePkgThis_libOverview" :comment "" :parsMand "" :parsOpt "" :argsMin "0" :argsMax "3" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmePkgThis_libOverview" :comment "" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 3 :pyInv ""
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /marmePkgThis_libOverview/ parsMand= parsOpt= argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 """
-class marmePkgThis_libOverview(icm.Cmnd):
+class marmePkgThis_libOverview(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 3,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         argsList=[],         # or Args-Input
@@ -149,7 +149,7 @@ class marmePkgThis_libOverview(icm.Cmnd):
             effectiveArgsList = argsList
 
         callParamsDict = {}
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
 
         cmndArgsSpecDict = self.cmndArgsSpec()
@@ -181,7 +181,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
 """
 ####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/moduleOverview.py"
         icm.unusedSuppressForEval(moduleUsage, moduleStatus)
-        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, effectiveArgsList)
+        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         if actions[0] == "all":
             cmndArgsSpec = cmndArgsSpecDict.argPositionFind("0&2")
             argChoices = cmndArgsSpec.argChoicesGet()
@@ -199,12 +199,12 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
     """
 **  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndArgsSpec/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
 """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndArgsSpec(self):
         """
 ***** Cmnd Args Specification
 """
-        cmndArgsSpecDict = icm.CmndArgsSpecDict()
+        cmndArgsSpecDict = cs.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
             argPosition="0&2",
             argName="actions",
@@ -233,7 +233,7 @@ DsnType = ucf.Enum(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgDsnTypeDetect    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def msgDsnTypeDetect(
     inMsg,
     failedMsg,
@@ -266,7 +266,7 @@ def msgDsnTypeDetect(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  dsnTypeShortReport    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def dsnTypeShortReport(
         inMsg,
         typeStr,
@@ -278,7 +278,7 @@ def dsnTypeShortReport(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  dsnTypeLongReport    [[elisp:(org-cycle)][| ]]
 """    
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def dsnTypeLongReport(
         inMsg,
         typeStr,
@@ -292,7 +292,7 @@ def dsnTypeLongReport(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  dsnTypeReports    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def dsnTypeReports(
     inMsg,
     dsnType,
@@ -309,7 +309,7 @@ def dsnTypeReports(
         elif reportType == "long":
             dsnTypeLongReport(inMsg, typeStr,)
         else:
-            icm.EH_critical_oops()
+            b_io.eh.critical_oops()
 
     if dsnType == DsnType.deliveryReport:
         dsnTypeStrReport(inMsg, "Delivery Report", reportType,)
@@ -330,7 +330,7 @@ def dsnTypeReports(
         dsnTypeStrReport(inMsg, "Not A DSN", reportType,)        
 
     else:
-        icm.EH_critical_oops()
+        b_io.eh.critical_oops()
 
 
 
@@ -341,7 +341,7 @@ def dsnTypeReports(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  fromNonDeliveryReportGetFailedMsg    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def fromNonDeliveryReportGetFailedMsg(
     nonDeliveryReportMsg,        
     tempFailedRecipients,
@@ -365,7 +365,7 @@ def fromNonDeliveryReportGetFailedMsg(
                 #for failedMsg in failedMsgList:
                 nuOfFailedMsgs = len(failedMsgList)
                 if nuOfFailedMsgs != 1:
-                    icm.EH_problem_info("More Then One -- Expected One")
+                    b_io.eh.problem_info("More Then One -- Expected One")
                     return None
                 else:
                     return failedMsgList[0]
@@ -398,7 +398,7 @@ def fromNonDeliveryReportGetFailedMsg(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  fromFailedMsgGetCoRecipients    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def fromFailedMsgGetCoRecipients(
     failedMsg,
     tempFailedRecipients,
@@ -412,7 +412,7 @@ def fromFailedMsgGetCoRecipients(
         return None
 
     if not failedMsg:
-        icm.EH_critical_unassigedError("UnFound FailedMsg")
+        b_io.eh.critical_unassigedError("UnFound FailedMsg")
         return None
    
     allRecipients= None
@@ -424,7 +424,7 @@ def fromFailedMsgGetCoRecipients(
     allRecipients = email.utils.getaddresses(tos + ccs + resent_tos + resent_ccs)
                 
     if not allRecipients:
-        icm.EH_problem_unassignedError("allRecipients is None")
+        b_io.eh.problem_unassignedError("allRecipients is None")
         return None
 
     allRecipientsSet = set()
@@ -449,7 +449,7 @@ def fromFailedMsgGetCoRecipients(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgMoveToFolder    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def msgMoveToFolder(
         destFolder,
         srcMaildir,        
@@ -484,7 +484,7 @@ def msgMoveToFolder(
     destMbox.close()
 
 
-####+BEGIN: bx:icm:python:section :title "Unused Facilities -- Temporary Junk Yard"
+####+BEGIN: bx:cs:python:section :title "Unused Facilities -- Temporary Junk Yard"
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Unused Facilities -- Temporary Junk Yard*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
 """
@@ -493,7 +493,7 @@ def msgMoveToFolder(
 *       /Empty/  [[elisp:(org-cycle)][| ]]
 """
 
-####+BEGIN: bx:icm:python:section :title "End Of Editable Text"
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :title " ~End Of Editable Text~ "
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *End Of Editable Text*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
 """

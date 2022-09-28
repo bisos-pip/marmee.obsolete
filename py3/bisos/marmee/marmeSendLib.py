@@ -3,7 +3,7 @@
 * TODO *[Summary]* ::  A /library/ with ICM Cmnds to support ByStar facilities
 """
 
-####+BEGIN: bx:icm:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
+####+BEGIN: bx:cs:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
 """
 *  This file:/de/bx/nne/dev-py/pypi/pkgs/bisos.marmee/dev/bisos.marmee/new-marmeSendLib.py :: [[elisp:(org-cycle)][| ]]
 ** is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
@@ -33,8 +33,8 @@ __status__ = "Production"
 
 __credits__ = [""]
 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/icmInfo-mbNedaGpl.py"
-icmInfo = {
+####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/csInfo-mbNedaGpl.py"
+csInfo = {
     'authors':         ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]"],
     'copyright':       "Copyright 2017, [[http://www.neda.com][Neda Communications, Inc.]]",
     'licenses':        ["[[https://www.gnu.org/licenses/agpl-3.0.en.html][Affero GPL]]", "Libre-Halaal Services License", "Neda Commercial License"],
@@ -44,7 +44,7 @@ icmInfo = {
 }
 ####+END:
 
-####+BEGIN: bx:icm:python:topControls 
+####+BEGIN: bx:cs:python:topControls 
 """
 *  [[elisp:(org-cycle)][|/Controls/| ]] :: [[elisp:(org-show-subtree)][|=]] [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[file:Panel.org][Panel]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(delete-other-windows)][(1)]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
 ** /Version Control/ ::  [[elisp:(call-interactively (quote cvs-update))][cvs-update]]  [[elisp:(vc-update)][vc-update]] | [[elisp:(bx:org:agenda:this-file-otherWin)][Agenda-List]]  [[elisp:(bx:org:todo:this-file-otherWin)][ToDo-List]]
@@ -59,7 +59,7 @@ icmInfo = {
 """
 
 
-####+BEGIN: bx:icm:python:section :title "ContentsList"
+####+BEGIN: bx:cs:python:section :title "ContentsList"
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *ContentsList*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
 """
@@ -100,9 +100,9 @@ import enum
 from unisos import ucf
 from unisos import icm
 
-G = icm.IcmGlobalContext()
+G = cs.globalContext.get()
 G.icmLibsAppend = __file__
-G.icmCmndsLibsAppend = __file__
+G.csCmndsLibsAppend = __file__
 # NOTYET DBLOCK Ends -- Rest of bisos libs follow;
 
 from . import marmeAcctsLib
@@ -131,16 +131,16 @@ from unisos.x822Msg import msgIn
 """
 ####+END:
 
-####+BEGIN: bx:dblock:python:icm:cmnd:classHead :modPrefix "new" :cmndName "bxpBaseDir_LibOverview" :parsMand "" :parsOpt "" :argsMin "0" :argsMax "3" :asFunc "" :interactiveP ""
+####+BEGIN: bx:dblock:python:icm:cmnd:classHead :modPrefix "new" :cmndName "bxpBaseDir_LibOverview" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 3 :pyInv ""
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /bxpBaseDir_LibOverview/ parsMand= parsOpt= argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 """
-class marmeSendLib_LibOverview(icm.Cmnd):
+class marmeSendLib_LibOverview(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 3,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         argsList=None,         # or Args-Input
@@ -154,7 +154,7 @@ class marmeSendLib_LibOverview(icm.Cmnd):
             effectiveArgsList = argsList
 
         callParamsDict = {}
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
 ####+END:
 
@@ -199,16 +199,16 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
 ####+END:
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "sendCompleteMessage" :comment "" :parsMand "bxoId sr inFile" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "msg" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "sendCompleteMessage" :comment "" :parsMand "bxoId sr inFile" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv "msg"
 """
 *  [[elisp:(org-cycle)][| ]] [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(bx:orgm:indirectBufOther)][|>]] [[elisp:(bx:orgm:indirectBufMain)][|I]] [[elisp:(blee:ppmm:org-mode-toggle)][|N]] [[elisp:(org-top-overview)][|O]] [[elisp:(progn (org-shifttab) (org-content))][|C]] [[elisp:(delete-other-windows)][|1]]  ICM-Cmnd       :: /sendCompleteMessage/ parsMand=bxoId sr inFile parsOpt= argsMin=0 argsMax=0 asFunc=msg interactive=  [[elisp:(org-cycle)][| ]]
 """
-class sendCompleteMessage(icm.Cmnd):
+class sendCompleteMessage(cs.Cmnd):
     cmndParamsMandatory = [ 'bxoId', 'sr', 'inFile', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         bxoId=None,         # or Cmnd-Input
@@ -222,14 +222,14 @@ class sendCompleteMessage(icm.Cmnd):
                 return cmndOutcome
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'inFile': inFile, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
         bxoId = callParamsDict['bxoId']
         sr = callParamsDict['sr']
         inFile = callParamsDict['inFile']
 
 ####+END:
-        G = icm.IcmGlobalContext()
+        G = cs.globalContext.get()
 
         if not msg:
             if inFile:
@@ -240,16 +240,16 @@ class sendCompleteMessage(icm.Cmnd):
         else:
             # non-interactive call with msg
             if not bxoId:
-                icm.EH_problem_usageError("")
+                b_io.eh.problem_usageError("")
                 return cmndOutcome
             
-        icm.LOG_here(msgOut.strLogMessage(
+        b_io.tm.here(msgOut.strLogMessage(
             "Msg As Input:", msg,))
 
-        icm.LOG_here(G.icmRunArgsGet().runMode)
+        b_io.tm.here(G.icmRunArgsGet().runMode)
 
         outcome = msgOut.sendingRunControlSet(msg, G.icmRunArgsGet().runMode)
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         bx822Set_setMandatoryFields(msg)
 
@@ -258,15 +258,15 @@ class sendCompleteMessage(icm.Cmnd):
             sr,
             msg,
         )
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         if outcome.results != "INCOMPLETE":
-            icm.LOG_here("Complete Message Being Sent")
+            b_io.tm.here("Complete Message Being Sent")
             return (
                 msgOut.sendBasedOnHeadersInfo(msg)
             )
 
-        icm.LOG_here("Incomplete Message -- using qmail+dryrun")
+        b_io.tm.here("Incomplete Message -- using qmail+dryrun")
 
         msgOut.injectionParams(
             msg,
@@ -277,16 +277,16 @@ class sendCompleteMessage(icm.Cmnd):
         return msgOut.sendBasedOnHeadersInfo(msg)
 
         # return cmndOutcome.set(
-        #     opError=icm.OpError.Success,
+        #     opError=cs.OpError.Success,
         #     opResults=None,
         # )
     
 
-####+BEGIN: bx:icm:python:method :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
+####+BEGIN: b:py3:cs:method/typing :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
     """
 **  [[elisp:(org-cycle)][| ]] [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(bx:orgm:indirectBufOther)][|>]] [[elisp:(bx:orgm:indirectBufMain)][|I]] [[elisp:(blee:ppmm:org-mode-toggle)][|N]] [[elisp:(org-top-overview)][|O]] [[elisp:(progn (org-shifttab) (org-content))][|C]] [[elisp:(delete-other-windows)][|1]]  Method-anyOrNone :: /cmndDocStr/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
 """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndDocStr(self):
 ####+END:        
         return """
@@ -345,7 +345,7 @@ def bx822Set_setMandatoryFields(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  bx822Get_sendingFieldsPipelineLoad    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def bx822Get_sendingFieldsPipelineLoad(
     bxoId,
     sr,
@@ -354,7 +354,7 @@ def bx822Get_sendingFieldsPipelineLoad(
     """
 ** Look for BX-Send-WithAcctName or BX-Send-WithBaseDir, and based on those prep the Bx822 fields.
 """
-    opOutcome = icm.OpOutcome()
+    opOutcome = b.op.Outcome()
     if 'BX-Send-WithAcctName' in msg:
         controlProfile = msg['BX-Send-WithControlProfile']
         outMailAcct = msg['BX-Send-WithAcctName']
@@ -380,7 +380,7 @@ def bx822Get_sendingFieldsPipelineLoad(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgSendingPipelineLoadFromAcct    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def msgSendingPipelineLoadFromAcct(
         bxoId,
         sr,
@@ -406,7 +406,7 @@ def msgSendingPipelineLoadFromAcct(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgSendingPipelineLoadFromAcctBaseDir    [[elisp:(org-cycle)][| ]]
 """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def msgSendingPipelineLoadFromAcctBaseDir(
         msg,
         acctBaseDir,
@@ -414,9 +414,9 @@ def msgSendingPipelineLoadFromAcctBaseDir(
     """
 ** Read File Params for mailAcct and set X822-MSP params accordingly
     """
-    opOutcome = icm.OpOutcome()
+    opOutcome = b.op.Outcome()
     #print acctBaseDir
-    #G = icm.IcmGlobalContext()
+    #G = cs.globalContext.get()
 
     outcome = icm.FP_readTreeAtBaseDir().cmnd(
         interactive=False,
@@ -446,7 +446,7 @@ def msgSendingPipelineLoadFromAcctBaseDir(
     sendingMethod = fp_submission_dict["sendingMethod"].parValueGet()
 
     if msgOut.sendingMethodSet(msg, sendingMethod).isProblematic():
-        return icm.EH_badLastOutcome()
+        return b_io.eh.badLastOutcome()
 
     if sendingMethod == msgOut.SendingMethod.inject:
         return opOutcome
@@ -497,7 +497,7 @@ def msgSendingPipelineLoadFromAcctBaseDir(
     
     
 
-####+BEGIN: bx:icm:python:section :title "End Of Editable Text"
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :title " ~End Of Editable Text~ "
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *End Of Editable Text*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
 """

@@ -27,12 +27,12 @@
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
 import typing
-icmInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['marmeeInMailRetrieve'], }
-icmInfo['version'] = '202207115044'
-icmInfo['status']  = 'inUse'
-icmInfo['panel'] = 'marmeeInMailRetrieve-Panel.org'
-icmInfo['groupingType'] = 'IcmGroupingType-pkged'
-icmInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['marmeeInMailRetrieve'], }
+csInfo['version'] = '202207115044'
+csInfo['status']  = 'inUse'
+csInfo['panel'] = 'marmeeInMailRetrieve-Panel.org'
+csInfo['groupingType'] = 'IcmGroupingType-pkged'
+csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
 """ #+begin_org
@@ -57,7 +57,7 @@ Module description comes here.
 #+end_org """
 ####+END:
 
-####+BEGIN: bx:icm:python:icmItem :itemType "=PyImports= " :itemTitle "*Py Library IMPORTS*"
+####+BEGIN: bx:cs:python:icmItem :itemType "=PyImports= " :itemTitle "*Py Library IMPORTS*"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  =PyImports=  [[elisp:(outline-show-subtree+toggle)][||]] *Py Library IMPORTS*  [[elisp:(org-cycle)][| ]]
 #+end_org """
@@ -69,9 +69,9 @@ from unisos import icm
 
 icm.unusedSuppressForEval(ucf.__file__)  # in case icm and ucf are not used
 
-G = icm.IcmGlobalContext()
+G = cs.globalContext.get()
 # G.icmLibsAppend = __file__
-# G.icmCmndsLibsAppend = __file__
+# G.csCmndsLibsAppend = __file__
 
 from blee.icmPlayer import bleep
 ####+END:
@@ -92,7 +92,7 @@ from bisos.bpo import bpoRunBases
 
 #from bisos.icm import clsMethod
 
-from bisos import bpf
+from bisos import b
 
 from datetime import datetime
 import pathlib
@@ -111,7 +111,7 @@ g_importedCmndsModules = [       # Enumerate modules from which CMNDs become inv
 
 ####+END:
 
-####+BEGIN: bx:icm:python:func :funcType "CsFrmWrk" :funcName "g_paramsExtraSpecify" :comment "FmWrk: ArgsSpec"  :retType "Void" :deco "" :argsList "parser"
+####+BEGIN: bx:cs:python:func :funcType "CsFrmWrk" :funcName "g_paramsExtraSpecify" :comment "FmWrk: ArgsSpec"  :retType "Void" :deco "" :argsList "parser"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-CsFrmWrk [[elisp:(outline-show-subtree+toggle)][||]] /g_paramsExtraSpecify/ =FmWrk: ArgsSpec= retType=Void argsList=(parser)  [[elisp:(org-cycle)][| ]]
 #+end_org """
@@ -123,34 +123,34 @@ def g_paramsExtraSpecify(
 ** Module Specific Command Line Parameters. This func is passed to G_main and can not be decorated.
 #+end_org """
 
-    G = icm.IcmGlobalContext()
-    icmParams = icm.ICM_ParamDict()
+    G = cs.globalContext.get()
+    csParams = cs.CmndParamDict()
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='moduleVersion',
         parDescription='Module Version',
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=icm.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
 
-    bleep.commonParamsSpecify(icmParams)
+    bleep.commonParamsSpecify(csParams)
 
-    marmeAcctsLib.commonParamsSpecify(icmParams)
+    marmeAcctsLib.commonParamsSpecify(csParams)
 
-    icm.argsparseBasedOnIcmParams(parser, icmParams)
+    cs.argsparseBasedOnCsParams(parser, csParams)
 
     # So that it can be processed later as well.
-    G.icmParamDictSet(icmParams)
+    G.icmParamDictSet(csParams)
 
     return
 
-####+BEGIN: blee:bxPanel:foldingSection :outLevel 1 :title "CmndSvc-s" :extraInfo "class someCommand(icm.Cmnd)"
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 1 :title "CmndSvc-s" :extraInfo "class someCommand(cs.Cmnd)"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*       [[elisp:(outline-show-subtree+toggle)][| *CmndSvc-s:* |]]  class someCommand(icm.Cmnd)  [[elisp:(org-shifttab)][<)]] E|
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*       [[elisp:(outline-show-subtree+toggle)][| *CmndSvc-s:* |]]  class someCommand(cs.Cmnd)  [[elisp:(org-shifttab)][<)]] E|
 #+end_org """
 ####+END:
 
@@ -158,7 +158,7 @@ def g_opSysExit(opOutcome):
     print(opOutcome.error)
     sys.exit()
 
-g_outcome = bpf.op.Outcome()
+g_outcome = b.op.Outcome()
 
 ####+BEGIN: b:python:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
 """ #+begin_org
@@ -173,35 +173,35 @@ cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
 cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
 cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
 def cur_examples():
-    icm.ex_gExecMenuItem(execLine='bx-currents.cs')
-    icm.ex_gExecMenuItem(execLine='bx-currents.cs -i usgCursParsGet')
+    cs.examples.execInsert(execLine='bx-currents.cs')
+    cs.examples.execInsert(execLine='bx-currents.cs -i usgCursParsGet')
     for each in _parNamesList:
-        icm.ex_gExecMenuItem(execLine=f'bx-currents.cs -v 20 -i pkgInfoParsSet {each}={curParsDictValue[each]}')
+        cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i pkgInfoParsSet {each}={curParsDictValue[each]}')
 ####+END:
 
 
 
-####+BEGIN: icm:py3:cmnd:classHead :cmndName "examples" :cmndType ""  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examples" :cmndType ""  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc    [[elisp:(outline-show-subtree+toggle)][||]] <<examples>> =FrameWrk: ICM Examples= parsMand= parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class examples(icm.Cmnd):
+class examples(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
-    ) -> icm.OpOutcome:
+    ) -> b.op.Outcome:
         """FrameWrk: ICM Examples"""
 ####+END:
         self.cmndDocStr(f""" #+begin_org ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
         def cpsInit(): return collections.OrderedDict()
-        def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-        def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+        def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+        def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
         cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
         def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = cur_aasMarmee_bpoId ; cps['envRelPath'] = cur_marmeeEnvRelPath
@@ -209,16 +209,16 @@ class examples(icm.Cmnd):
 
         cmndOutcome = self.getOpOutcome()
 
-        logControler = icm.LOG_Control()
+        logControler = b_io.log.Control()
         logControler.loggerSetLevel(20)
 
-        icm.icmExampleMyName(G.icmMyName(), G.icmMyFullName())
+        cs.examples.myName(G.icmMyName(), G.icmMyFullName())
 
-        icm.G_commonBriefExamples()
+        cs.examples.commonBrief()
 
         bleep.examples_icmBasic()
 
-        icm.cmndExampleMenuChapter('*Currents Examples Settings*')
+        cs.examples.menuChapter('*Currents Examples Settings*')
         cur_examples()
 
         #  RunBases Examples
@@ -226,14 +226,14 @@ class examples(icm.Cmnd):
 
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
 
-####+BEGIN: bx:icm:python:cmnd:subSection :title "Dev And Testing"
+####+BEGIN: bx:cs:python:cmnd:subSection :title "Dev And Testing"
         """
 **  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Dev And Testing*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
-        #icm.cmndExampleMenuChapter('*General Dev and Testing IIFs*')
+        #cs.examples.menuChapter('*General Dev and Testing IIFs*')
 
-        icm.cmndExampleMenuChapter('*Config File Creation Facility IIFs*')
+        cs.examples.menuChapter('*Config File Creation Facility IIFs*')
 
         cmndName = "offlineimaprcUpdate" ;  cmndArgs = ""
         cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
@@ -250,14 +250,14 @@ class examples(icm.Cmnd):
         #     curGet_sr(),
         # )
 
-        # icm.ANN_write(
+        # b_io.ann.write(
         #     """ls -l {}""".format(configFile)
         # )
-        # icm.ANN_write(
+        # b_io.ann.write(
         #     """cat  {} """.format(configFile)
         # )
 
-        icm.cmndExampleMenuChapter('*Operation Facility IIFs -- (offlineimapRun)*')
+        cs.examples.menuChapter('*Operation Facility IIFs -- (offlineimapRun)*')
 
         cmndName = "offlineimapRun" ;  cmndArgs = ""
         cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
@@ -273,28 +273,28 @@ class examples(icm.Cmnd):
         return(cmndOutcome)
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "offlineimapRun" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRun" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc    [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRun/ parsMand=bpoId envRelPath parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class offlineimapRun(icm.Cmnd):
+class offlineimapRun(cs.Cmnd):
     cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         bpoId=None,         # or Cmnd-Input
         envRelPath=None,         # or Cmnd-Input
-    ) -> icm.OpOutcome:
+    ) -> b.op.Outcome:
         cmndOutcome = self.getOpOutcome()
         if interactive:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
         callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
         bpoId = callParamsDict['bpoId']
         envRelPath = callParamsDict['envRelPath']
@@ -313,36 +313,36 @@ class offlineimapRun(icm.Cmnd):
         outcome = icm.subProc_bash("""offlineimap -c {offlineimaprcPath}"""
                                     .format(offlineimaprcPath=offlineimaprcPath)
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=None,
         )
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "offlineimaprcUpdate" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimaprcUpdate" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc    [[elisp:(outline-show-subtree+toggle)][||]] /offlineimaprcUpdate/ parsMand=bpoId envRelPath parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class offlineimaprcUpdate(icm.Cmnd):
+class offlineimaprcUpdate(cs.Cmnd):
     cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         bpoId=None,         # or Cmnd-Input
         envRelPath=None,         # or Cmnd-Input
-    ) -> icm.OpOutcome:
+    ) -> b.op.Outcome:
         cmndOutcome = self.getOpOutcome()
         if interactive:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
         callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
         bpoId = callParamsDict['bpoId']
         envRelPath = callParamsDict['envRelPath']
@@ -354,7 +354,7 @@ class offlineimaprcUpdate(icm.Cmnd):
             bxoId=bxoId,
             sr=sr,
         )
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         offlineimaprcStr = outcome.results
 
@@ -398,11 +398,11 @@ class offlineimaprcUpdate(icm.Cmnd):
             icm.ANN_here("offlineimaprcPath={val}".format(val=offlineimaprcPath))
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=offlineimaprcStr,
         )
 
-####+BEGIN: bx:icm:python:func :funcName "withInMailDomGetOfflineimaprcPath" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId sr"
+####+BEGIN: bx:cs:python:func :funcName "withInMailDomGetOfflineimaprcPath" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId sr"
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /withInMailDomGetOfflineimaprcPath/ retType=bool argsList=(controlProfile inMailAcct bxoId sr)  [[elisp:(org-cycle)][| ]]
 """
@@ -436,16 +436,16 @@ def withInMailSvcInstGetOfflineimaprcPath(
     return offlineimaprcFile
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "offlineimaprcStdout" :comment "" :parsMand "" :parsOpt "bxoId sr inMailAcct mboxesList ssl" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimaprcStdout" :comment "" :parsMand "" :parsOpt "bxoId sr inMailAcct mboxesList ssl" :argsMin 0 :argsMax 0 :pyInv ""
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /offlineimaprcStdout/ parsMand= parsOpt=bxoId sr inMailAcct mboxesList ssl argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
 """
-class offlineimaprcStdout(icm.Cmnd):
+class offlineimaprcStdout(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'inMailAcct', 'mboxesList', 'ssl', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
         interactive=False,        # Can also be called non-interactively
         bxoId=None,         # or Cmnd-Input
@@ -460,7 +460,7 @@ class offlineimaprcStdout(icm.Cmnd):
                 return cmndOutcome
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'inMailAcct': inMailAcct, 'mboxesList': mboxesList, 'ssl': ssl, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
+        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
             return cmndOutcome
         bxoId = callParamsDict['bxoId']
         sr = callParamsDict['sr']
@@ -477,7 +477,7 @@ class offlineimaprcStdout(icm.Cmnd):
             inMailAcct=inMailAcct,
             argsList=['access'],
         )
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         fileParamDict = outcome.results
 
@@ -488,11 +488,11 @@ class offlineimaprcStdout(icm.Cmnd):
             inMailAcct=inMailAcct,
             argsList=['retrieval']
         )
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         fileParamRetrievalDict = outcome.results
 
         mailDirFullPath = fileParamRetrievalDict['inMailAcctMboxesPath'].parValueGet()
-        if not mailDirFullPath: return icm.EH_badOutcome(outcome)
+        if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
 
         try:
             os.makedirs(mailDirFullPath)
@@ -526,11 +526,11 @@ class offlineimaprcStdout(icm.Cmnd):
             print(resStr)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=resStr
         )
 
-####+BEGIN: bx:icm:python:func :funcName "offlineimaprcTemplate" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+####+BEGIN: bx:cs:python:func :funcName "offlineimaprcTemplate" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /offlineimaprcTemplate/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
 """
@@ -572,14 +572,14 @@ nametrans = lambda name: re.sub('^INBOX.', '', name)
 
 
 
-####+BEGIN: b:python:cs:framework/main :csInfo "icmInfo" :noCmndEntry "examples" :extraParamsHook "g_paramsExtraSpecify" :importedCmndsModules "g_importedCmndsModules"
+####+BEGIN: b:python:cs:framework/main :csInfo "csInfo" :noCmndEntry "examples" :extraParamsHook "g_paramsExtraSpecify" :importedCmndsModules "g_importedCmndsModules"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~g_icmMain~ (icmInfo, _examples_, g_paramsExtraSpecify, g_importedCmndsModules)
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~g_icmMain~ (csInfo, _examples_, g_paramsExtraSpecify, g_importedCmndsModules)
 #+end_org """
 
 if __name__ == '__main__':
-    icm.g_icmMain(
-        icmInfo=icmInfo,
+    cs.g_csMain(
+        csInfo=csInfo,
         noCmndEntry=examples,  # specify a Cmnd name
         extraParamsHook=g_paramsExtraSpecify,
         importedCmndsModules=g_importedCmndsModules,

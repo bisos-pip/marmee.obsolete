@@ -146,7 +146,7 @@ This message is then submitted for sending with sendCompleteMessage().cmnd(msg)
     )
 
     if msgOut.sendingMethodSet(msg, sendingMethod).isProblematic():
-        return icm.EH_badLastOutcome()
+        return b_io.eh.badLastOutcome()
         
     if not marmeSendLib.bx822Set_sendWithEnabledAcct(
             msg=msg,
@@ -154,7 +154,7 @@ This message is then submitted for sending with sendCompleteMessage().cmnd(msg)
             bxoId=bxoId,
             sr=sr,
     ):
-        return icm.EH_badOutcome()
+        return b_io.eh.badOutcome()
 
     marmeTrackingLib.deliveryEvent_injectBefore(
         bxoId,
@@ -188,10 +188,10 @@ def main():
         extraArgs=None,
     )
     
-    logControler = icm.LOG_Control()
+    logControler = b_io.log.Control()
     logControler.loggerSet(icmRunArgs)
 
-    G = icm.IcmGlobalContext()
+    G = cs.globalContext.get()
     G.globalContextSet( icmRunArgs=icmRunArgs )
 
     #

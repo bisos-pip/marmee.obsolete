@@ -1,93 +1,93 @@
 # -*- coding: utf-8 -*-
-"""\
-* *[Summary]* ::  A /library/ with ICM Cmnds to support managment of Marme related mail profiles
-"""
 
-####+BEGIN: bx:icm:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
-"""
-*  This file:/acct/smb/com/dev-py/LUE/Sync/pypi/pkgs/bisos.marmee/dev/bisos.marmee/marmeAcctsLib.py :: [[elisp:(org-cycle)][| ]]
- is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
- *CopyLeft*  This Software is a Libre-Halaal Poly-Existential. See http://www.freeprotocols.org
- A Python Interactively Command Module (PyICM). Part Of ByStar.
- Best Developed With COMEEGA-Emacs And Best Used With Blee-ICM-Players.
- Warning: All edits wityhin Dynamic Blocks may be lost.
-"""
+""" #+begin_org
+* ~[Summary]~ :: A =CS-Lib= with ICM Cmnds to support managment of Marme related mail profiles
+#+end_org """
+
+####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
+""" #+begin_org
+* [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
+#+BEGIN_SRC emacs-lisp
+(setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
+#+END_SRC
+#+RESULTS:
+: cs-mu
+#+end_org """
 ####+END:
 
 
-"""
-*  [[elisp:(org-cycle)][| *Lib-Module-INFO:* |]] :: Author, Copyleft and Version Information
-"""
-
-####+BEGIN: bx:global:lib:name-py :style "fileName"
-__libName__ = "marmeAcctsLib"
+####+BEGIN: b:prog:file/proclamations :outLevel 1
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Proclamations |]]* :: Libre-Halaal Software --- Part Of BISOS ---  Poly-COMEEGA Format.
+** This is Libre-Halaal Software. © Neda Communications, Inc. Subject to AGPL.
+** It is part of BISOS (ByStar Internet Services OS)
+** Best read and edited  with Blee in Poly-COMEEGA (Polymode Colaborative Org-Mode Enhance Emacs Generalized Authorship)
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:global:timestamp:version-py :style "date"
-__version__ = "201805285653"
+####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
+** This File: /bisos/git/auth/bxRepos/bisos-pip/crypt/py3/bisos/crypt/gpgSym.py
+** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:global:icm:status-py :status "Production"
-__status__ = "Production"
+####+BEGIN: b:python:file/particulars-csInfo :status "inUse"
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
+#+end_org """
+import typing
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['gpgSym'], }
+csInfo['version'] = '202209261325'
+csInfo['status']  = 'inUse'
+csInfo['panel'] = 'gpgSym-Panel.org'
+csInfo['groupingType'] = 'IcmGroupingType-pkged'
+csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
-__credits__ = [""]
+""" #+begin_org
+* /[[elisp:(org-cycle)][| Description |]]/ :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/PyFwrk/bisos.crypt/_nodeBase_/fullUsagePanel-en.org][PyFwrk bisos.crypt Panel]]
+Module description comes here.
+** Relevant Panels:
+** Status: In use with blee3
+** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
+*** TODO complete fileName in particulars.
+#+end_org """
 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/icmInfo-mbNedaGpl.py"
-icmInfo = {
-    'authors':         ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]"],
-    'copyright':       "Copyright 2017, [[http://www.neda.com][Neda Communications, Inc.]]",
-    'licenses':        ["[[https://www.gnu.org/licenses/agpl-3.0.en.html][Affero GPL]]", "Libre-Halaal Services License", "Neda Commercial License"],
-    'maintainers':     ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]",],
-    'contacts':        ["[[http://mohsen.1.banan.byname.net/contact]]",],
-    'partOf':          ["[[http://www.by-star.net][Libre-Halaal ByStar Digital Ecosystem]]",]
-}
-####+END:
-
-####+BEGIN: bx:icm:python:topControls 
-"""
-*  [[elisp:(org-cycle)][|/Controls/| ]] :: [[elisp:(org-show-subtree)][|=]]  [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[file:Panel.org][Panel]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(delete-other-windows)][(1)]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
+####+BEGIN: b:prog:file/orgTopControls :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Controls |]] :: [[elisp:(delete-other-windows)][(1)]] | [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
 ** /Version Control/ ::  [[elisp:(call-interactively (quote cvs-update))][cvs-update]]  [[elisp:(vc-update)][vc-update]] | [[elisp:(bx:org:agenda:this-file-otherWin)][Agenda-List]]  [[elisp:(bx:org:todo:this-file-otherWin)][ToDo-List]]
-"""
+#+end_org """
 ####+END:
 
-"""
-* 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/software/plusOrg/dblock/inserts/pythonWb.org"
-*  /Python Workbench/ ::  [[elisp:(org-cycle)][| ]]  [[elisp:(python-check (format "pyclbr %s" (bx:buf-fname))))][pyclbr]] || [[elisp:(python-check (format "pyflakes %s" (bx:buf-fname)))][pyflakes]] | [[elisp:(python-check (format "pychecker %s" (bx:buf-fname))))][pychecker (executes)]] | [[elisp:(python-check (format "pep8 %s" (bx:buf-fname))))][pep8]] | [[elisp:(python-check (format "flake8 %s" (bx:buf-fname))))][flake8]] | [[elisp:(python-check (format "pylint %s" (bx:buf-fname))))][pylint]]  [[elisp:(org-cycle)][| ]]
-####+END:
-"""
-
-
-####+BEGIN: bx:icm:python:section :title "ContentsList"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *ContentsList*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+####+BEGIN: b:python:file/workbench :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Workbench |]] :: [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pyclbr %s" (bx:buf-fname))))][pyclbr]] || [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pydoc ./%s" (bx:buf-fname))))][pydoc]] || [[elisp:(python-check (format "/bisos/pipx/bin/pyflakes %s" (bx:buf-fname)))][pyflakes]] | [[elisp:(python-check (format "/bisos/pipx/bin/pychecker %s" (bx:buf-fname))))][pychecker (executes)]] | [[elisp:(python-check (format "/bisos/pipx/bin/pycodestyle %s" (bx:buf-fname))))][pycodestyle]] | [[elisp:(python-check (format "/bisos/pipx/bin/flake8 %s" (bx:buf-fname))))][flake8]] | [[elisp:(python-check (format "/bisos/pipx/bin/pylint %s" (bx:buf-fname))))][pylint]]  [[elisp:(org-cycle)][| ]]
+#+end_org """
 ####+END:
 
+####+BEGIN: b:py3:cs:orgItem/basic :type "=PyImports= " :title "*Py Library IMPORTS*" :comment "-- with classification based framework/imports"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  =PyImports=  [[elisp:(outline-show-subtree+toggle)][||]] *Py Library IMPORTS* -- with classification based framework/imports  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
 
-####+BEGIN: bx:dblock:python:icmItem :itemType "=Imports=" :itemTitle "*IMPORTS*"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || =Imports=      :: *IMPORTS*  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: b:py3:cs:framework/imports :basedOn "classification"
+""" #+begin_org
+** Imports Based On Classification=cs-lib
+#+end_org """
+from bisos import b
+from bisos.b import cs
+from bisos.b import b_io
+
 ####+END:
 
 import os
 import collections
 #import enum
-
-
-####+BEGIN: bx:dblock:global:file-insert :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/importUcfIcmG.py"
-from unisos import ucf
-from unisos import icm
-
-icm.unusedSuppressForEval(ucf.__file__)  # in case icm and ucf are not used
-
-G = icm.IcmGlobalContext()
-G.icmLibsAppend = __file__
-G.icmCmndsLibsAppend = __file__
-
-####+END:
 
 from unisos.common import icmsPkgLib
 
@@ -98,39 +98,30 @@ from bisos.currents import bxCurrentsConfig
 
 ####+BEGIN: bx:dblock:python:section :title "Library Description (Overview)"
 """
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Library Description (Overview)*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+*  [[elisp:(beginning-of-buffer)][Top]] ############## [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Library Description (Overview)*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "marmeAcctsLib_libOverview" :parsMand "" :parsOpt "" :argsMin "0" :argsMax "3" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /marmeAcctsLib_libOverview/ parsMand= parsOpt= argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class marmeAcctsLib_libOverview(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmeAcctsLib_libOverview" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 3 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<marmeAcctsLib_libOverview>>  =verify= argsMax=3 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class marmeAcctsLib_libOverview(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 3,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {}
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
 
         moduleDescription="""
@@ -194,7 +185,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
 """
 ####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/moduleOverview.py"
         icm.unusedSuppressForEval(moduleUsage, moduleStatus)
-        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, effectiveArgsList)
+        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         if actions[0] == "all":
             cmndArgsSpec = cmndArgsSpecDict.argPositionFind("0&2")
             argChoices = cmndArgsSpec.argChoicesGet()
@@ -212,12 +203,12 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
     """
 **  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndArgsSpec/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
 """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndArgsSpec(self):
         """
 ***** Cmnd Args Specification
 """
-        cmndArgsSpecDict = icm.CmndArgsSpecDict()
+        cmndArgsSpecDict = cs.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
             argPosition="0&2",
             argName="actions",
@@ -229,43 +220,42 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
         return cmndArgsSpecDict
 ####+END:
 
-####+BEGIN: bx:icm:python:section :title "Common Module Conventions (BxoIdSr)"
+####+BEGIN: bx:cs:python:section :title "Common Module Conventions (BxoIdSr)"
 """
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Common Module Conventions (BxoIdSr)*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+*  [[elisp:(beginning-of-buffer)][Top]] ############## [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Common Module Conventions (BxoIdSr)*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
-####+BEGIN: bx:dblock:global:file-insert :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/curGetBxOSr.py"
-"""
+####+BEGINNOT: bx:dblock:global:file-insert :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/curGetBxOSr.py"
+""" #+begin_org
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-BxoIdSr   :: /curGet_{bxoId,sr}/ retType=str argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+#+end_org """
 
 def curGet_bxoId(): return bxCurrentsConfig.bxoId_fpObtain(configBaseDir=None)
 def curGet_sr(): return bxCurrentsConfig.sr_fpObtain(configBaseDir=None)
 def cmndParsCurBxoSr(cps): cps['bxoId'] = curGet_bxoId(); cps['sr'] = curGet_sr()
-
 ####+END:
 
-####+BEGIN: bx:icm:python:section :title "Obtain ICM-Package Anchor For General Execution"
+####+BEGIN: bx:cs:python:section :title "Obtain ICM-Package Anchor For General Execution"
 """
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Obtain ICM-Package Anchor For General Execution*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+*  [[elisp:(beginning-of-buffer)][Top]] ############## [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Obtain ICM-Package Anchor For General Execution*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
 
-####+BEGIN: bx:icm:python:func :funcName "pkgAnchor_configDir_obtain" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /pkgAnchor_configDir_obtain/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "pkgAnchor_configDir_obtain" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /pkgAnchor_configDir_obtain/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def pkgAnchor_configDir_obtain():
 ####+END:
     return marmePkgThis.pkgBase_configDir()
 
 
-####+BEGIN: bx:icm:python:func :funcName "pkgAnchor_baseDir_obtain" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /pkgAnchor_baseDir_obtain/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "pkgAnchor_baseDir_obtain" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /pkgAnchor_baseDir_obtain/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def pkgAnchor_baseDir_obtain():
 ####+END:
     return (
@@ -273,10 +263,10 @@ def pkgAnchor_baseDir_obtain():
     )
 
 
-####+BEGIN: bx:icm:python:func :funcName "inputsBaseDirGet" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /inputsBaseDirGet/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "inputsBaseDirGet" :funcType "anyOrNone" :retType "str(path)" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /inputsBaseDirGet/ retType=str(path) argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def inputsBaseDirGet():
 ####+END:
     return (
@@ -286,16 +276,16 @@ def inputsBaseDirGet():
     )
 
 
-####+BEGIN: bx:icm:python:section :title "Obtain ICM-Package Canonical General Execution Bases"
+####+BEGIN: bx:cs:python:section :title "Obtain ICM-Package Canonical General Execution Bases"
 """
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Obtain ICM-Package Canonical General Execution Bases*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+*  [[elisp:(beginning-of-buffer)][Top]] ############## [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Obtain ICM-Package Canonical General Execution Bases*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
-####+BEGIN: bx:icm:python:func :funcName "mailAcctsBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /mailAcctsBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "mailAcctsBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /mailAcctsBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def mailAcctsBaseDirGet(
     bxoId=None,
     sr=None,
@@ -307,10 +297,10 @@ def mailAcctsBaseDirGet(
 
 
 
-####+BEGIN: bx:icm:python:func :funcName "configBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /configBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "configBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /configBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def configBaseDirGet(
     bxoId=None,
     sr=None,
@@ -329,10 +319,10 @@ def configBaseDirGet(
 
 
 
-####+BEGIN: bx:icm:python:func :funcName "controlBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /controlBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "controlBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /controlBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def controlBaseDirGet(
     bxoId=None,
     sr=None,
@@ -352,10 +342,10 @@ def controlBaseDirGet(
     )
 
 
-####+BEGIN: bx:icm:python:func :funcName "varBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /varBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "varBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /varBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def varBaseDirGet(
     bxoId=None,
     sr=None,
@@ -373,10 +363,10 @@ def varBaseDirGet(
     )
 
     
-####+BEGIN: bx:icm:python:func :funcName "tmpBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /tmpBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "tmpBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /tmpBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def tmpBaseDirGet(
     bxoId=None,
     sr=None,
@@ -391,10 +381,10 @@ def tmpBaseDirGet(
     )
 
     
-####+BEGIN: bx:icm:python:func :funcName "logBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /logBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "logBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /logBaseDirGet/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def logBaseDirGet(
     bxoId=None,
     sr=None,
@@ -414,17 +404,17 @@ def logBaseDirGet(
 """
 
     
-####+BEGIN: bx:icm:python:func :funcName "enabledControlProfileObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /enabledControlProfileObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "enabledControlProfileObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /enabledControlProfileObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def enabledControlProfileObtain(
     bxoId=None,
     sr=None,
 ):
 ####+END:
     """Returns as a string fp value read."""
-    return icm.FILE_ParamValueReadFrom(
+    return b.fp.FileParamValueReadFrom(
         parRoot=os.path.join(
             controlBaseDirGet(bxoId=bxoId, sr=sr,),
             "common",
@@ -434,10 +424,10 @@ def enabledControlProfileObtain(
         parName="enabledControlProfile",
     )
 
-####+BEGIN: bx:icm:python:func :funcName "availableControlProfilesObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /availableControlProfilesObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "availableControlProfilesObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /availableControlProfilesObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def availableControlProfilesObtain(
     bxoId=None,
     sr=None,
@@ -459,10 +449,10 @@ Returns a list
         availablesList.append(each)
     return availablesList
 
-####+BEGIN: bx:icm:python:func :funcName "enabledInMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /enabledInMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "enabledInMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /enabledInMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def enabledInMailAcctObtain(
     bxoId=None,
     sr=None,
@@ -470,7 +460,7 @@ def enabledInMailAcctObtain(
 ####+END:
     """
 ** Called obtain to leave Get for the IIF"""
-    return icm.FILE_ParamValueReadFrom(
+    return b.fp.FileParamValueReadFrom(
         parRoot=os.path.join(
             controlBaseDirGet(bxoId=bxoId, sr=sr,),
             "common",
@@ -480,10 +470,10 @@ def enabledInMailAcctObtain(
         parName="enabledInMailAcct",          
     )
 
-####+BEGIN: bx:icm:python:func :funcName "availableInMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /availableInMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "availableInMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /availableInMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def availableInMailAcctObtain(
     bxoId=None,
     sr=None,
@@ -513,10 +503,10 @@ Returns a list
         availablesList.append(each)
     return availablesList
 
-####+BEGIN: bx:icm:python:func :funcName "enabledOutMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /enabledOutMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "enabledOutMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /enabledOutMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def enabledOutMailAcctObtain(
     bxoId=None,
     sr=None,
@@ -524,7 +514,7 @@ def enabledOutMailAcctObtain(
 ####+END:
     """
 ** Called obtain to leave Get for the IIF"""
-    return icm.FILE_ParamValueReadFrom(
+    return b.fp.FileParamValueReadFrom(
         parRoot=os.path.join(
             controlBaseDirGet(bxoId=bxoId, sr=sr,),
             "common",
@@ -534,10 +524,10 @@ def enabledOutMailAcctObtain(
         parName="enabledOutMailAcct",          
     )
 
-####+BEGIN: bx:icm:python:func :funcName "availableOutMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /availableOutMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "availableOutMailAcctObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /availableOutMailAcctObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def availableOutMailAcctObtain(
     bxoId=None,
     sr=None,
@@ -568,10 +558,10 @@ Returns a list
     return availablesList
 
 
-####+BEGIN: bx:icm:python:func :funcName "enabledMailBoxObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /enabledMailBoxObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "enabledMailBoxObtain" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /enabledMailBoxObtain/ retType=bool argsList=(bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def enabledMailBoxObtain(
     bxoId=None,
     sr=None,
@@ -579,7 +569,7 @@ def enabledMailBoxObtain(
 ####+END:
     """
 ** Called obtain to leave Get for the IIF"""
-    return icm.FILE_ParamValueReadFrom(
+    return b.fp.FileParamValueReadFrom(
         parRoot=os.path.join(
             controlBaseDirGet(bxoId=bxoId, sr=sr,),
             "common",
@@ -594,11 +584,10 @@ def enabledMailBoxObtain(
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *Control Base Directory From FP Get*
 """
 
-####+BEGIN: bx:icm:python:func :funcName "controlProfileBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /controlProfileBaseDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+####+BEGIN: bx:cs:python:func :funcName "controlProfileBaseDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /controlProfileBaseDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def controlProfileBaseDirGet(
     controlProfile,
     bxoId=None,
@@ -619,11 +608,10 @@ def controlProfileBaseDirGet(
 
 
 
-####+BEGIN: bx:icm:python:func :funcName "outMailAcctDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile outMailAcct bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /outMailAcctDirGet/ retType=bool argsList=(controlProfile outMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+####+BEGIN: bx:cs:python:func :funcName "outMailAcctDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile outMailAcct bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /outMailAcctDirGet/ retType=bool argsList=(controlProfile outMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def outMailAcctDirGet(
     controlProfile,
     outMailAcct,
@@ -640,10 +628,10 @@ def outMailAcctDirGet(
     ))
 
 
-####+BEGIN: bx:icm:python:func :funcName "outMailCommonDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /outMailCommonDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "outMailCommonDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /outMailCommonDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def outMailCommonDirGet(
     controlProfile,
     bxoId=None,
@@ -660,10 +648,10 @@ def outMailCommonDirGet(
             #"fp",         # NOTYET, Needs to be revisited
     ))
 
-####+BEGIN: bx:icm:python:func :funcName "inMailAcctDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /inMailAcctDirGet/ retType=bool argsList=(controlProfile inMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "inMailAcctDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /inMailAcctDirGet/ retType=bool argsList=(controlProfile inMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def inMailAcctDirGet(
     controlProfile,
     inMailAcct,
@@ -681,10 +669,10 @@ def inMailAcctDirGet(
             "fp",
     ))
 
-####+BEGIN: bx:icm:python:func :funcName "inMailCommonDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /inMailCommonDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "inMailCommonDirGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /inMailCommonDirGet/ retType=bool argsList=(controlProfile bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def inMailCommonDirGet(
     controlProfile,
     bxoId=None,
@@ -707,10 +695,10 @@ def inMailCommonDirGet(
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *VAR Base Directory Get*
 """
 
-####+BEGIN: bx:icm:python:func :funcName "getPathForAcctMaildir" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile mailAcct bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /getPathForAcctMaildir/ retType=bool argsList=(controlProfile mailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "getPathForAcctMaildir" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile mailAcct bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /getPathForAcctMaildir/ retType=bool argsList=(controlProfile mailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def getPathForAcctMaildir(
     controlProfile,
     mailAcct,
@@ -730,10 +718,10 @@ def getPathForAcctMaildir(
             "maildir"
         ))
 
-####+BEGIN: bx:icm:python:func :funcName "getPathForAcctMbox" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile mailAcct mbox bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /getPathForAcctMbox/ retType=bool argsList=(controlProfile mailAcct mbox bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "getPathForAcctMbox" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile mailAcct mbox bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /getPathForAcctMbox/ retType=bool argsList=(controlProfile mailAcct mbox bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def getPathForAcctMbox(
     controlProfile,
     mailAcct,
@@ -761,10 +749,10 @@ def getPathForAcctMbox(
             mbox,
         ))
 
-####+BEGIN: bx:icm:python:func :funcName "getPathForInMailConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /getPathForInMailConfig/ retType=bool argsList=(controlProfile inMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "getPathForInMailConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile inMailAcct bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /getPathForInMailConfig/ retType=bool argsList=(controlProfile inMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def getPathForInMailConfig(
     controlProfile,
     inMailAcct,
@@ -780,10 +768,10 @@ def getPathForInMailConfig(
             inMailAcct,
         ))
 
-####+BEGIN: bx:icm:python:func :funcName "getPathForOutMailConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile outMailAcct bxoId=None sr=None"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /getPathForOutMailConfig/ retType=bool argsList=(controlProfile outMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "getPathForOutMailConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "controlProfile outMailAcct bxoId=None sr=None"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /getPathForOutMailConfig/ retType=bool argsList=(controlProfile outMailAcct bxoId=None sr=None)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def getPathForOutMailConfig(
     controlProfile,
     outMailAcct,
@@ -800,18 +788,16 @@ def getPathForOutMailConfig(
         ))
 
 
-####+BEGIN: bx:icm:python:subSection :title "Common Arguments Specification"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Common Arguments Specification*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+####+BEGIN: bx:cs:python:subSection :title "Common Arguments Specification"
+
 ####+END:
 
-####+BEGIN: bx:icm:python:func :funcName "commonParamsSpecify" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "icmParams"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /commonParamsSpecify/ retType=bool argsList=(icmParams)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "commonParamsSpecify" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "csParams"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /commonParamsSpecify/ retType=bool argsList=(csParams)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def commonParamsSpecify(
-    icmParams,
+    csParams,
 ):
 ####+END:
     
@@ -819,196 +805,196 @@ def commonParamsSpecify(
     enabledInMailAcct = enabledInMailAcctObtain(curGet_bxoId(), curGet_sr())
     enabledOutMailAcct = enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr())        
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='controlProfile',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault="{default}".format(default=enabledControlProfile),
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--controlProfile',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='inMailAcct',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault="{default}".format(default=enabledInMailAcct),
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--inMailAcct',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='outMailAcct',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault="{default}".format(default=enabledOutMailAcct),
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--outMailAcct',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='firstName',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--firstName',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='lastName',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--lastName',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='userName',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--userName',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='userPasswd',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--userPasswd',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='mtaRemHost',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--mtaRemHost',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='mtaRemProtocol',
         parDescription="Base for Domain/Site/Source of incoming Mail",
         parDataType=None,
         parDefault=None,
         parChoices=["someOptionalPar", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--mtaRemProtocol',
     )
     
     
-    # icmParams.parDictAdd(
+    # csParams.parDictAdd(
     #     parName='imapServer',
     #     parDescription="Base for Domain/Site/Source of incoming Mail",
     #     parDataType=None,
     #     parDefault=None,
     #     parChoices=["someOptionalPar", "UserInput"],
-    #     parScope=icm.ICM_ParamScope.TargetParam,
+    #     parScope=cs.CmndParamScope.TargetParam,
     #     argparseShortOpt=None,
     #     argparseLongOpt='--imapServer',
     # )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='inMailAcctMboxesPath',
         parDescription="Base Directory Of Maildir where msgs are retrieved to.",
         parDataType=None,
         parDefault=None,        
         #parDefault="../var/inMail/{default}/maildir/".format(default=enabledMailAcct),
         parChoices=["someFile", "UserInput"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--inMailAcctMboxesPath',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='inMbox',
         parDescription="Name of MailBox to be joined with inMailAcctMboxesPath.",
         parDataType=None,
         parDefault=None,
         parChoices=["envelope", "Tmp"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--inMbox',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='mboxesList',
         parDescription="Name of MailBox to be joined with inMailAcctMboxesPath.",
         parDataType=None,
         parDefault=None,
         parChoices=["envelope", "Tmp"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--mboxesList',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='ssl',
         parDescription="Name of MailBox to be joined with inMailAcctMboxesPath.",
         parDataType=None,
         parDefault=None,
         parChoices=["no", "on"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--ssl',
     )
     
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='sendingMethod',
         parDescription="sending method for outgoing email",
         parDataType=None,
         parDefault=None,
         parChoices=["inject", "authSmtp"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--sendingMethod',
     )
 
-    icmParams.parDictAdd(
+    csParams.parDictAdd(
         parName='envelopeAddr',
         parDescription="Envelope Address Of Outgoing Email",
         parDataType=None,
         parDefault=None,
         parChoices=["envelop@example.com"],
-        parScope=icm.ICM_ParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--envelopeAddr',
     )
 
-    # icmParams.parDictAdd(
+    # csParams.parDictAdd(
     #     parName='parGroup',
     #     parDescription="Temporary till args dblock processing gets fixed",
     #     parDataType=None,
     #     parDefault=None,
     #     parChoices=["access", ],
-    #     parScope=icm.ICM_ParamScope.TargetParam,
+    #     parScope=cs.CmndParamScope.TargetParam,
     #     argparseShortOpt=None,
     #     argparseLongOpt='--parGroup',
     # )
 
-    serviceObject.commonParamsSpecify(icmParams)
+    serviceObject.commonParamsSpecify(csParams)
 
     
 
@@ -1016,19 +1002,19 @@ def commonParamsSpecify(
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *Common Examples Sections*
 """
 
-####+BEGIN: bx:icm:python:func :funcName "examples_bxoSrPkgInfoParsGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_bxoSrPkgInfoParsGet/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_bxoSrPkgInfoParsGet" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_bxoSrPkgInfoParsGet/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_bxoSrPkgInfoParsGet():
 ####+END:
     """."""
     
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
     
-    icm.cmndExampleMenuChapter('* =Info=  BxoSr PkgInfoParsGet*')
+    cs.examples.menuChapter('* =Info=  BxoSr PkgInfoParsGet*')
 
     cmndName = "bxoSrPkgInfoParsGet" ; cmndArgs = ""
     cps=cpsInit(); cmndParsCurBxoSr(cps); menuItem(verbosity='none')
@@ -1039,19 +1025,19 @@ def examples_bxoSrPkgInfoParsGet():
     
     return
 
-####+BEGIN: bx:icm:python:func :funcName "examples_controlProfileManage" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_controlProfileManage/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_controlProfileManage" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_controlProfileManage/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_controlProfileManage():
 ####+END:
     """.
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
     
-    icm.cmndExampleMenuChapter('* =Selection=  Control Profiles -- /{}/ --*'.format(
+    cs.examples.menuChapter('* =Selection=  Control Profiles -- /{}/ --*'.format(
         enabledControlProfileObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "enabledControlProfileGet" ; cmndArgs = ""
@@ -1066,20 +1052,20 @@ def examples_controlProfileManage():
     return
 
 
-####+BEGIN: bx:icm:python:func :funcName "examples_enabledInMailAcctConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_enabledInMailAcctConfig/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_enabledInMailAcctConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_enabledInMailAcctConfig/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_enabledInMailAcctConfig():
 ####+END:
     """
 ** Select Enabled Mail Account Config. Read/Writeen to control/common/selections/fp
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
  
-    icm.cmndExampleMenuChapter('* =Selection=  InMailAccts -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =Selection=  InMailAccts -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
@@ -1095,20 +1081,20 @@ def examples_enabledInMailAcctConfig():
 
     return
 
-####+BEGIN: bx:icm:python:func :funcName "examples_enabledOutMailAcctConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_enabledOutMailAcctConfig/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_enabledOutMailAcctConfig" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_enabledOutMailAcctConfig/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_enabledOutMailAcctConfig():
 ####+END:
     """
 ** Select Enabled Mail Account Config. Read/Writeen to control/common/selections/fp
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-    icm.cmndExampleMenuChapter('* =Selection=  OutMailAccts -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =Selection=  OutMailAccts -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr())))
 
@@ -1123,18 +1109,18 @@ def examples_enabledOutMailAcctConfig():
 
     return
     
-####+BEGIN: bx:icm:python:func :funcName "examples_select_mailBox" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_select_mailBox/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_select_mailBox" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_select_mailBox/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_select_mailBox():
 ####+END:
     """."""
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-    icm.cmndExampleMenuChapter('* =Selection=  MailBox -- /{controlProfile}+{mailAcct}+{mBox}/ --*'.format(
+    cs.examples.menuChapter('* =Selection=  MailBox -- /{controlProfile}+{mailAcct}+{mBox}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()),
         mBox=enabledMailBoxGet().cmnd(bxoId=curGet_bxoId(), sr=curGet_sr()).results,
@@ -1149,20 +1135,20 @@ def examples_select_mailBox():
     
     
     
-####+BEGIN: bx:icm:python:func :funcName "examples_inMailAcctAccessPars" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_inMailAcctAccessPars/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_inMailAcctAccessPars" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_inMailAcctAccessPars/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_inMailAcctAccessPars():
 ####+END:
     """
 ** Auxiliary examples to be commonly used.
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
     
-    icm.cmndExampleMenuChapter('* =FP Values=  inMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =FP Values=  inMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
@@ -1173,51 +1159,51 @@ def examples_inMailAcctAccessPars():
     icm.cmndExampleMenuItem(menuLine, icmName="marmeAcctsManage.py", verbosity='none')
     
 
-####+BEGIN: bx:icm:python:func :funcName "examples_inMailAcctAccessParsFull" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_inMailAcctAccessParsFull/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_inMailAcctAccessParsFull" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_inMailAcctAccessParsFull/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_inMailAcctAccessParsFull():
 ####+END:
     """
 ** Auxiliary examples to be commonly used.
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
     
-    icm.cmndExampleMenuChapter('* =FP Values=  inMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =FP Values=  inMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "inMailAcctParsGet" ; cmndArgs = ""
     cps=cpsInit(); cmndParsCurBxoSr(cps); menuItem(verbosity='none')
 
-    icm.cmndExampleMenuSection('*inMail /Access/ ParsSet -- /defaulMailAcct={}/ --*'.format(
+    cs.examples.menuSection('*inMail /Access/ ParsSet -- /defaulMailAcct={}/ --*'.format(
         enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "inMailAcctAccessParsSet" ; cmndArgs = "" ;
     cps=cpsInit() ; cmndParsCurBxoSr(cps)
     cps['userName'] = "UserName" ; cps['userPasswd'] = "UserPasswd" ; cps['imapServer'] = "ImapServer"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none',
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none',
                          comment='none', icmWrapper="echo", icmName=None)
     
-    icm.cmndExampleMenuSection('*inMail /ControllerInfo/ ParsSet -- /defaulMailAcct={}/ --*'.format(
+    cs.examples.menuSection('*inMail /ControllerInfo/ ParsSet -- /defaulMailAcct={}/ --*'.format(
         enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "inMailAcctControllerInfoParsSet" ; cmndArgs = "" 
     cps=cpsInit() ; cmndParsCurBxoSr(cps)
     cps['firstName'] = "FirstName" ; cps['lastName'] = "LastName"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none',
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none',
                          comment='none', icmWrapper="echo", icmName=None)
     
-    icm.cmndExampleMenuSection('*inMail /Retrieval/ ParsSet -- /defaulMailAcct={}/ --*'.format(
+    cs.examples.menuSection('*inMail /Retrieval/ ParsSet -- /defaulMailAcct={}/ --*'.format(
         enabledInMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "inMailAcctRetrievalParsSet" ; cmndArgs = "" 
     cps=cpsInit() ; cmndParsCurBxoSr(cps)
     cps['inMailAcctMboxesPath'] = "MaildirPath"; cps['mboxesList'] = ""; cps['ssl'] = "on"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none',
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none',
                          comment='none', icmWrapper="echo", icmName=None)
 
     cmndName = "inMailAcctRetrievalParsSet" ; cmndArgs = "" 
@@ -1235,61 +1221,61 @@ def examples_inMailAcctAccessParsFull():
         sr=curGet_sr(),
     )
     cps['inMailAcctMboxesPath'] = mailDirPath
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none',
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none',
                          comment='none', icmWrapper="", icmName=None)
 
     cmndName = "inMailAcctRetrievalParsSet" ; cmndArgs = "" 
     cps=cpsInit() ; cmndParsCurBxoSr(cps)
     cps['mboxesList'] = "Inbox"; cps['ssl'] = "on"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none',
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none',
                          comment='none', icmWrapper="echo", icmName=None)
     
     
-####+BEGIN: bx:icm:python:func :funcName "examples_outMailAcctAccessPars" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_outMailAcctAccessPars/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_outMailAcctAccessPars" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_outMailAcctAccessPars/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_outMailAcctAccessPars():
 ####+END:
     """.
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-    icm.cmndExampleMenuChapter('* =FP Values=  outMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =FP Values=  outMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "outMailAcctParsGet" ; cmndArgs = "" ; cps = collections.OrderedDict()
     cmndParsCurBxoSr(cps)
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none')
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none')
 
     menuLine = """"""
     icm.cmndExampleMenuItem(menuLine, icmName="marmeAcctsManage.py", verbosity='none')    
 
     
-####+BEGIN: bx:icm:python:func :funcName "examples_outMailAcctAccessParsFull" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /examples_outMailAcctAccessParsFull/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "examples_outMailAcctAccessParsFull" :funcType "anyOrNone" :retType "bool" :deco "" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /examples_outMailAcctAccessParsFull/ retType=bool argsList=nil  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def examples_outMailAcctAccessParsFull():
 ####+END:
     """.
 """
     def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-    icm.cmndExampleMenuChapter('* =FP Values=  outMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuChapter('* =FP Values=  outMail Controls -- /{controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
     cmndName = "outMailAcctParsGet" ; cmndArgs = "" ; cps = collections.OrderedDict()
     cmndParsCurBxoSr(cps)
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity='none')
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none')
 
-    icm.cmndExampleMenuSection('*outMail /Access/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuSection('*outMail /Access/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
@@ -1297,9 +1283,9 @@ def examples_outMailAcctAccessParsFull():
     cmndName = "outMailAcctParsSet" ; cmndArgs = "access" ; cps = collections.OrderedDict()
     cmndParsCurBxoSr(cps)
     cps['userName']="TBS" ; cps['userPasswd']="TBS" ; cps['mtaRemHost']="TBS" ; cps['mtaRemProtocol']="smtp_ssl/smtp_tls/smtp"     
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
 
-    icm.cmndExampleMenuSection('*outMail /ControllerInfo/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuSection('*outMail /ControllerInfo/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
@@ -1307,9 +1293,9 @@ def examples_outMailAcctAccessParsFull():
     cmndName = "outMailAcctParsSet" ; cmndArgs = "controllerInfo" ; cps = collections.OrderedDict()
     cmndParsCurBxoSr(cps)    
     cps['firstName']="TBS" ; cps['lastName']="TBS"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
 
-    icm.cmndExampleMenuSection('*outMail /Submission/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
+    cs.examples.menuSection('*outMail /Submission/ ParsSet -- /enabledMailAcct={controlProfile}+{mailAcct}/ --*'.format(
         controlProfile=enabledControlProfileObtain(curGet_bxoId(), curGet_sr()),
         mailAcct=enabledOutMailAcctObtain(curGet_bxoId(), curGet_sr()))
     )
@@ -1317,7 +1303,7 @@ def examples_outMailAcctAccessParsFull():
     cmndName = "outMailAcctParsSet" ; cmndArgs = "submission" ; cps = collections.OrderedDict()
     cmndParsCurBxoSr(cps)    
     cps['sendingMethod']="inject/submit" ; cps['envelopeAddr']="TBS"
-    icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
+    cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='none')
 
     
 
@@ -1325,10 +1311,10 @@ def examples_outMailAcctAccessParsFull():
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *File Parameters Get/Set -- Commands*
 """
 
-####+BEGIN: bx:icm:python:func :funcName "FP_readTreeAtBaseDir_CmndOutput" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "interactive fpBaseDir cmndOutcome"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-anyOrNone :: /FP_readTreeAtBaseDir_CmndOutput/ retType=bool argsList=(interactive fpBaseDir cmndOutcome)  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:cs:python:func :funcName "FP_readTreeAtBaseDir_CmndOutput" :funcType "anyOrNone" :retType "bool" :deco "" :argsList "interactive fpBaseDir cmndOutcome"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /FP_readTreeAtBaseDir_CmndOutput/ retType=bool argsList=(interactive fpBaseDir cmndOutcome)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def FP_readTreeAtBaseDir_CmndOutput(
     interactive,
     fpBaseDir,
@@ -1350,226 +1336,175 @@ def FP_readTreeAtBaseDir_CmndOutput(
 
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "bxoSrPkgInfoMkdirs" :comment "" :parsMand "bxoId sr" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]] [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(bx:orgm:indirectBufOther)][|>]] [[elisp:(bx:orgm:indirectBufMain)][|I]] [[elisp:(blee:ppmm:org-mode-toggle)][|N]] [[elisp:(org-top-overview)][|O]] [[elisp:(progn (org-shifttab) (org-content))][|C]] [[elisp:(delete-other-windows)][|1]]  ICM-Cmnd       :: /bxoSrPkgInfoMkdirs/ parsMand=bxoId sr parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class bxoSrPkgInfoMkdirs(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bxoSrPkgInfoMkdirs" :comment "" :parsMand "bxoId sr" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bxoSrPkgInfoMkdirs>>  =verify= parsMand=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bxoSrPkgInfoMkdirs(cs.Cmnd):
     cmndParamsMandatory = [ 'bxoId', 'sr', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             sr: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
 
         outcome = icm.subProc_bash("""\
 mkdir -p  {}"""
                                    .format(controlBaseDirGet(bxoId=bxoId, sr=sr))
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         outcome = icm.subProc_bash("""\
 mkdir -p {}"""
                                    .format(varBaseDirGet(bxoId=bxoId, sr=sr))
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         outcome = icm.subProc_bash("""\
 mkdir -p {}"""
                                    .format(configBaseDirGet(bxoId=bxoId, sr=sr))
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         
         outcome = icm.subProc_bash("""\
 mkdir -p {}"""
                                    .format(tmpBaseDirGet(bxoId=bxoId, sr=sr))
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         
         outcome = icm.subProc_bash("""\
 mkdir -p {}"""
                                    .format(logBaseDirGet(bxoId=bxoId, sr=sr))
         ).log()
-        if outcome.isProblematic(): return(icm.EH_badOutcome(outcome))
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         
         
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=None,
         )
 
 
-####+BEGIN: bx:icm:python:method :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  [[elisp:(org-cycle)][| ]] [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(bx:orgm:indirectBufOther)][|>]] [[elisp:(bx:orgm:indirectBufMain)][|I]] [[elisp:(blee:ppmm:org-mode-toggle)][|N]] [[elisp:(org-top-overview)][|O]] [[elisp:(progn (org-shifttab) (org-content))][|C]] [[elisp:(delete-other-windows)][|1]]  Method-anyOrNone :: /cmndDocStr/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndDocStr(self):
-####+END:        
-        return """
-***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Place holder for this commands doc string.
-"""
 
-                        
-
-
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "bxoSrPkgInfoParsGet" :comment "" :parsMand "bxoId sr" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /bxoSrPkgInfoParsGet/ parsMand=bxoId sr parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class bxoSrPkgInfoParsGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bxoSrPkgInfoParsGet" :comment "" :parsMand "bxoId sr" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bxoSrPkgInfoParsGet>>  =verify= parsMand=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bxoSrPkgInfoParsGet(cs.Cmnd):
     cmndParamsMandatory = [ 'bxoId', 'sr', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             sr: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
  
         if interactive:
-            icm.ANN_write("controlBaseDir={}".format(
+            b_io.ann.write("controlBaseDir={}".format(
                 controlBaseDirGet(bxoId=bxoId, sr=sr)
             ))
-            icm.ANN_write("varBaseDir={}".format(
+            b_io.ann.write("varBaseDir={}".format(
                 varBaseDirGet(bxoId=bxoId, sr=sr)
             ))
-            icm.ANN_write("configBaseDir={}".format(
+            b_io.ann.write("configBaseDir={}".format(
                 configBaseDirGet(bxoId=bxoId, sr=sr)
             ))
-            icm.ANN_write("tmpBaseDir={}".format(
+            b_io.ann.write("tmpBaseDir={}".format(
                 tmpBaseDirGet(bxoId=bxoId, sr=sr)
             ))
-            icm.ANN_write("logBaseDir={}".format(
+            b_io.ann.write("logBaseDir={}".format(
                 logBaseDirGet(bxoId=bxoId, sr=sr)
             ))
 
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=None,
         )
 
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledControlProfileGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledControlProfileGet/ parsMand= parsOpt=bxoId sr argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledControlProfileGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledControlProfileGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledControlProfileGet>>  =verify= parsOpt=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledControlProfileGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
-    
+        """Output the current from -- NOTYET -- Should write at {varBase}/selections/fp"""
         enabledMailAcct = enabledControlProfileObtain(bxoId=bxoId, sr=sr,)
  
         if interactive:
-            icm.ANN_write(enabledMailAcct)
+            b_io.ann.write(enabledMailAcct)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=enabledMailAcct,
         )
 
-
-####+BEGIN: bx:icm:python:method :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndDocStr/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndDocStr(self):
-####+END:        
-        return """
-***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Output the current from -- NOTYET -- Should write at {varBase}/selections/fp
-"""
-
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledControlProfileSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "1" :argsMax "1" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledControlProfileSet/ parsMand= parsOpt=bxoId sr argsMin=1 argsMax=1 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledControlProfileSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledControlProfileSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledControlProfileSet>>  =verify= parsOpt=bxoId sr argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledControlProfileSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 1, 'Max': 1,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
+        """
+***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Write as a FP the enabledControlProfile.
+"""
 
         icmRunArgs = G.icmRunArgsGet()
         for each in icmRunArgs.cmndArgs:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(
                     controlBaseDirGet(bxoId=bxoId, sr=sr,),   # NOTYET
                     "common",
@@ -1581,94 +1516,66 @@ class enabledControlProfileSet(icm.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=each,
         )
 
 
-####+BEGIN: bx:icm:python:method :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndDocStr/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndDocStr(self):
-####+END:        
-        return """
-***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Write as a FP the enabledControlProfile.
-"""
-    
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledInMailAcctGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledInMailAcctGet/ parsMand= parsOpt=bxoId sr argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledInMailAcctGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledInMailAcctGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledInMailAcctGet>>  =verify= parsOpt=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledInMailAcctGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
     
         enabledInMailAcct = enabledInMailAcctObtain(bxoId=bxoId, sr=sr,)  # NOTYET
  
         if interactive:
-            icm.ANN_write(enabledInMailAcct)
+            b_io.ann.write(enabledInMailAcct)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=enabledInMailAcct,
         )
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledInMailAcctSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "1" :argsMax "1" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledInMailAcctSet/ parsMand= parsOpt=bxoId sr argsMin=1 argsMax=1 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledInMailAcctSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledInMailAcctSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledInMailAcctSet>>  =verify= parsOpt=bxoId sr argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledInMailAcctSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 1, 'Max': 1,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
         """
 ** Write as a FP  the enabledMailAcct.
@@ -1676,7 +1583,7 @@ class enabledInMailAcctSet(icm.Cmnd):
 
         icmRunArgs = G.icmRunArgsGet()
         for each in icmRunArgs.cmndArgs:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(
                     controlBaseDirGet(bxoId=bxoId, sr=sr,),   # NOTYET
                     "common",
@@ -1688,37 +1595,31 @@ class enabledInMailAcctSet(icm.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=each,
         )
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledOutMailAcctGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledOutMailAcctGet/ parsMand= parsOpt=bxoId sr argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledOutMailAcctGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledOutMailAcctGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledOutMailAcctGet>>  =verify= parsOpt=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledOutMailAcctGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
         """
 ** Output the current enabledMailAcct
@@ -1727,48 +1628,37 @@ class enabledOutMailAcctGet(icm.Cmnd):
         enabledOutMailAcct = enabledOutMailAcctObtain(bxoId=bxoId, sr=sr,)  # NOTYET
  
         if interactive:
-            icm.ANN_write(enabledOutMailAcct)
+            b_io.ann.write(enabledOutMailAcct)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=enabledOutMailAcct,
         )
 
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledOutMailAcctSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "1" :argsMax "1" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledOutMailAcctSet/ parsMand= parsOpt=bxoId sr argsMin=1 argsMax=1 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledOutMailAcctSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledOutMailAcctSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledOutMailAcctSet>>  =verify= parsOpt=bxoId sr argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledOutMailAcctSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 1, 'Max': 1,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
         """
 ** Write as a FP  the enabledMailAcct.
@@ -1776,7 +1666,7 @@ class enabledOutMailAcctSet(icm.Cmnd):
 
         icmRunArgs = G.icmRunArgsGet()
         for each in icmRunArgs.cmndArgs:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(
                     controlBaseDirGet(bxoId=bxoId, sr=sr,),  # NOTYET
                     "common",
@@ -1788,38 +1678,32 @@ class enabledOutMailAcctSet(icm.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=each,
         )
 
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledMailBoxGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledMailBoxGet/ parsMand= parsOpt=bxoId sr argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledMailBoxGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledMailBoxGet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledMailBoxGet>>  =verify= parsOpt=bxoId sr ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledMailBoxGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
         """
 ** Output the current enabledMailBox
@@ -1828,47 +1712,36 @@ class enabledMailBoxGet(icm.Cmnd):
         enabledMailBox = enabledMailBoxObtain(bxoId=bxoId, sr=sr,)
  
         if interactive:
-            icm.ANN_write(enabledMailBox)
+            b_io.ann.write(enabledMailBox)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=enabledMailBox,
         )
     
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "enabledMailBoxSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin "1" :argsMax "1" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /enabledMailBoxSet/ parsMand= parsOpt=bxoId sr argsMin=1 argsMax=1 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class enabledMailBoxSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "enabledMailBoxSet" :comment "" :parsMand "" :parsOpt "bxoId sr" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<enabledMailBoxSet>>  =verify= parsOpt=bxoId sr argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class enabledMailBoxSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', ]
     cmndArgsLen = {'Min': 1, 'Max': 1,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
         """
 ** Write as a FP  the enabledMailBox.
@@ -1876,7 +1749,7 @@ class enabledMailBoxSet(icm.Cmnd):
 
         icmRunArgs = G.icmRunArgsGet()
         for each in icmRunArgs.cmndArgs:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(
                     controlBaseDirGet(bxoId=bxoId, sr=sr,),  # NOTYET
                     "common",
@@ -1888,51 +1761,38 @@ class enabledMailBoxSet(icm.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=each,
         )
     
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "inMailAcctParsGet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct" :argsMin "0" :argsMax "3" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /inMailAcctParsGet/ parsMand= parsOpt=bxoId sr controlProfile inMailAcct argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class inMailAcctParsGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailAcctParsGet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct" :argsMin 0 :argsMax 3 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailAcctParsGet>>  =verify= parsOpt=bxoId sr controlProfile inMailAcct argsMax=3 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailAcctParsGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'inMailAcct', ]
     cmndArgsLen = {'Min': 0, 'Max': 3,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        inMailAcct=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             inMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'inMailAcct': inMailAcct, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        inMailAcct = callParamsDict['inMailAcct']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
 
         if interactive:
-            parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, effectiveArgsList)
+            parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         else:
             parTypes = effectiveArgsList
             
@@ -1948,7 +1808,7 @@ class inMailAcctParsGet(icm.Cmnd):
                 inMailAcctDirGet(controlProfile, inMailAcct, bxoId=bxoId, sr=sr,),
                 each,
             )
-            icm.LOG_here(
+            b_io.tm.here(
                 "controlProfile={controlProfile} -- inMailAcct={inMailAcct} -- fpBaseDir={fpBaseDir}".format(
                     controlProfile=controlProfile, inMailAcct=inMailAcct, fpBaseDir=fpBaseDir,)
             )
@@ -1960,17 +1820,17 @@ class inMailAcctParsGet(icm.Cmnd):
 
         return cmndOutcome
 
-####+BEGIN: bx:icm:python:method :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndArgsSpec/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndArgsSpec(self):
-####+END:        
+####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndArgsSpec/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmndArgsSpec(self, ):
+####+END:
         """
 ***** Cmnd Args Specification
 """
-        cmndArgsSpecDict = icm.CmndArgsSpecDict()
+        cmndArgsSpecDict = cs.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
             argPosition="0&2",
             argName="parTypes",
@@ -1982,42 +1842,31 @@ class inMailAcctParsGet(icm.Cmnd):
         return cmndArgsSpecDict
     
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "inMailAcctAccessParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct userName userPasswd imapServer" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /inMailAcctAccessParsSet/ parsMand= parsOpt=bxoId sr controlProfile inMailAcct userName userPasswd imapServer argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class inMailAcctAccessParsSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailAcctAccessParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct userName userPasswd imapServer" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailAcctAccessParsSet>>  =verify= parsOpt=bxoId sr controlProfile inMailAcct userName userPasswd imapServer ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailAcctAccessParsSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'inMailAcct', 'userName', 'userPasswd', 'imapServer', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        inMailAcct=None,         # or Cmnd-Input
-        userName=None,         # or Cmnd-Input
-        userPasswd=None,         # or Cmnd-Input
-        imapServer=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             inMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             userName: typing.Optional[str]=None,  # Cs Optional Param
+             userPasswd: typing.Optional[str]=None,  # Cs Optional Param
+             imapServer: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'inMailAcct': inMailAcct, 'userName': userName, 'userPasswd': userPasswd, 'imapServer': imapServer, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        inMailAcct = callParamsDict['inMailAcct']
-        userName = callParamsDict['userName']
-        userPasswd = callParamsDict['userPasswd']
-        imapServer = callParamsDict['imapServer']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
 
         inMailAcctDir = os.path.join(
@@ -2026,19 +1875,19 @@ class inMailAcctAccessParsSet(icm.Cmnd):
         )
 
         if userName:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "userName"),
                 parValue=userName,
             )
 
         if userPasswd:            
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "userPasswd"),
                 parValue=userPasswd,
             )
             
         if imapServer:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "imapServer"),
                 parValue=imapServer,
             )
@@ -2047,45 +1896,35 @@ class inMailAcctAccessParsSet(icm.Cmnd):
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=inMailAcctDir,
         )
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "inMailAcctControllerInfoParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct firstName lastName" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /inMailAcctControllerInfoParsSet/ parsMand= parsOpt=bxoId sr controlProfile inMailAcct firstName lastName argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class inMailAcctControllerInfoParsSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailAcctControllerInfoParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct firstName lastName" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailAcctControllerInfoParsSet>>  =verify= parsOpt=bxoId sr controlProfile inMailAcct firstName lastName ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailAcctControllerInfoParsSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'inMailAcct', 'firstName', 'lastName', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        inMailAcct=None,         # or Cmnd-Input
-        firstName=None,         # or Cmnd-Input
-        lastName=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             inMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             firstName: typing.Optional[str]=None,  # Cs Optional Param
+             lastName: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'inMailAcct': inMailAcct, 'firstName': firstName, 'lastName': lastName, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        inMailAcct = callParamsDict['inMailAcct']
-        firstName = callParamsDict['firstName']
-        lastName = callParamsDict['lastName']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
 
         inMailAcctDir = os.path.join(
@@ -2094,13 +1933,13 @@ class inMailAcctControllerInfoParsSet(icm.Cmnd):
         )
 
         if firstName:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "firstName"),
                 parValue=firstName,
             )
 
         if lastName:
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "lastName"),
                 parValue=lastName,
             )
@@ -2109,46 +1948,35 @@ class inMailAcctControllerInfoParsSet(icm.Cmnd):
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=inMailAcctDir,
         )
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "inMailAcctRetrievalParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct inMailAcctMboxesPath mboxesList ssl" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /inMailAcctRetrievalParsSet/ parsMand= parsOpt=bxoId sr controlProfile inMailAcct inMailAcctMboxesPath mboxesList ssl argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class inMailAcctRetrievalParsSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailAcctRetrievalParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct inMailAcctMboxesPath mboxesList ssl" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailAcctRetrievalParsSet>>  =verify= parsOpt=bxoId sr controlProfile inMailAcct inMailAcctMboxesPath mboxesList ssl ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailAcctRetrievalParsSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'inMailAcct', 'inMailAcctMboxesPath', 'mboxesList', 'ssl', ]
     cmndArgsLen = {'Min': 0, 'Max': 0,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        inMailAcct=None,         # or Cmnd-Input
-        inMailAcctMboxesPath=None,         # or Cmnd-Input
-        mboxesList=None,         # or Cmnd-Input
-        ssl=None,         # or Cmnd-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             inMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             inMailAcctMboxesPath: typing.Optional[str]=None,  # Cs Optional Param
+             mboxesList: typing.Optional[str]=None,  # Cs Optional Param
+             ssl: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'inMailAcct': inMailAcct, 'inMailAcctMboxesPath': inMailAcctMboxesPath, 'mboxesList': mboxesList, 'ssl': ssl, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        inMailAcct = callParamsDict['inMailAcct']
-        inMailAcctMboxesPath = callParamsDict['inMailAcctMboxesPath']
-        mboxesList = callParamsDict['mboxesList']
-        ssl = callParamsDict['ssl']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
 
         inMailAcctDir = os.path.join(
@@ -2157,20 +1985,20 @@ class inMailAcctRetrievalParsSet(icm.Cmnd):
         )
 
         if inMailAcctMboxesPath: (           
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "inMailAcctMboxesPath"),
                 parValue=os.path.abspath(
                     inMailAcctMboxesPath,
                 )))
 
         if mboxesList: (           
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "mboxesList"),
                 parValue=mboxesList,
                 ))
 
         if ssl: (
-            icm.FILE_ParamWriteToPath(
+            icm.b.fp.FileParamWriteToPath(
                 parNameFullPath=os.path.join(inMailAcctDir, "ssl"),
                 parValue=ssl,
             ))
@@ -2180,50 +2008,37 @@ class inMailAcctRetrievalParsSet(icm.Cmnd):
 
         return (
             cmndOutcome.set(
-                opError=icm.OpError.Success,
+                opError=cs.OpError.Success,
                 opResults=inMailAcctDir,
             ))
 
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "outMailAcctParsGet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile outMailAcct" :argsMin "0" :argsMax "3" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /outMailAcctParsGet/ parsMand= parsOpt=bxoId sr controlProfile outMailAcct argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class outMailAcctParsGet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "outMailAcctParsGet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile outMailAcct" :argsMin 0 :argsMax 3 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<outMailAcctParsGet>>  =verify= parsOpt=bxoId sr controlProfile outMailAcct argsMax=3 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class outMailAcctParsGet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'outMailAcct', ]
     cmndArgsLen = {'Min': 0, 'Max': 3,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        outMailAcct=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             outMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'outMailAcct': outMailAcct, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        outMailAcct = callParamsDict['outMailAcct']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
-        parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, effectiveArgsList)
+        parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         
         if parTypes:
             if parTypes[0] == "all":
@@ -2237,7 +2052,7 @@ class outMailAcctParsGet(icm.Cmnd):
                 outMailAcctDirGet(controlProfile, outMailAcct, bxoId=bxoId, sr=sr,),
                 each,
             )
-            icm.LOG_here(
+            b_io.tm.here(
                 "controlProfile={controlProfile} -- outMailAcct={outMailAcct} -- fpBaseDir={fpBaseDir}".format(
                     controlProfile=controlProfile, outMailAcct=outMailAcct, fpBaseDir=fpBaseDir,)
             )
@@ -2249,17 +2064,17 @@ class outMailAcctParsGet(icm.Cmnd):
 
         return cmndOutcome
 
-####+BEGIN: bx:icm:python:method :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndArgsSpec/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndArgsSpec(self):
-####+END:        
+####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndArgsSpec/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmndArgsSpec(self, ):
+####+END:
         """
 ***** Cmnd Args Specification
 """
-        cmndArgsSpecDict = icm.CmndArgsSpecDict()
+        cmndArgsSpecDict = cs.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
             argPosition="0&2",
             argName="parTypes",
@@ -2271,64 +2086,43 @@ class outMailAcctParsGet(icm.Cmnd):
         return cmndArgsSpecDict
     
 
-####+BEGIN: bx:icm:python:cmnd:classHead :cmndName "outMailAcctParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile outMailAcct userName userPasswd mtaRemHost mtaRemProtocol firstName lastName sendingMethod envelopeAddr" :argsMin "1" :argsMax "1" :asFunc "" :interactiveP ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /outMailAcctParsSet/ parsMand= parsOpt=bxoId sr controlProfile outMailAcct userName userPasswd mtaRemHost mtaRemProtocol firstName lastName sendingMethod envelopeAddr argsMin=1 argsMax=1 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class outMailAcctParsSet(icm.Cmnd):
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "outMailAcctParsSet" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile outMailAcct userName userPasswd mtaRemHost mtaRemProtocol firstName lastName sendingMethod envelopeAddr" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<outMailAcctParsSet>>  =verify= parsOpt=bxoId sr controlProfile outMailAcct userName userPasswd mtaRemHost mtaRemProtocol firstName lastName sendingMethod envelopeAddr argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class outMailAcctParsSet(cs.Cmnd):
     cmndParamsMandatory = [ ]
     cmndParamsOptional = [ 'bxoId', 'sr', 'controlProfile', 'outMailAcct', 'userName', 'userPasswd', 'mtaRemHost', 'mtaRemProtocol', 'firstName', 'lastName', 'sendingMethod', 'envelopeAddr', ]
     cmndArgsLen = {'Min': 1, 'Max': 1,}
 
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bxoId=None,         # or Cmnd-Input
-        sr=None,         # or Cmnd-Input
-        controlProfile=None,         # or Cmnd-Input
-        outMailAcct=None,         # or Cmnd-Input
-        userName=None,         # or Cmnd-Input
-        userPasswd=None,         # or Cmnd-Input
-        mtaRemHost=None,         # or Cmnd-Input
-        mtaRemProtocol=None,         # or Cmnd-Input
-        firstName=None,         # or Cmnd-Input
-        lastName=None,         # or Cmnd-Input
-        sendingMethod=None,         # or Cmnd-Input
-        envelopeAddr=None,         # or Cmnd-Input
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bxoId: typing.Optional[str]=None,  # Cs Optional Param
+             sr: typing.Optional[str]=None,  # Cs Optional Param
+             controlProfile: typing.Optional[str]=None,  # Cs Optional Param
+             outMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+             userName: typing.Optional[str]=None,  # Cs Optional Param
+             userPasswd: typing.Optional[str]=None,  # Cs Optional Param
+             mtaRemHost: typing.Optional[str]=None,  # Cs Optional Param
+             mtaRemProtocol: typing.Optional[str]=None,  # Cs Optional Param
+             firstName: typing.Optional[str]=None,  # Cs Optional Param
+             lastName: typing.Optional[str]=None,  # Cs Optional Param
+             sendingMethod: typing.Optional[str]=None,  # Cs Optional Param
+             envelopeAddr: typing.Optional[str]=None,  # Cs Optional Param
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
 
         callParamsDict = {'bxoId': bxoId, 'sr': sr, 'controlProfile': controlProfile, 'outMailAcct': outMailAcct, 'userName': userName, 'userPasswd': userPasswd, 'mtaRemHost': mtaRemHost, 'mtaRemProtocol': mtaRemProtocol, 'firstName': firstName, 'lastName': lastName, 'sendingMethod': sendingMethod, 'envelopeAddr': envelopeAddr, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bxoId = callParamsDict['bxoId']
-        sr = callParamsDict['sr']
-        controlProfile = callParamsDict['controlProfile']
-        outMailAcct = callParamsDict['outMailAcct']
-        userName = callParamsDict['userName']
-        userPasswd = callParamsDict['userPasswd']
-        mtaRemHost = callParamsDict['mtaRemHost']
-        mtaRemProtocol = callParamsDict['mtaRemProtocol']
-        firstName = callParamsDict['firstName']
-        lastName = callParamsDict['lastName']
-        sendingMethod = callParamsDict['sendingMethod']
-        envelopeAddr = callParamsDict['envelopeAddr']
-
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
 ####+END:
         # cmndArgsSpec = {0: ['access', 'controllerInfo', 'submission']}
 
         # NOTYET
-        parGroup = self.cmndArgsGet("0", cmndArgsSpecDict, effectiveArgsList)
+        parGroup = self.cmndArgsGet("0", cmndArgsSpecDict, argsList)
         
 
         validParGroups = self.__class__.cmndArgsSpec[0]
@@ -2337,7 +2131,7 @@ class outMailAcctParsSet(icm.Cmnd):
             parGroup = G.icmRunArgsGet().cmndArgs[0]
 
         if not parGroup in validParGroups:
-            return icm.EH_problem_usageError("mis-match")
+            return b_io.eh.problem_usageError("mis-match")
 
         outMailAcctDir = os.path.join(
             outMailAcctDirGet(controlProfile, outMailAcct, bxoId=bxoId, sr=sr,),
@@ -2345,72 +2139,72 @@ class outMailAcctParsSet(icm.Cmnd):
 
         if parGroup == "access":
             if userName:
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "userName"),
                     parValue=userName,
                 )
 
             if userPasswd:                        
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "userPasswd"),
                     parValue=userPasswd,
                 )
 
             if mtaRemHost:
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "mtaRemHost"),
                     parValue=mtaRemHost,
                 )
                 
             if mtaRemProtocol:
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "mtaRemProtocol"),
                     parValue=mtaRemProtocol,
                 )
                 
         elif parGroup == "controllerInfo":
             if firstName:                        
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "firstName"),
                     parValue=firstName,
                 )
 
             if lastName:
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "lastName"),
                     parValue=lastName,
                 )
 
         elif parGroup == "submission":
             if sendingMethod:                        
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "sendingMethod"),
                     parValue=sendingMethod,
                 )
 
             if envelopeAddr:
-                icm.FILE_ParamWriteToPath(
+                icm.b.fp.FileParamWriteToPath(
                     parNameFullPath=os.path.join(outMailAcctDir, parGroup, "envelopeAddr"),
                     parValue=envelopeAddr,
                 )
             
         else:
-            return icm.EH_problem_usageError("OOPS")
+            return b_io.eh.problem_usageError("OOPS")
         
         if interactive:
             icm.ANN_here(outMailAcctDir)
 
         return cmndOutcome.set(
-            opError=icm.OpError.Success,
+            opError=cs.OpError.Success,
             opResults=outMailAcctDir,
         )
     
     
 
-####+BEGIN: bx:icm:python:section :title "End Of Editable Text"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *End Of Editable Text*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :title " ~End Of Editable Text~ "
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _ ~End Of Editable Text~ _: |]]    [[elisp:(org-shifttab)][<)]] E|
+#+end_org """
 ####+END:
 
 ####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/software/plusOrg/dblock/inserts/endOfFileControls.org"

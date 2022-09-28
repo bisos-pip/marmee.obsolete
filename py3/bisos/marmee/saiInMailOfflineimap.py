@@ -1,22 +1,34 @@
 # -*- coding: utf-8 -*-
 
 """ #+begin_org
-* *[Summary]* :: A =CS-Lib= for InMail Service Access Instance (sai)
+* ~[Summary]~ :: A =CS-Lib= for InMail Service Access Instance (sai) Offline Imap.
 #+end_org """
+
+####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
+""" #+begin_org
+* [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
+#+BEGIN_SRC emacs-lisp
+(setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
+#+END_SRC
+#+RESULTS:
+: cs-mu
+#+end_org """
+####+END:
 
 ####+BEGIN: b:prog:file/proclamations :outLevel 1
 """ #+begin_org
-* *[[elisp:(org-cycle)][| Proclamations |]]* :: Libre-Halaal Software --- Part Of Blee ---  Poly-COMEEGA Format.
-** This is Libre-Halaal Software. © Libre-Halaal Foundation. Subject to AGPL.
-** It is not part of Emacs. It is part of Blee.
-** Best read and edited  with Poly-COMEEGA (Polymode Colaborative Org-Mode Enhance Emacs Generalized Authorship)
+* *[[elisp:(org-cycle)][| Proclamations |]]* :: Libre-Halaal Software --- Part Of BISOS ---  Poly-COMEEGA Format.
+** This is Libre-Halaal Software. © Neda Communications, Inc. Subject to AGPL.
+** It is part of BISOS (ByStar Internet Services OS)
+** Best read and edited  with Blee in Poly-COMEEGA (Polymode Colaborative Org-Mode Enhance Emacs Generalized Authorship)
 #+end_org """
 ####+END:
 
 ####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
 """ #+begin_org
 * *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
-** This File: NOTYET
+** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bisos/marmee/saiInMailOfflineimap.py
 ** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
 #+end_org """
 ####+END:
@@ -26,15 +38,15 @@
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
 import typing
-icmInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['saiInMail'], }
-icmInfo['version'] = '202207234220'
-icmInfo['status']  = 'inUse'
-icmInfo['panel'] = 'saiInMail-Panel.org'
-icmInfo['groupingType'] = 'IcmGroupingType-pkged'
-icmInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['saiInMailOfflineimap'], }
+csInfo['version'] = '202209281438'
+csInfo['status']  = 'inUse'
+csInfo['panel'] = 'saiInMailOfflineimap-Panel.org'
+csInfo['groupingType'] = 'IcmGroupingType-pkged'
+csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
-icmInfo['description'] = """ #+begin_org
+csInfo['description'] = """ #+begin_org
 * /[[elisp:(org-cycle)][| Description |]]/ :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/COMEEGA/_nodeBase_/fullUsagePanel-en.org][BISOS COMEEGA Panel]]
 Module description comes here.
 ** Relevant Panels:
@@ -56,125 +68,50 @@ Module description comes here.
 #+end_org """
 ####+END:
 
-####+BEGIN: bx:icm:python:icmItem :itemType "=PyImports= " :itemTitle "*Py Library IMPORTS*"
+
+####+BEGIN: b:py3:cs:orgItem/basic :type "=PyImports= " :title "*Py Library IMPORTS*" :comment "-- with classification based framework/imports"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  =PyImports=  [[elisp:(outline-show-subtree+toggle)][||]] *Py Library IMPORTS*  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  =PyImports=  [[elisp:(outline-show-subtree+toggle)][||]] *Py Library IMPORTS* -- with classification based framework/imports  [[elisp:(org-cycle)][| ]]
 #+end_org """
 ####+END:
 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/bisos/apps/defaults/update/sw/icm/py/importUcfIcmBleepG.py"
-from unisos import ucf
-from unisos import icm
+####+BEGIN: b:py3:cs:framework/imports :basedOn "classification"
+""" #+begin_org
+** Imports Based On Classification=cs-lib
+#+end_org """
+from bisos import b
+from bisos.b import cs
+from bisos.b import b_io
 
-icm.unusedSuppressForEval(ucf.__file__)  # in case icm and ucf are not used
-
-G = icm.IcmGlobalContext()
-# G.icmLibsAppend = __file__
-# G.icmCmndsLibsAppend = __file__
-
-from blee.icmPlayer import bleep
 ####+END:
+
+import sys
+import collections
+import gnupg
 
 import collections
 import pathlib
+import os
+import shutil
 
 from bisos.bpo import bpoRunBases
 from bisos.bpo import bpo
 
-####+BEGIN: bx:icm:py3:section :title "CS-Lib Examples"
+from bisos.marmee import saiInMailControl
+
+from bisos import b
+
+
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Classes" :anchor ""  :extraInfo "InMail_Control"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Lib Examples*  [[elisp:(org-cycle)][| ]]
-#+end_org """
-####+END:
-
-####+BEGIN: bx:icm:py3:func :funcName "examples_saiInMail" :funcType "eType" :retType "" :deco "default" :argsList ""
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-eType    [[elisp:(outline-show-subtree+toggle)][||]] /examples_saiInMail/ deco=default  [[elisp:(org-cycle)][| ]]
-#+end_org """
-@icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-def examples_saiInMail(
-####+END:
-        bpoId: typing.Optional[str],
-        envRelPath: typing.Optional[str],
-        sectionTitle: typing.AnyStr = "",
-) -> None:
-    """ #+begin_org
-** [[elisp:(org-cycle)][| *DocStr | ] Examples of Service Access Instance Commands.
-    #+end_org """
-
-    def cpsInit(): return collections.OrderedDict()
-    def menuItem(verbosity): icm.ex_gCmndMenuItem(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
-    # def execLineEx(cmndStr): icm.ex_gExecMenuItem(execLine=cmndStr)
-
-    if sectionTitle == "default":
-        icm.cmndExampleMenuChapter('*inMail --- Service Access Instance Commands*')
-
-    if bpoId == None:
-        return
-
-    if envRelPath == None:
-        cmndName = "bpoRunBasesUpdate"
-        cmndArgs = ""
-        cps = cpsInit() ; cps['bpoId'] = bpoId
-        menuItem(verbosity='none')
-        # menuItem(verbosity='full')
-    else:
-        cmndName = "someCmnd"
-        cmndArgs = ""
-        cps = cpsInit() ; cps['bpoId'] = bpoId
-        cps['envRelPath'] = envRelPath
-        menuItem(verbosity='none')
-        # menuItem(verbosity='full')
-
-####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvcs" :anchor ""  :extraInfo "Command Services Section"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _CmndSvcs_: |]]  Command Services Section  [[elisp:(org-shifttab)][<)]] E|
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _Classes_: |]]  InMail_Control  [[elisp:(org-shifttab)][<)]] E|
 #+end_org """
 ####+END:
 
 
-####+BEGIN: icm:py3:cmnd:classHead :cmndName "someCmnd" :cmndType ""  :comment "A Starting Point" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+####+BEGIN: b:py3:class/decl :className "Sai_InMail_Offlineimap" :superClass "bpoRunBases.BpoRunEnvBases" :comment "" :classType "basic"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc    [[elisp:(outline-show-subtree+toggle)][||]] <<someCmnd>> =A Starting Point= parsMand=bpoId envRelPath parsOpt= argsMin=0 argsMax=0 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-#+end_org """
-class someCmnd(icm.Cmnd):
-    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
-    cmndParamsOptional = [ ]
-    cmndArgsLen = {'Min': 0, 'Max': 0,}
-
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        bpoId=None,         # or Cmnd-Input
-        envRelPath=None,         # or Cmnd-Input
-    ) -> icm.OpOutcome:
-        cmndOutcome = self.getOpOutcome()
-        if interactive:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-
-        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
-        if not icm.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-        bpoId = callParamsDict['bpoId']
-        envRelPath = callParamsDict['envRelPath']
-
-        """A Starting Point"""
-####+END:
-        self.cmndDocStr(f""" #+begin_org
-** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  A starting point command.
-        #+end_org """)
-
-        cmndOutcome = self.getOpOutcome()
-
-        if interactive:
-            print(f"{bpoId} {envRelPath}")
-
-        return(cmndOutcome)
-
-####+BEGIN: bx:dblock:python:class :className "Sai_InMail_Offlineimap" :superClass "bpoRunBases.BpoRunEnvBases" :comment "" :classType "basic"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /Sai_InMail_Offlineimap/ bpoRunBases.BpoRunEnvBases  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /Sai_InMail_Offlineimap/  superClass=bpoRunBases.BpoRunEnvBases  [[elisp:(org-cycle)][| ]]
 #+end_org """
 class Sai_InMail_Offlineimap(bpoRunBases.BpoRunEnvBases):
 ####+END:
@@ -189,28 +126,55 @@ class Sai_InMail_Offlineimap(bpoRunBases.BpoRunEnvBases):
     ):
         super().__init__(bpoId, envRelPath,)
 
-####+BEGIN: bx:icm:python:method :methodName "offlineimapRcPath" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Method-anyOrNone :: /offlineimapRcPath/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-#+end_org """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def offlineimapRcPath(self):
+####+BEGIN: b:py3:cs:method/args :methodName "offlineimapRcPath" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcPath/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcPath(self, ):
 ####+END
         """ #+begin_org
-*** [[elisp:(org-cycle)][| DocStr| ]]  In var create control, in control create the file and return path to it.
+*** [[elisp:(org-cycle)][| DocStr| ]]  Return path to =offlineimapRc= in ~var/control~
         #+end_org """
         varBase = self.varBasePath_obtain()
         varControlBase = pathlib.Path(pathlib.PurePath(varBase, 'control'))
         varControlBase.mkdir(parents=True, exist_ok=True)
         return pathlib.Path(pathlib.PurePath(varControlBase, 'offlineimapRc'))
 
-####+BEGIN: bx:icm:python:method :methodName "offlineimapRcTemplate" :methodType "" :retType "bool" :deco "default" :argsList ""
-    """
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Method-    :: /offlineimapRcTemplate/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-#+end_org """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def offlineimapRcTemplate(self):
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcTemplate" :methodType "" :retType "bool" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcTemplate/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcTemplate(
 ####+END
+            self,
+            inMailSvcProv,
+    ):
+        """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  Look in control dir for file params.
+        #+end_org """
+
+        supportedSvcProviders = ("generic", "gmail")
+
+        if not (inMailSvcProv in supportedSvcProviders):
+            b_io.eh.problem_usageError(f"{inMailSvcProv} is not supported")
+            return ""
+
+        inMailSvcProvTemplate = getattr(self, f"offlineimapRcTemplate_{inMailSvcProv}")
+
+        return inMailSvcProvTemplate()
+
+        
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcTemplate_generic" :methodType "" :retType "bool" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcTemplate_generic/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcTemplate_generic(
+####+END
+            self,
+    ):
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Look in control dir for file params.
         #+end_org """
@@ -247,27 +211,201 @@ nametrans = lambda name: re.sub('^INBOX.', '', name)
 """
         return templateStr
 
-####+BEGIN: bx:icm:py3:method :methodName "offlineimapRcStdout" :methodType "eType" :retType "" :deco "default" :argsList ""
-    """
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-eType  :: /offlineimapRcStdout/ deco=default  [[elisp:(org-cycle)][| ]]
-#+end_org """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def offlineimapRcStdout(
-####+END:
+
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcTemplate_gmail" :methodType "" :retType "bool" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-     [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcTemplate_gmail/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcTemplate_gmail(
+####+END
+            self,
     ):
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Look in control dir for file params.
         #+end_org """
-        controlBase = self.controlBasePath_obtain()
+        templateStr = """
+# offlineimaprc for use with gmail -- Taken from:
+# https://github.com/sadsfae/misc-dotfiles/blob/7089bf68ade2f82d4962bd08f040c05ab476e8d6/offlineimaprc-gmail
+[general]
+accounts = MyAccount
+
+[Account MyAccount]
+localrepository = LocalIMAP
+remoterepository = RemoteIMAP
+
+[Repository RemoteIMAP]
+type = IMAP
+remotehost = {imapServer}
+remoteuser = {userName}
+ssl = yes
+starttls = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version=tls1_2
+
+### You'll need to configure the gmail API stuff here:
+# https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf#L858
+# https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf#L886-L894
+auth_mechanisms = XOAUTH2
+oauth2_client_id = 377167941016-d08lcj3hlcrnlb3nk5fgtlass6heqoqr.apps.googleusercontent.com
+oauth2_client_secret = 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
+oauth2_request_url = https://accounts.google.com/o/oauth2/token
+oauth2_refresh_token = 1//06Zgb6afI1ULICgYIARAAGAYSNwF-L9IrCjdK4qrkRqjE4c8nGwLo8wWihRlgFR_N63E2B-v7savDiSSByhqW0p2pmz_WhRn_G3k
+nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
+
+[Repository LocalIMAP]
+type = Maildir
+localfolders = {inMailAcctMboxesPath}
+restoreatime = no
+# Do not sync this folder
+folderfilter = lambda folder: folder not in ['some-inbox']
+## Remove GMAIL prefix on Google-specific IMAP folders that are pulled down.
+nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 'Spam', 'Trash', 'All Mail', 'Sent Mail'] else f
 
 
-####+BEGIN: bx:icm:py3:method :methodName "offlineimapRcUpdate" :methodType "eType" :retType "" :deco "default" :argsList ""
-    """
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-eType  :: /offlineimapRcUpdate/ deco=default  [[elisp:(org-cycle)][| ]]
-#+end_org """
-    @icm.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+"""
+        return templateStr
+
+
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcString(
+####+END:
+            self,
+    ):
+        """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
+        #+end_org """
+        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
+
+        outcome = b.op.Outcome()
+
+        if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
+            return b_io.eh.badOutcome(outcome)
+
+        svcProvider = accessPars['svcProvider'].parValueGet()
+        if not svcProvider: return b_io.eh.badOutcome(outcome)
+
+        offlineimapRcString_svcProvider = getattr(self, f"offlineimapRcString_{svcProvider}")
+
+        return offlineimapRcString_svcProvider()
+
+
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_gmail" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString_gmail/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcString_gmail(
+####+END:
+            self,
+    ):
+        """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
+        #+end_org """
+        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
+
+        outcome = b.op.Outcome()
+
+        if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
+            return b_io.eh.badOutcome(outcome)
+
+        if not (retrievalPars := controlInst.retrievalFps_wOp(outcome=outcome).results):
+            return b_io.eh.badOutcome(outcome)
+
+        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+
+        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+        if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
+
+        mboxesList = retrievalPars['mboxesList'].parValueGet()
+
+        foldersListStr = ""
+        if mboxesList == "all":
+            folderFilterLineStr = "#"
+        else:
+            for each in mboxesList.split():
+                foldersListStr += "'INBOX.{}',".format(each)
+
+            folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
+                foldersListStr=foldersListStr)
+
+
+        resStr = self.offlineimapRcTemplate("gmail").format(
+            inMailAcctMboxesPath=mailDirFullPath,
+            imapServer=accessPars['imapServer'].parValueGet(),
+            userName=accessPars['userName'].parValueGet(),
+            foldersListStr=foldersListStr,
+            folderFilterLine=folderFilterLineStr,
+        )
+
+        return resStr
+
+
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_generic" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString_generic/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcString_generic(
+####+END:
+            self,
+    ):
+        """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
+        #+end_org """
+        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
+
+        outcome = b.op.Outcome()
+
+        if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
+            return b_io.eh.badOutcome(outcome)
+
+        if not (retrievalPars := controlInst.retrievalFps_wOp(outcome=outcome).results):
+            return b_io.eh.badOutcome(outcome)
+
+        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+
+        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+        if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
+
+        mboxesList = retrievalPars['mboxesList'].parValueGet()
+
+        foldersListStr = ""
+        if mboxesList == "all":
+            folderFilterLineStr = "#"
+        else:
+            for each in mboxesList.split():
+                foldersListStr += "'INBOX.{}',".format(each)
+
+            folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
+                foldersListStr=foldersListStr)
+
+
+        resStr = self.offlineimapRcTemplate("generic").format(
+            inMailAcctMboxesPath=mailDirFullPath,
+            imapServer=accessPars['imapServer'].parValueGet(),
+            userName=accessPars['userName'].parValueGet(),
+            userPasswd=accessPars['userPasswd'].parValueGet(),
+            ssl=retrievalPars['ssl'].parValueGet(),
+            foldersListStr=foldersListStr,
+            folderFilterLine=folderFilterLineStr,
+        )
+
+        return resStr
+
+    
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcUpdate" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcUpdate/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
     def offlineimapRcUpdate(
 ####+END
+            self,
     ):
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Look in control dir for file params.
@@ -275,11 +413,208 @@ nametrans = lambda name: re.sub('^INBOX.', '', name)
         controlBase = self.controlBasePath_obtain()
 
 
-
-####+BEGIN: b:prog:file/endOfFile :extraParams nil
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvcs" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
-* *[[elisp:(org-cycle)][| END-OF-FILE |]]* :: emacs and org variables and control parameters
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _CmndSvcs_: |]]  Command Services Section  [[elisp:(org-shifttab)][<)]] E|
 #+end_org """
+####+END:
+
+
+####+BEGIN: bx:cs:py3:section :title "CS-Lib Examples"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Lib Examples*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:func/typing :funcName "csExamples" :funcType "eType" :retType "" :deco "default" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /csExamples/  deco=default  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def csExamples(
+####+END:
+        bpoId: typing.Optional[str],
+        envRelPath: typing.Optional[str],
+        sectionTitle: typing.AnyStr = "",
+) -> None:
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ] Examples of Service Access Instance Commands.
+    #+end_org """
+
+    def cpsInit(): return collections.OrderedDict()
+    def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+    # def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
+
+    def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = bpoId ; cps['envRelPath'] = envRelPath
+
+    if sectionTitle == "default":
+        cs.examples.menuChapter('*inMail --- Service Access Instance Commands*')
+
+    if bpoId == None:
+        return
+
+    cs.examples.menuChapter('*Config File Creation Facility IIFs*')
+
+    cmndName = "offlineimapRcUpdate" ;  cmndArgs = ""
+    cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+    menuItem(verbosity='none') ; menuItem(verbosity='full')
+
+    cmndName = "offlineimapRcStdout" ;  cmndArgs = ""
+    cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+    menuItem(verbosity='none') #; menuItem(verbosity='full')
+
+    cs.examples.menuChapter('*Operation Facility IIFs -- (offlineimapRun)*')
+
+    cmndName = "offlineimapRun" ;  cmndArgs = ""
+    cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+    menuItem(verbosity='none') #; menuItem(verbosity='full')
+
+
+####+BEGIN: bx:cs:py3:section :title "CS-Params  --- Place Holder, Empty"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Params  --- Place Holder, Empty*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: bx:cs:py3:section :title "CS-Commands"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Commands*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRun" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapRun>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapRun(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  As subProc, runs offlineimap -c offlineimapRcPath.
+        #+end_org """)
+
+        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
+
+        offlineimapRcPath = offlineimapInst.offlineimapRcPath()
+
+
+        if not (resStr := b.subProc.WOpW(invedBy=self, log=1).bash(
+                f"""echo offlineimap -c {offlineimapRcPath}""",
+        ).stdout):  return(io.eh.badOutcome(cmndOutcome))
+
+        #print(resStr)
+
+        return cmndOutcome.set(
+            opError=cs.OpError.Success,
+            opResults=True,
+        )
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRcUpdate" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapRcUpdate>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapRcUpdate(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Updates offlineimapRc file using offlineimapRcStr.
+        #+end_org """)
+
+        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
+
+        resStr = offlineimapInst.offlineimapRcString()
+
+        offlineimapRcPath = offlineimapInst.offlineimapRcPath()
+
+        if os.path.isfile(offlineimapRcPath):
+            shutil.copyfile(offlineimapRcPath, "/tmp/t1")
+
+        with open(offlineimapRcPath, "w") as thisFile:
+            thisFile.write(resStr + '\n')
+
+        if interactive:
+            icm.ANN_here(f"offlineimapRcPath={offlineimapRcPath}")
+            if b.subProc.Op(outcome=cmndOutcome, log=1).bash(
+                    f"""ls -l {offlineimapRcPath}""",
+            ).isProblematic():  return(io.eh.badOutcome(cmndOutcome))
+
+
+        return cmndOutcome.set(
+            opError=cs.OpError.Success,
+            opResults=offlineimapRcPath,
+        )
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRcStdout" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapRcStdout>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapRcStdout(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+
+        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
+
+        resStr = offlineimapInst.offlineimapRcString()
+
+        if interactive:
+            print(resStr)
+
+        return cmndOutcome.set(
+            opError=cs.OpError.Success,
+            opResults=resStr
+        )
+
+
+####+BEGIN: b:py3:cs:framework/endOfFile :basedOn "classification"
+""" #+begin_org
+* [[elisp:(org-cycle)][| *End-Of-Editable-Text* |]] :: emacs and org variables and control parameters
+#+end_org """
+
+#+STARTUP: showall
+
 ### local variables:
 ### no-byte-compile: t
 ### end:
