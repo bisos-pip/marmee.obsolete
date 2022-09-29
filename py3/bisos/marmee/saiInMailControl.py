@@ -9,7 +9,7 @@
 * [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
 #+BEGIN_SRC emacs-lisp
 (setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
-(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
 #+END_SRC
 #+RESULTS:
 : cs-u
@@ -333,10 +333,11 @@ class inMailAcctParsGet(cs.Cmnd):
 ####+END:
         controlInst = Sai_InMail_Control(bpoId, envRelPath)
 
-        if interactive:
+        # if rtInv.outs:
+        if True:
             parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         else:
-            parTypes = effectiveArgsList
+            parTypes = argsList
 
         if parTypes:
             if parTypes[0] == "all":
@@ -349,10 +350,10 @@ class inMailAcctParsGet(cs.Cmnd):
             fpBaseDir = os.path.join(controlInst.getFpBase(), each)
             controlInst.namedFps_wOp(each, outcome=cmndOutcome)
 
-            if interactive:
+            #if rtInv.outs:
+            if True:
                 b_io.ann.write(fpBaseDir)
                 b.fp.FILE_paramDictPrint(cmndOutcome.results)
-
 
             # FP_readTreeAtBaseDir_CmndOutput(
             #     interactive=interactive,
@@ -437,11 +438,11 @@ class inMailAcctAccessParsSet(cs.Cmnd):
                 parValue=varNameValue[1],
             )
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=inMailAcctDir,
         )
 
@@ -520,11 +521,11 @@ class inMailAcctControllerInfoParsSet(cs.Cmnd):
                 parValue=varNameValue[1],
             )
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=inMailAcctDir,
         )
 
@@ -603,12 +604,12 @@ class inMailAcctRetrievalParsSet(cs.Cmnd):
                 parValue=varNameValue[1],
             )
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return (
             cmndOutcome.set(
-                opError=cs.OpError.Success,
+                opError=b.OpError.Success,
                 opResults=inMailAcctDir,
             ))
 

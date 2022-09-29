@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """ #+begin_org
-* ~[Summary]~ :: A =bpf-lib= to identify *this* CS Pkg in the general context of csPkgs
+* ~[Summary]~ :: A =b-lib= to identify *this* CS Pkg in the general context of csPkgs
 #+end_org """
 
 ####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
@@ -9,7 +9,7 @@
 * [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
 #+BEGIN_SRC emacs-lisp
 (setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
-(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
 #+END_SRC
 #+RESULTS:
 : cs-u
@@ -127,7 +127,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
 """
 ####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/moduleOverview.py"
         icm.unusedSuppressForEval(moduleUsage, moduleStatus)
-        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, effectiveArgsList)
+        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         if actions[0] == "all":
             cmndArgsSpec = cmndArgsSpecDict.argPositionFind("0&2")
             argChoices = cmndArgsSpec.argChoicesGet()
@@ -135,7 +135,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))
@@ -149,7 +149,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
         """
 ***** Cmnd Args Specification
 """
-        cmndArgsSpecDict = icm.CmndArgsSpecDict()
+        cmndArgsSpecDict = cs.CmndArgsSpecDict()
         cmndArgsSpecDict.argsDictAdd(
             argPosition="0&2",
             argName="actions",

@@ -132,7 +132,7 @@ def g_paramsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -289,7 +289,7 @@ class offlineimapRun(cs.Cmnd):
         envRelPath=None,         # or Cmnd-Input
     ) -> b.op.Outcome:
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -316,7 +316,7 @@ class offlineimapRun(cs.Cmnd):
         if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 
@@ -337,7 +337,7 @@ class offlineimaprcUpdate(cs.Cmnd):
         envRelPath=None,         # or Cmnd-Input
     ) -> b.op.Outcome:
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -394,11 +394,11 @@ class offlineimaprcUpdate(cs.Cmnd):
             if not os.path.isdir(thisPath):
                 raise
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here("offlineimaprcPath={val}".format(val=offlineimaprcPath))
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=offlineimaprcStr,
         )
 
@@ -455,7 +455,7 @@ class offlineimaprcStdout(cs.Cmnd):
         ssl=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -522,11 +522,11 @@ class offlineimaprcStdout(cs.Cmnd):
             folderFilterLine=folderFilterLineStr,
         )
 
-        if interactive:
+        if rtInv.outs:
             print(resStr)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=resStr
         )
 

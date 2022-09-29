@@ -106,7 +106,7 @@ class icmOverview(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -152,7 +152,7 @@ class icmOverview(cs.Cmnd):
         icm.unusedSuppressForEval(moduleDescription, moduleUsage, moduleStatus)
         for each in effectiveArgsList:
             if each in cmndArgsValid:
-                if interactive:
+                if rtInv.outs:
                     exec("""print({})""".format(each))
                 
         return(format(str(__doc__)+moduleDescription))
@@ -230,7 +230,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -261,7 +261,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -342,7 +342,7 @@ class unitTest(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -401,13 +401,13 @@ class inMailDaemon(cs.Cmnd):
         myName=self.myName()
         G = cs.globalContext.get()
         thisOutcome = b.op.Outcome(invokerName=myName)
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=thisOutcome):
                 return(thisOutcome)
 
         if not inMailAcct:
             if not interactive:
-                return icm.eh_problem_usageError(
+                return icm.eh_problem_usageError_wOp(
                     thisOutcome,
                     "Missing Non-Interactive Arg (inMailAcct)",
                 )
@@ -417,7 +417,7 @@ class inMailDaemon(cs.Cmnd):
         if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         
         return thisOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
     
@@ -440,13 +440,13 @@ class inMailRun(cs.Cmnd):
         myName=self.myName()
         G = cs.globalContext.get()        
         thisOutcome = b.op.Outcome(invokerName=myName)
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=thisOutcome):
                 return(thisOutcome)
 
         if not inMailAcct:
             if not interactive:
-                return icm.eh_problem_usageError(
+                return icm.eh_problem_usageError_wOp(
                     thisOutcome,
                     "Missing Non-Interactive Arg (inMailAcct)",
                 )
@@ -456,7 +456,7 @@ class inMailRun(cs.Cmnd):
         if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
         
         return thisOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 

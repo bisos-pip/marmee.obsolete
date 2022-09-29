@@ -9,7 +9,7 @@
 * [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
 #+BEGIN_SRC emacs-lisp
 (setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
-(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
 #+END_SRC
 #+RESULTS:
 : cs-mu
@@ -168,12 +168,13 @@ Names the service instance.
 It is an instance of aasMarmee_svcProvider.
         """
 
-        if interactive:
+        #if rtInv.outs:
+        if rtInv.outs:
             for eachKey in curPars:
                 print(f"{eachKey}: {curPars[eachKey]}")
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=curPars,
         )
 

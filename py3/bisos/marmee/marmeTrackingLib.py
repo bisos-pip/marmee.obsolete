@@ -115,7 +115,7 @@ class icmBegin_libOverview(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -164,7 +164,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))
@@ -306,7 +306,7 @@ class deliveryTrackingsShow(cs.Cmnd):
         sr=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -326,7 +326,7 @@ class deliveryTrackingsShow(cs.Cmnd):
         b_io.tm.here(trackDeliveryLogFile)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """ #+begin_org
-* ~[Summary]~ :: A =CmndSvc= for for setting up Marmee (Multi-Account Resident Mail Exchange Environment) AAS (Accessible Abstract Service).
+* ~[Summary]~ :: A =CmndSvc= for retrieving message with offlineimap from imap server with inMail info.
 #+end_org """
 
 ####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-mu"
@@ -29,7 +29,7 @@
 ####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
 """ #+begin_org
 * *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
-** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bin/aasMarmeeManage.cs
+** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bin/marmeeSaiInMail.cs
 ** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
 #+end_org """
 ####+END:
@@ -39,20 +39,19 @@
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
 import typing
-csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['aasMarmeeManage'], }
-csInfo['version'] = '202209280025'
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['marmeeSaiInMail'], }
+csInfo['version'] = '202209284337'
 csInfo['status']  = 'inUse'
-csInfo['panel'] = 'aasMarmeeManage-Panel.org'
+csInfo['panel'] = 'marmeeSaiInMail-Panel.org'
 csInfo['groupingType'] = 'IcmGroupingType-pkged'
 csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
 """ #+begin_org
-* [[elisp:(org-cycle)][| ~Description~ |]] :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/COMEEGA/_nodeBase_/fullUsagePanel-en.org][BISOS COMEEGA Panel]]
-A =CmndSvc= for for setting up Marmee (Multi-Account Resident Mail Exchange Environment) AAS (Accessible Abstract Service).
-Manages Mail Account Profiles. Sets up currents. Works with -niche.
+* /[[elisp:(org-cycle)][| Description |]]/ :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/COMEEGA/_nodeBase_/fullUsagePanel-en.org][BISOS COMEEGA Panel]]
+Module description comes here.
 ** Relevant Panels:
-** Status: In use with BISOS
+** Status: In use with blee3
 ** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
 *** TODO complete fileName in particulars.
 #+end_org """
@@ -87,15 +86,28 @@ from bisos.b import b_io
 import collections
 ####+END:
 
-
 import sys
+import os
+
+import shutil
+
 import collections
 
-from bisos.marmee import marmeAcctsLib, marmeeCurrentsLib
+from bisos.marmee import marmeAcctsLib
+from bisos.marmee import saiInMailControl
+from bisos.marmee import saiInMailOfflineimap
+
 from bisos.currents import currentsConfig
 
 from bisos.bpo import bpo
 from bisos.bpo import bpoRunBases
+
+#from bisos.icm import clsMethod
+
+from bisos import b
+
+from datetime import datetime
+import pathlib
 
 
 """ #+begin_org
@@ -105,30 +117,28 @@ from bisos.bpo import bpoRunBases
   (list
    "bisos.b.cs.ro"
    "blee.icmPlayer.bleep"
-   "bisos.marmee.marmeAcctsLib"
    "bisos.bpo.bpo"
-   "bisos.bpo.bpoRunBases"
-   "bisos.marmee.marmeeCurrentsLib"
+   "bisos.marmee.saiInMailControl"
+   "bisos.marmee.saiInMailOfflineimap"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.marmee.marmeAcctsLib | bisos.bpo.bpo | bisos.bpo.bpoRunBases | bisos.marmee.marmeeCurrentsLib |
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.saiInMailControl | bisos.marmee.saiInMailOfflineimap |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /6/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /5/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
 from blee.icmPlayer import bleep
-from bisos.marmee import marmeAcctsLib
 from bisos.bpo import bpo
-from bisos.bpo import bpoRunBases
-from bisos.marmee import marmeeCurrentsLib
+from bisos.marmee import saiInMailControl
+from bisos.marmee import saiInMailOfflineimap
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.marmee.marmeAcctsLib', 'bisos.bpo.bpo', 'bisos.bpo.bpoRunBases', 'bisos.marmee.marmeeCurrentsLib', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.saiInMailControl', 'bisos.marmee.saiInMailOfflineimap', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -170,6 +180,8 @@ def cur_examples():
         cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i usgCursParsSet {each}={curParsDictValue[each]}')
 ####+END:
 
+
+
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examples" :cmndType ""  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<examples>>  *FrameWrk: ICM Examples*  =verify= ro=cli   [[elisp:(org-cycle)][| ]]
@@ -192,11 +204,14 @@ class examples(cs.Cmnd):
         self.cmndDocStr(f""" #+begin_org ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
-        cmndOutcome = self.getOpOutcome()
-
         def cpsInit(): return collections.OrderedDict()
-        def menuItem(): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='little') # type: ignore
+        def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
         def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
+
+        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
+        def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = cur_aasMarmee_bpoId ; cps['envRelPath'] = cur_marmeeEnvRelPath
+
+        cmndOutcome = self.getOpOutcome()
 
         #logControler = b_io.log.Control()
         #logControler.loggerSetLevel(20)
@@ -211,27 +226,142 @@ class examples(cs.Cmnd):
         cur_examples()
 
         #  RunBases Examples
-        bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, None, sectionTitle="default")
-        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
-        bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
-        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcOutMail}/{cur_aasMarmee_svcInstance}"
+        bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
 
-        marmeeCurrentsLib.examples_currents()
+        saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
 
-####+BEGIN: bx:cs:python:cmnd:subSection :title "marmeAcctsLib Examples"
+        saiInMailOfflineimap.csExamples(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
 
-####+END:
+        cs.examples.menuChapter('*Service Access Instance*')
 
-        cs.examples.menuChapter('*InMail --- Marmee Svc Access Instance (SAI)*')
-
-
-        execLineEx("""marmeeSaiInMail.cs""")
-        execLineEx("""echo marmeeSaiInMail.cs --bpoId="piu_mbFullUsage" --envRelPath="marmee/gmail/inMail/mohsen.byname"  -i inMailAcctAccessParsSet userName="UserName" userPasswd="UserPasswd" imapServer="IMAPServer" """)
-
-        b.niche.examplesNicheRun("usageEnvs")
+        cmndName = "report" ;  cmndArgs = ""
+        cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+        menuItem(verbosity='none') ; menuItem(verbosity='full')
 
         return(cmndOutcome)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "report" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<report>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class report(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Describe What is going On and a template for other actions.
+        #+end_org """)
+
+        controlInst = saiInMailControl.Sai_InMail_Control(bpoId, envRelPath)
+        offlineimapInst = saiInMailOfflineimap.Sai_InMail_Offlineimap(bpoId, envRelPath)
+
+
+        offlineimapInst.basesUpdate()
+        varBase = offlineimapInst.varBasePath_obtain()
+
+        print(f"bpo={offlineimapInst.bpo} bpo={controlInst.bpo} varBase={varBase}")
+
+        offlineimpaRcPath = offlineimapInst.offlineimapRcPath()
+        print(f"offlineimapRcPath={offlineimpaRcPath}")
+
+        return cmndOutcome
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailRun" :comment "" :parsMand "" :parsOpt "inMailAccct" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailRun>>  =verify= parsOpt=inMailAccct ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailRun(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ 'inMailAccct', ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             inMailAccct: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'inMailAccct': inMailAccct, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Brought over from old marme. Needs to be revisited.
+        #+end_org """)
+
+        if not inMailAcct:
+            if not interactive:
+                return icm.eh_problem_usageError_wOp(
+                    cmndOutcome,
+                    "Missing Non-Interactive Arg (inMailAcct)",
+                )
+            inMailAcct = G.usageParams.inMailAcct
+
+        outcome = icm.subProc_bash("""echo Preparing the package""").log()
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
+
+        return cmndOutcome.set(
+            opError=b.OpError.Success,
+            opResults=None,
+        )
+
+        return(cmndOutcome)
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "inMailDaemon" :comment "" :parsMand "" :parsOpt "inMailAcct" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<inMailDaemon>>  =verify= parsOpt=inMailAcct ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class inMailDaemon(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ 'inMailAcct', ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             inMailAcct: typing.Optional[str]=None,  # Cs Optional Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'inMailAcct': inMailAcct, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Brought over from old marme. Needs to be revisited.
+        #+end_org """)
+
+        if not inMailAcct:
+            if not interactive:
+                return icm.eh_problem_usageError_wOp(
+                    cmndOutcome,
+                    "Missing Non-Interactive Arg (inMailAcct)",
+                )
+            inMailAcct = G.usageParams.inMailAcct
+
+        outcome = icm.subProc_bash("""echo Preparing the package""").log()
+        if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
+
+        return cmndOutcome.set(
+            opError=b.OpError.Success,
+            opResults=True,
+        )
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Main" :anchor ""  :extraInfo "Framework Dblock"
 """ #+begin_org

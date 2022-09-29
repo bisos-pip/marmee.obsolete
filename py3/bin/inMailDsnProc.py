@@ -122,7 +122,7 @@ class icmOverview(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -176,7 +176,7 @@ class icmOverview(cs.Cmnd):
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))
@@ -289,7 +289,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -300,7 +300,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=["someFile", "UserInput"],
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--inFile',
     )
@@ -330,7 +330,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -452,7 +452,7 @@ class maildirApplyToMsg(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -512,7 +512,7 @@ class maildirApplyToMsg(cs.Cmnd):
                     raise   # NOTYET, in production, the raise should be commented out
         
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 

@@ -141,7 +141,7 @@ class marmePkgThis_libOverview(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -189,7 +189,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))

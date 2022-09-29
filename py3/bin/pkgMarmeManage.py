@@ -126,7 +126,7 @@ class icmOverview(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -172,7 +172,7 @@ class icmOverview(cs.Cmnd):
         icm.unusedSuppressForEval(moduleDescription, moduleUsage, moduleStatus)
         for each in effectiveArgsList:
             if each in cmndArgsValid:
-                if interactive:
+                if rtInv.outs:
                     exec("""print({})""".format(each))
                 
         return(format(str(__doc__)+moduleDescription))
@@ -275,7 +275,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -306,7 +306,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -447,7 +447,7 @@ class binsPreps(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -467,7 +467,7 @@ class binsPreps(cs.Cmnd):
             
         
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 
@@ -485,7 +485,7 @@ class binsPrepsCurInfo(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -533,7 +533,7 @@ class binsPrepsCurInfo(cs.Cmnd):
                 ))
             
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
     

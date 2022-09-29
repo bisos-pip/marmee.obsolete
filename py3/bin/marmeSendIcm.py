@@ -123,7 +123,7 @@ class icmOverview(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -169,7 +169,7 @@ class icmOverview(cs.Cmnd):
         icm.unusedSuppressForEval(moduleDescription, moduleUsage, moduleStatus)
         for each in effectiveArgsList:
             if each in cmndArgsValid:
-                if interactive:
+                if rtInv.outs:
                     exec("""print({})""".format(each))
                 
         return(format(str(__doc__)+moduleDescription))
@@ -266,7 +266,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -282,7 +282,7 @@ def g_argsExtraSpecify(
             "template/bynameUtf8.mail"
         ),            
         parChoices=["someFile", "UserInput"],
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--inFile',
         )
@@ -293,7 +293,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault="someFrom@example.com",
         parChoices=["from@example.com", "UserInput"],
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--fromLine',
         )
@@ -304,7 +304,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault="someTo@example.com",
         parChoices=["to@example.com", "UserInput"],
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--toLine',
     )
@@ -333,7 +333,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -534,7 +534,7 @@ class sendFromPartialFileWithPars(cs.Cmnd):
         msg=None,         # asFunc when interactive==False
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -638,7 +638,7 @@ class msgSend_basic(cs.Cmnd):
         sendingMethod=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -732,7 +732,7 @@ class msgSend_tracked(cs.Cmnd):
         sendingMethod=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 

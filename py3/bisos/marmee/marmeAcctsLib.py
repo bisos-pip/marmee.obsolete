@@ -193,7 +193,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))
@@ -1390,7 +1390,7 @@ mkdir -p {}"""
         
         
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 
@@ -1418,7 +1418,7 @@ class bxoSrPkgInfoParsGet(cs.Cmnd):
             return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
  
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write("controlBaseDir={}".format(
                 controlBaseDirGet(bxoId=bxoId, sr=sr)
             ))
@@ -1437,7 +1437,7 @@ class bxoSrPkgInfoParsGet(cs.Cmnd):
 
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 
@@ -1467,11 +1467,11 @@ class enabledControlProfileGet(cs.Cmnd):
         """Output the current from -- NOTYET -- Should write at {varBase}/selections/fp"""
         enabledMailAcct = enabledControlProfileObtain(bxoId=bxoId, sr=sr,)
  
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write(enabledMailAcct)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=enabledMailAcct,
         )
 
@@ -1516,7 +1516,7 @@ class enabledControlProfileSet(cs.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=each,
         )
 
@@ -1545,11 +1545,11 @@ class enabledInMailAcctGet(cs.Cmnd):
     
         enabledInMailAcct = enabledInMailAcctObtain(bxoId=bxoId, sr=sr,)  # NOTYET
  
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write(enabledInMailAcct)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=enabledInMailAcct,
         )
 
@@ -1595,7 +1595,7 @@ class enabledInMailAcctSet(cs.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=each,
         )
 
@@ -1627,11 +1627,11 @@ class enabledOutMailAcctGet(cs.Cmnd):
     
         enabledOutMailAcct = enabledOutMailAcctObtain(bxoId=bxoId, sr=sr,)  # NOTYET
  
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write(enabledOutMailAcct)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=enabledOutMailAcct,
         )
 
@@ -1678,7 +1678,7 @@ class enabledOutMailAcctSet(cs.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=each,
         )
 
@@ -1711,11 +1711,11 @@ class enabledMailBoxGet(cs.Cmnd):
     
         enabledMailBox = enabledMailBoxObtain(bxoId=bxoId, sr=sr,)
  
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write(enabledMailBox)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=enabledMailBox,
         )
     
@@ -1761,7 +1761,7 @@ class enabledMailBoxSet(cs.Cmnd):
             )
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=each,
         )
     
@@ -1791,7 +1791,7 @@ class inMailAcctParsGet(cs.Cmnd):
         cmndArgsSpecDict = self.cmndArgsSpec()
 ####+END:
 
-        if interactive:
+        if rtInv.outs:
             parTypes = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
         else:
             parTypes = effectiveArgsList
@@ -1892,11 +1892,11 @@ class inMailAcctAccessParsSet(cs.Cmnd):
                 parValue=imapServer,
             )
         
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=inMailAcctDir,
         )
 
@@ -1944,11 +1944,11 @@ class inMailAcctControllerInfoParsSet(cs.Cmnd):
                 parValue=lastName,
             )
         
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=inMailAcctDir,
         )
 
@@ -2003,12 +2003,12 @@ class inMailAcctRetrievalParsSet(cs.Cmnd):
                 parValue=ssl,
             ))
             
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(inMailAcctDir)
 
         return (
             cmndOutcome.set(
-                opError=cs.OpError.Success,
+                opError=b.OpError.Success,
                 opResults=inMailAcctDir,
             ))
 
@@ -2191,11 +2191,11 @@ class outMailAcctParsSet(cs.Cmnd):
         else:
             return b_io.eh.problem_usageError("OOPS")
         
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(outMailAcctDir)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=outMailAcctDir,
         )
     

@@ -111,7 +111,7 @@ class icmOverview(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -157,7 +157,7 @@ class icmOverview(cs.Cmnd):
         icm.unusedSuppressForEval(moduleDescription, moduleUsage, moduleStatus)
         for each in effectiveArgsList:
             if each in cmndArgsValid:
-                if interactive:
+                if rtInv.outs:
                     exec("""print({})""".format(each))
                 
         return(format(str(__doc__)+moduleDescription))
@@ -234,7 +234,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -245,7 +245,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=300,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--periodicity',
     )
@@ -274,7 +274,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -410,7 +410,7 @@ class unitTest(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -470,7 +470,7 @@ class inMailRetrieve(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -503,7 +503,7 @@ class inMailUaUpdate(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -535,7 +535,7 @@ class inMailDsnProcReport(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -566,7 +566,7 @@ class inMailDsnProc(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -597,7 +597,7 @@ class inMailDsnTestProc(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 

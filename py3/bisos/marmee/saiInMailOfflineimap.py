@@ -286,6 +286,8 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
             return b_io.eh.badOutcome(outcome)
 
+        print("ZZZ")
+        print(accessPars)
         svcProvider = accessPars['svcProvider'].parValueGet()
         if not svcProvider: return b_io.eh.badOutcome(outcome)
 
@@ -519,7 +521,7 @@ class offlineimapRun(cs.Cmnd):
         #print(resStr)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=True,
         )
 
@@ -561,7 +563,7 @@ class offlineimapRcUpdate(cs.Cmnd):
         with open(offlineimapRcPath, "w") as thisFile:
             thisFile.write(resStr + '\n')
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here(f"offlineimapRcPath={offlineimapRcPath}")
             if b.subProc.Op(outcome=cmndOutcome, log=1).bash(
                     f"""ls -l {offlineimapRcPath}""",
@@ -569,7 +571,7 @@ class offlineimapRcUpdate(cs.Cmnd):
 
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=offlineimapRcPath,
         )
 
@@ -599,11 +601,11 @@ class offlineimapRcStdout(cs.Cmnd):
 
         resStr = offlineimapInst.offlineimapRcString()
 
-        if interactive:
+        if rtInv.outs:
             print(resStr)
 
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=resStr
         )
 

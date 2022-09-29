@@ -107,7 +107,7 @@ class icmOverview(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -161,7 +161,7 @@ class icmOverview(cs.Cmnd):
             actions = argChoices
         for each in actions:
             print(each)
-            if interactive:
+            if rtInv.outs:
                 #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                 #version(interactive=True)
                 exec("""print({})""".format(each))
@@ -274,7 +274,7 @@ def g_argsExtraSpecify(
         parDataType=None,
         parDefault=None,
         parChoices=list(),
-        parScope=icm.CmndParamScope.TargetParam,
+        parScope=cs.CmndParamScope.TargetParam,
         argparseShortOpt=None,
         argparseLongOpt='--version',
     )
@@ -306,7 +306,7 @@ class examples(cs.Cmnd):
         interactive=False,        # Can also be called non-interactively
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -451,7 +451,7 @@ class unitTest(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -514,7 +514,7 @@ class notmuchConfigUpdate(cs.Cmnd):
         inMailAcct=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -560,11 +560,11 @@ class notmuchConfigUpdate(cs.Cmnd):
             with open(configFilePath, "w") as thisFile:
                 thisFile.write(configFileStr + '\n')
 
-        if interactive:
+        if rtInv.outs:
             icm.ANN_here("configFilePath={val}".format(val=configFilePath))
         
         return cmndOutcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             opResults=None,
         )
 
@@ -621,7 +621,7 @@ class notmuchConfigStdout(cs.Cmnd):
         inMailAcct=None,         # or Cmnd-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -664,11 +664,11 @@ cat {templateFile} | \
         ).log()
         if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
-        if interactive:
+        if rtInv.outs:
             b_io.ann.write(outcome.stdout)
         
         return outcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             #opResults=outcome.stdout
         )
 
@@ -690,7 +690,7 @@ class runNotmuch(cs.Cmnd):
         argsList=[],         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -730,11 +730,11 @@ class runNotmuch(cs.Cmnd):
         ).out()
         if outcome.isProblematic(): return(io.eh.badOutcome(outcome))
 
-        if interactive:
+        if rtInv.outs:
             pass
         
         return outcome.set(
-            opError=cs.OpError.Success,
+            opError=b.OpError.Success,
             #opResults=outcome.stdout
         )
 

@@ -146,7 +146,7 @@ class marmeSendLib_LibOverview(cs.Cmnd):
         argsList=None,         # or Args-Input
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
             effectiveArgsList = G.icmRunArgsGet().cmndArgs
@@ -185,7 +185,7 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
         for each in effectiveArgsList:
             if each in cmndArgsValid:
                 print(each)
-                if interactive:
+                if rtInv.outs:
                     #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
                     #version(interactive=True)
                     exec("""print({})""".format(each))
@@ -217,7 +217,7 @@ class sendCompleteMessage(cs.Cmnd):
         msg=None,         # asFunc when interactive==False
     ):
         cmndOutcome = self.getOpOutcome()
-        if interactive:
+        if rtInv.outs:
             if not self.cmndLineValidate(outcome=cmndOutcome):
                 return cmndOutcome
 
@@ -277,7 +277,7 @@ class sendCompleteMessage(cs.Cmnd):
         return msgOut.sendBasedOnHeadersInfo(msg)
 
         # return cmndOutcome.set(
-        #     opError=cs.OpError.Success,
+        #     opError=b.OpError.Success,
         #     opResults=None,
         # )
     
@@ -461,22 +461,22 @@ def msgSendingPipelineLoadFromAcctBaseDir(
     try:
         mtaRemHost = fp_access_dict["mtaRemHost"].parValueGet()
     except  KeyError:
-        return icm.eh_problem_usageError(opOutcome, "Missing BX-MTA-Rem-Host")
+        return icm.eh_problem_usageError_wOp(opOutcome, "Missing BX-MTA-Rem-Host")
 
     try:
         userName = fp_access_dict["userName"].parValueGet()
     except  KeyError:
-        return icm.eh_problem_usageError(opOutcome, "Missing BX-MTA-Rem-User")
+        return icm.eh_problem_usageError_wOp(opOutcome, "Missing BX-MTA-Rem-User")
 
     try:
         userPasswd = fp_access_dict["userPasswd"].parValueGet()
     except  KeyError:
-        return icm.eh_problem_usageError(opOutcome, "Missing BX-MTA-Rem-Passwd")
+        return icm.eh_problem_usageError_wOp(opOutcome, "Missing BX-MTA-Rem-Passwd")
 
     try:
         remProtocol = fp_access_dict["mtaRemProtocol"].parValueGet()        
     except  KeyError:
-        return icm.eh_problem_usageError(opOutcome, "Missing BX-MTA-Rem-Protocol")
+        return icm.eh_problem_usageError_wOp(opOutcome, "Missing BX-MTA-Rem-Protocol")
     
     try:
         remPortNu = fp_access_dict["mtaRemPortNu"].parValueGet()
