@@ -91,12 +91,8 @@ import collections
 import sys
 import collections
 
-from bisos.marmee import marmeAcctsLib, marmeeCurrentsLib
+# from bisos.marmee import marmeAcctsLib, marmeeCurrentsLib
 from bisos.currents import currentsConfig
-
-from bisos.bpo import bpo
-from bisos.bpo import bpoRunBases
-
 
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~csuList emacs-list Specifications~  [[elisp:(blee:org:code-block/above-run)][ /Eval Below/ ]] [[elisp:(org-cycle)][| ]]
@@ -104,31 +100,35 @@ from bisos.bpo import bpoRunBases
 (setq  b:py:cs:csuList
   (list
    "bisos.b.cs.ro"
-   "blee.icmPlayer.bleep"
-   "bisos.marmee.marmeAcctsLib"
+   "blee.csPlayer.bleep"
+   ;; "bisos.marmee.marmeAcctsLib"
    "bisos.bpo.bpo"
    "bisos.bpo.bpoRunBases"
-   "bisos.marmee.marmeeCurrentsLib"
+   ;; "bisos.marmee.marmeeCurrentsLib"
+   "bisos.b.fpCls"
+   "bisos.b.clsMethod_csu"
+   "bisos.marmee.aasInFps"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.marmee.marmeAcctsLib | bisos.bpo.bpo | bisos.bpo.bpoRunBases | bisos.marmee.marmeeCurrentsLib |
+| bisos.b.cs.ro | blee.csPlayer.bleep | bisos.bpo.bpo | bisos.bpo.bpoRunBases | bisos.b.fpCls | bisos.b.clsMethod_csu | bisos.marmee.aasInFps |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /6/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /7/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
-from blee.icmPlayer import bleep
-from bisos.marmee import marmeAcctsLib
+from blee.csPlayer import bleep
 from bisos.bpo import bpo
 from bisos.bpo import bpoRunBases
-from bisos.marmee import marmeeCurrentsLib
+from bisos.b import fpCls
+from bisos.b import clsMethod_csu
+from bisos.marmee import aasInFps
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.marmee.marmeAcctsLib', 'bisos.bpo.bpo', 'bisos.bpo.bpoRunBases', 'bisos.marmee.marmeeCurrentsLib', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.csPlayer.bleep', 'bisos.bpo.bpo', 'bisos.bpo.bpoRunBases', 'bisos.b.fpCls', 'bisos.b.clsMethod_csu', 'bisos.marmee.aasInFps', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -139,35 +139,20 @@ def g_extraParams():
 
 ####+END:
 
+####+BEGIN: b:py3:cs:main/exposedSymbols :classes ("aasInFps.AasIn_accessFPs")
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~Exposed Symbols List Specification~ with /1/ in Classes List
+#+end_org """
+
+AasIn_accessFPs = aasInFps.AasIn_accessFPs # exec/eval-ed as __main__.ClassName
+
+####+END:
+
+
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 1 :title "CmndSvc-s" :extraInfo "class someCommand(cs.Cmnd)"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*       [[elisp:(outline-show-subtree+toggle)][| *CmndSvc-s:* |]]  class someCommand(cs.Cmnd)  [[elisp:(org-shifttab)][<)]] E|
 #+end_org """
-####+END:
-
-def g_opSysExit(opOutcome):
-    print(opOutcome.error)
-    sys.exit()
-
-g_outcome = b.op.Outcome()
-
-####+BEGINNOT: b:python:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_svcInMail aasMarmee_svcOutMail aasMarmee_svcProvider aasMarmee_svcInstance aasMarmee_envRelPath)
-#+end_org """
-_parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_svcInMail', 'aasMarmee_svcOutMail', 'aasMarmee_svcProvider', 'aasMarmee_svcInstance', 'aasMarmee_envRelPath',]
-if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=g_outcome).results): g_opSysExit(g_outcome)
-cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
-cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
-cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
-cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
-cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
-cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
-def cur_examples():
-    cs.examples.execInsert(execLine='bx-currents.cs')
-    cs.examples.execInsert(execLine='bx-currents.cs -i usgCursParsGet')
-    for each in _parNamesList:
-        cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i usgCursParsSet {each}={curParsDictValue[each]}')
 ####+END:
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examples" :cmndType ""  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
@@ -189,10 +174,28 @@ class examples(cs.Cmnd):
         if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
             return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
-        self.cmndDocStr(f""" #+begin_org ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
+        self.cmndDocStr(f""" #+begin_org *
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
-        cmndOutcome = self.getOpOutcome()
+####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
+        """ #+begin_org
+***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_svcInMail aasMarmee_svcOutMail aasMarmee_svcProvider aasMarmee_svcInstance aasMarmee_envRelPath)
+        #+end_org """
+        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_svcInMail', 'aasMarmee_svcOutMail', 'aasMarmee_svcProvider', 'aasMarmee_svcInstance', 'aasMarmee_envRelPath',]
+        if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=cmndOutcome).results): return(cmndOutcome)
+        cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
+        cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
+        cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
+        cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
+        cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
+        cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
+        def cur_examples():
+            cs.examples.execInsert(execLine='bx-currents.cs')
+            cs.examples.execInsert(execLine='bx-currents.cs -i usgCursParsGet')
+            for each in _parNamesList:
+                cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i usgCursParsSet {each}={curParsDictValue[each]}')
+####+END:
 
         def cpsInit(): return collections.OrderedDict()
         def menuItem(): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='little') # type: ignore
@@ -217,7 +220,7 @@ class examples(cs.Cmnd):
         cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcOutMail}/{cur_aasMarmee_svcInstance}"
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
 
-        marmeeCurrentsLib.examples_currents()
+        # marmeeCurrentsLib.examples_currents()  # NOTYET 2022, is there anything useful there
 
 ####+BEGIN: bx:cs:python:cmnd:subSection :title "marmeAcctsLib Examples"
 
@@ -225,6 +228,8 @@ class examples(cs.Cmnd):
 
         cs.examples.menuChapter('*InMail --- Marmee Svc Access Instance (SAI)*')
 
+        #aasInFps.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
+        aasInFps.examples_csu(cur_aasMarmee_bpoId, "marmee/gmail/inMail/mohsen.byname", sectionTitle="default")
 
         execLineEx("""marmeeSaiInMail.cs""")
         execLineEx("""echo marmeeSaiInMail.cs --bpoId="piu_mbFullUsage" --envRelPath="marmee/gmail/inMail/mohsen.byname"  -i inMailAcctAccessParsSet userName="UserName" userPasswd="UserPasswd" imapServer="IMAPServer" """)

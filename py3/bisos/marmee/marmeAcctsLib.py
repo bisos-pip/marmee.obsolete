@@ -89,12 +89,12 @@ import os
 import collections
 #import enum
 
-from unisos.common import icmsPkgLib
+from unisos.common import icmsPkgLib   # NOTYET, Uses ICM
 
 from bisos.marmee import marmePkgThis
 
-from bisos.common import serviceObject
-from bisos.currents import bxCurrentsConfig
+from bisos.common import serviceObject  # NOTYET, Uses ICM
+from bisos.currents import currentsConfig
 
 ####+BEGIN: bx:dblock:python:section :title "Library Description (Overview)"
 """
@@ -231,8 +231,8 @@ This module is part of BISOS and its primary documentation is in  http://www.by-
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-BxoIdSr   :: /curGet_{bxoId,sr}/ retType=str argsList=nil  [[elisp:(org-cycle)][| ]]
 #+end_org """
 
-def curGet_bxoId(): return bxCurrentsConfig.bxoId_fpObtain(configBaseDir=None)
-def curGet_sr(): return bxCurrentsConfig.sr_fpObtain(configBaseDir=None)
+def curGet_bxoId(): return currentsConfig.bxoId_fpObtain(configBaseDir=None)
+def curGet_sr(): return currentsConfig.sr_fpObtain(configBaseDir=None)
 def cmndParsCurBxoSr(cps): cps['bxoId'] = curGet_bxoId(); cps['sr'] = curGet_sr()
 ####+END:
 

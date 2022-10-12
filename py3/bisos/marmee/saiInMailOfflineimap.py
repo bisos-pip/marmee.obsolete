@@ -98,6 +98,7 @@ from bisos.bpo import bpoRunBases
 from bisos.bpo import bpo
 
 from bisos.marmee import saiInMailControl
+from bisos.marmee import aasInFps
 
 from bisos import b
 
@@ -279,15 +280,15 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
         #+end_org """
-        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
 
         outcome = b.op.Outcome()
+
+        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)  # This should be obsoleted in favor of aasInFps.AasIn_accessFPs
 
         if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
             return b_io.eh.badOutcome(outcome)
 
-        print("ZZZ")
-        print(accessPars)
+        #print(accessPars)
         svcProvider = accessPars['svcProvider'].parValueGet()
         if not svcProvider: return b_io.eh.badOutcome(outcome)
 
@@ -306,6 +307,67 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             self,
     ):
         """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  ~self~ is an instance of XXX. Outputs on stdout, a complete offlineimapRc based on template.
+        #+end_org """
+
+        basedFps = b.pattern.sameInstance(
+            aasInFps.AasIn_accessFPs,
+            bpoId=self.bpoId,
+            envRelPath=self.envRelPath,
+        )
+
+        userName = basedFps.fps_getParam('userName').parValueGet()
+        svcProvider = basedFps.fps_getParam('svcProvider').parValueGet()
+
+        somePasswd = basedFps.fpCrypt_getParam('somePasswd').parValueGet()
+
+        print(f"Example of how to access encrypted params: {somePasswd}")
+
+        if svcProvider == "gmail":
+            imapServer = "imap.gmail.com"
+        else:
+            return
+
+        mailDirFullPath = 'NOTYEY_inMailAcctMboxesPath'
+
+        #mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+        #if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
+
+        #mboxesList = retrievalPars['mboxesList'].parValueGet()
+        mboxesList = "all"
+
+        foldersListStr = ""
+        if mboxesList == "all":
+            folderFilterLineStr = "#"
+        else:
+            for each in mboxesList.split():
+                foldersListStr += "'INBOX.{}',".format(each)
+
+            folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
+                foldersListStr=foldersListStr)
+
+
+        resStr = self.offlineimapRcTemplate("gmail").format(
+            inMailAcctMboxesPath=mailDirFullPath,
+            imapServer=imapServer,
+            userName=userName,
+            foldersListStr=foldersListStr,
+            folderFilterLine=folderFilterLineStr,
+        )
+
+        return resStr
+
+
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_gmailOBSOLETED" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString_gmailOBSOLETED/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapRcString_gmailOBSOLETED(
+####+END:
+            self,
+    ):
+        """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
         #+end_org """
         controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
@@ -318,12 +380,13 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         if not (retrievalPars := controlInst.retrievalFps_wOp(outcome=outcome).results):
             return b_io.eh.badOutcome(outcome)
 
-        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+        mailDirFullPath = 'NOTYEY_inMailAcctMboxesPath'
 
-        mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
-        if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
+        #mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
+        #if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
 
-        mboxesList = retrievalPars['mboxesList'].parValueGet()
+        #mboxesList = retrievalPars['mboxesList'].parValueGet()
+        mboxesList = "all"
 
         foldersListStr = ""
         if mboxesList == "all":
@@ -345,6 +408,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         )
 
         return resStr
+
 
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_generic" :methodType "eType" :retType "" :deco "default" :argsList ""
@@ -428,12 +492,12 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 #+end_org """
 ####+END:
 
-####+BEGIN: b:py3:cs:func/typing :funcName "csExamples" :funcType "eType" :retType "" :deco "default" :argsList ""
+####+BEGIN: b:py3:cs:func/typing :funcName "examples_csu" :funcType "eType" :retType "" :deco "default" :argsList ""
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /csExamples/  deco=default  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /examples_csu/  deco=default  [[elisp:(org-cycle)][| ]]
 #+end_org """
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-def csExamples(
+def examples_csu(
 ####+END:
         bpoId: typing.Optional[str],
         envRelPath: typing.Optional[str],
