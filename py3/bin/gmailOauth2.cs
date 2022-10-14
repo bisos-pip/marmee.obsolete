@@ -46,7 +46,6 @@ csInfo['groupingType'] = 'IcmGroupingType-pkged'
 csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
-
 csInfo['moduleDescription'] = """ #+begin_org
 * [[elisp:(org-cycle)][| ~Description~ |]] :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/COMEEGA/_nodeBase_/fullUsagePanel-en.org][BISOS COMEEGA Panel]]
 A =CmndSvc= Gmail Oauth2 Facilities Commands Services: Obtain / Refresh tokens for use in IMAP and SMTP.
@@ -145,23 +144,6 @@ import collections
 
 from bisos.currents import currentsConfig
 
-from datetime import datetime
-import pathlib
-
-# pip install google-api-python-client google-auth-oauthlib
-
-import pickle
-import os.path
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
-from googleapiclient import errors
-#from google.oauth2.credentials import Credentials
-
-# If modifying these scopes, delete the file token.pickle.
-#SCOPES = ['https://www.googleapis.com/auth/postmaster.readonly']
-SCOPES = ['https://mail.google.com/']
-
 
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~csuList emacs-list Specifications~  [[elisp:(blee:org:code-block/above-run)][ /Eval Below/ ]] [[elisp:(org-cycle)][| ]]
@@ -170,22 +152,26 @@ SCOPES = ['https://mail.google.com/']
   (list
    "bisos.b.cs.ro"
    "blee.csPlayer.bleep"
- ))
+   "bisos.bpo.bpo"
+   "bisos.marmee.gmailOauth2"
+))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.csPlayer.bleep |
+| bisos.b.cs.ro | blee.csPlayer.bleep | bisos.bpo.bpo | bisos.marmee.gmailOauth2 |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /2/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /4/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
 from blee.csPlayer import bleep
+from bisos.bpo import bpo
+from bisos.marmee import gmailOauth2
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.csPlayer.bleep', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.csPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.gmailOauth2', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -245,190 +231,18 @@ class examples(cs.Cmnd):
         def menuItem(verbosity, **kwArgs): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity, **kwArgs)
         def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-        cs.examples.menuChapter('*Oauth Credentials And Tokens Management*')
+        cs.examples.myName(cs.G.icmMyName(), cs.G.icmMyFullName())
 
-        cs.examples.menuSection('*Credentials and Secrets --- .json*')        
-        execLineEx("""# Obatining creds: https://docs.emailengine.app/setting-up-gmail-oauth2-for-imap-api/""")
-        execLineEx("""ls -l ~/credentials.json""")
-        execLineEx("""cat ~/credentials.json | jq""")
-        
-        cs.examples.menuSection('*Token File --- .pickle*')
-        execLineEx("""ls -l ~/token.pickle""")
-        execLineEx("""python -m pickletools ~/token.pickle # Safe""")
-        execLineEx("""python -m pickle ~/token.pickle # May run byte-code""")        
-        execLineEx("""rm ~/token.pickle""")
+        cs.examples.commonBrief()
 
-        cs.examples.menuSection('*Use Of Token For Outgoing Mail --- SSMTP*')
-        execLineEx("""ls -l ~/sendpyrc""")
+        bleep.examples_icmBasic()
 
-        cs.examples.menuSection('*Use Of Token For Incoming Mail --- IMAP*')
-        execLineEx("""ls -l ~/.offlineimaprc""")
+        cs.examples.menuChapter('*Currents Examples Settings*')
+        cur_examples()
 
-        cs.examples.menuChapter('*Refresh Token*')
-
-        cmndArgs = ""
-        cmndName = "refreshToken" ; cps=cpsInit()
-        menuItem(verbosity='little', comment="# Under development in parts")
-        menuItem(verbosity='none', comment="# Under development in parts")        
+        gmailOauth2.examples_csu(cur_aasMarmee_bpoId, "aas/marmee/gmail/mail/mohsen.byname", sectionTitle="default")
 
         return(cmndOutcome)
-
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "refreshTokenOrig" :cmndType "ICM-Cmnd"  :comment "" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 9999 :pyInv ""
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-ICM-Cmnd [[elisp:(outline-show-subtree+toggle)][||]] <<refreshTokenOrig>>  =verify= argsMax=9999 ro=cli   [[elisp:(org-cycle)][| ]]
-#+end_org """
-class refreshTokenOrig(cs.Cmnd):
-    cmndParamsMandatory = [ ]
-    cmndParamsOptional = [ ]
-    cmndArgsLen = {'Min': 0, 'Max': 9999,}
-
-    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmnd(self,
-             rtInv: cs.RtInvoker,
-             cmndOutcome: b.op.Outcome,
-             argsList: typing.Optional[list[str]]=None,  # CsArgs
-    ) -> b.op.Outcome:
-
-        callParamsDict = {}
-        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
-            return b_io.eh.badOutcome(cmndOutcome)
-        cmndArgsSpecDict = self.cmndArgsSpec()
-        ####+END:
-        """\
-        ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]] ICM examples, all on one place.
-        """
-        """Shows basic usage of the PostmasterTools v1beta1 API.
-        Prints the visible domains on user's domain dashboard in https://postmaster.google.com/managedomains.
-
-        Look into this:
-https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-without-getting-a-fresh-auth-code-via-browser-ea        
-        
-        """
-
-        credsJsonFile = os.path.join(os.path.expanduser('~'), 'credentials.json')        
-        tokenPickleFile = os.path.join(os.path.expanduser('~'), 'token.pickle')        
-        creds = None
-        # The file token.pickle stores the user's access and refresh tokens, and is
-        # created automatically when the authorization flow completes for the first
-        # time.
-        if os.path.exists(tokenPickleFile):
-            with open(tokenPickleFile, 'rb') as token:
-                creds = pickle.load(token)
-        # If there are no (valid) credentials available, let the user log in.
-        if not creds or not creds.valid:
-            if creds:
-                print(f"creds.valid={creds.valid}")
-            if creds and creds.expired and creds.refresh_token:
-                if creds:
-                    print(f"creds.expired={creds.expired}")
-                    print(f"creds.refresh_token={creds.refresh_token}")
-                creds.refresh(Request())
-                # 
-                # if the above fails like below:
-                # google.auth.exceptions.RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})
-                # remove the token.pickle file and run again
-                #
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                       credsJsonFile, SCOPES)
-                creds = flow.run_local_server(port=0)
-            # Save the credentials for the next run
-            with open(tokenPickleFile, 'wb') as token:
-                pickle.dump(creds, token)
-
-        # print(f"{creds}")    
-        print(f"{creds.refresh_token}")
-        # print(f"{creds.client_secret}")
-        # print(f"{creds.client_id}")
-        # print(f"{creds.scopes}")
-
-
-        print(f"{credsJsonFile}")
-
-
-        cmndOutcome = self.getOpOutcome()
-
-        return(cmndOutcome)
-
-
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "refreshToken" :cmndType "ICM-Cmnd"  :comment "" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 9999 :pyInv ""
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-ICM-Cmnd [[elisp:(outline-show-subtree+toggle)][||]] <<refreshToken>>  =verify= argsMax=9999 ro=cli   [[elisp:(org-cycle)][| ]]
-#+end_org """
-class refreshToken(cs.Cmnd):
-    cmndParamsMandatory = [ ]
-    cmndParamsOptional = [ ]
-    cmndArgsLen = {'Min': 0, 'Max': 9999,}
-
-    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmnd(self,
-             rtInv: cs.RtInvoker,
-             cmndOutcome: b.op.Outcome,
-             argsList: typing.Optional[list[str]]=None,  # CsArgs
-    ) -> b.op.Outcome:
-
-        callParamsDict = {}
-        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
-            return b_io.eh.badOutcome(cmndOutcome)
-        cmndArgsSpecDict = self.cmndArgsSpec()
-        ####+END:
-        """\
-        ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]] ICM examples, all on one place.
-        """
-        """Shows basic usage of the PostmasterTools v1beta1 API.
-        Prints the visible domains on user's domain dashboard in https://postmaster.google.com/managedomains.
-
-        Look into this:
-https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-without-getting-a-fresh-auth-code-via-browser-ea        
-        
-        """
-
-        credsJsonFile = os.path.join(os.path.expanduser('~'), 'credentials.json')        
-        tokenPickleFile = os.path.join(os.path.expanduser('~'), 'token.pickle')        
-        creds = None
-        
-        # The file token.pickle stores the user's access and refresh tokens, and is
-        # created automatically when the authorization flow completes for the first
-        # time.
-        if os.path.exists(tokenPickleFile):
-            with open(tokenPickleFile, 'rb') as token:
-                creds = pickle.load(token)
-                # If there are no (valid) credentials available, let the user log in.
-        if not creds or not creds.valid:
-            if creds:
-                print(f"creds.valid={creds.valid}")
-            if creds and creds.expired and creds.refresh_token:
-                if creds:
-                    print(f"creds.expired={creds.expired}")
-                    print(f"creds.refresh_token={creds.refresh_token}")
-                creds.refresh(Request())
-                # 
-                # if the above fails like below:
-                # google.auth.exceptions.RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})
-                # remove the token.pickle file and run again
-                #
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                       credsJsonFile, SCOPES)
-                creds = flow.run_local_server(port=0)
-            # Save the credentials for the next run
-            with open(tokenPickleFile, 'wb') as token:
-                pickle.dump(creds, token)
-
-        # print(f"{creds}")    
-        print(f"{creds.refresh_token}")
-        # print(f"{creds.client_secret}")
-        # print(f"{creds.client_id}")
-        # print(f"{creds.scopes}")
-
-
-        print(f"{credsJsonFile}")
-
-
-        cmndOutcome = self.getOpOutcome()
-
-        return(cmndOutcome)
-
     
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Main" :anchor ""  :extraInfo "Framework Dblock"
 """ #+begin_org
