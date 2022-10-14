@@ -108,15 +108,17 @@ from bisos.currents import currentsConfig
    "bisos.b.fpCls"
    "bisos.b.clsMethod_csu"
    "bisos.marmee.aasInFps"
+   "bisos.marmee.aasOutMailFps"
+   "bisos.marmee.aasMailFps"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.csPlayer.bleep | bisos.bpo.bpo | bisos.bpo.bpoRunBases | bisos.b.fpCls | bisos.b.clsMethod_csu | bisos.marmee.aasInFps |
+| bisos.b.cs.ro | blee.csPlayer.bleep | bisos.bpo.bpo | bisos.bpo.bpoRunBases | bisos.b.fpCls | bisos.b.clsMethod_csu | bisos.marmee.aasInFps | bisos.marmee.aasOutMailFps | bisos.marmee.aasMailFps |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /7/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /9/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
@@ -126,9 +128,11 @@ from bisos.bpo import bpoRunBases
 from bisos.b import fpCls
 from bisos.b import clsMethod_csu
 from bisos.marmee import aasInFps
+from bisos.marmee import aasOutMailFps
+from bisos.marmee import aasMailFps
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.csPlayer.bleep', 'bisos.bpo.bpo', 'bisos.bpo.bpoRunBases', 'bisos.b.fpCls', 'bisos.b.clsMethod_csu', 'bisos.marmee.aasInFps', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.csPlayer.bleep', 'bisos.bpo.bpo', 'bisos.bpo.bpoRunBases', 'bisos.b.fpCls', 'bisos.b.clsMethod_csu', 'bisos.marmee.aasInFps', 'bisos.marmee.aasOutMailFps', 'bisos.marmee.aasMailFps', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -139,12 +143,14 @@ def g_extraParams():
 
 ####+END:
 
-####+BEGIN: b:py3:cs:main/exposedSymbols :classes ("aasInFps.AasIn_accessFPs")
+####+BEGIN: b:py3:cs:main/exposedSymbols :classes ("aasInFps.AasIn_accessFPs" "aasOutMailFps.AasOutMail_FPs" "aasMailFps.AasMail_FPs")
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~Exposed Symbols List Specification~ with /1/ in Classes List
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~Exposed Symbols List Specification~ with /3/ in Classes List
 #+end_org """
 
 AasIn_accessFPs = aasInFps.AasIn_accessFPs # exec/eval-ed as __main__.ClassName
+AasOutMail_FPs = aasOutMailFps.AasOutMail_FPs # exec/eval-ed as __main__.ClassName
+AasMail_FPs = aasMailFps.AasMail_FPs # exec/eval-ed as __main__.ClassName
 
 ####+END:
 
@@ -215,9 +221,9 @@ class examples(cs.Cmnd):
 
         #  RunBases Examples
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, None, sectionTitle="default")
-        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
+        cur_marmeeEnvRelPath = f"aas/marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
-        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcOutMail}/{cur_aasMarmee_svcInstance}"
+        cur_marmeeEnvRelPath = f"aas/marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcOutMail}/{cur_aasMarmee_svcInstance}"
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
 
         # marmeeCurrentsLib.examples_currents()  # NOTYET 2022, is there anything useful there
@@ -226,13 +232,15 @@ class examples(cs.Cmnd):
 
 ####+END:
 
-        cs.examples.menuChapter('*InMail --- Marmee Svc Access Instance (SAI)*')
+        aasMailFps.examples_csu(cur_aasMarmee_bpoId, "aas/marmee/gmail/mail/mohsen.byname", sectionTitle="default")
+
+        aasOutMailFps.examples_csu(cur_aasMarmee_bpoId, "aas/marmee/gmail/outMail/mohsen.byname", sectionTitle="default")
 
         #aasInFps.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
-        aasInFps.examples_csu(cur_aasMarmee_bpoId, "marmee/gmail/inMail/mohsen.byname", sectionTitle="default")
+        aasInFps.examples_csu(cur_aasMarmee_bpoId, "aas/marmee/gmail/inMail/mohsen.byname", sectionTitle="default")
 
         execLineEx("""marmeeSaiInMail.cs""")
-        execLineEx("""echo marmeeSaiInMail.cs --bpoId="piu_mbFullUsage" --envRelPath="marmee/gmail/inMail/mohsen.byname"  -i inMailAcctAccessParsSet userName="UserName" userPasswd="UserPasswd" imapServer="IMAPServer" """)
+        execLineEx("""echo marmeeSaiInMail.cs --bpoId="piu_mbFullUsage" --envRelPath="aas/marmee/gmail/inMail/mohsen.byname"  -i inMailAcctAccessParsSet userName="UserName" userPasswd="UserPasswd" imapServer="IMAPServer" """)
 
         b.niche.examplesNicheRun("usageEnvs")
 

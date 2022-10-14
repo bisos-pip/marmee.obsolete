@@ -94,8 +94,8 @@ import shutil
 import collections
 
 from bisos.marmee import marmeAcctsLib
-from bisos.marmee import saiInMailControl
-from bisos.marmee import saiInMailOfflineimap
+#from bisos.marmee import saiInMailControl
+from bisos.marmee import aasInOfflineimap
 
 from bisos.currents import currentsConfig
 
@@ -118,29 +118,28 @@ import pathlib
    "bisos.b.cs.ro"
    "blee.icmPlayer.bleep"
    "bisos.bpo.bpo"
-   "bisos.marmee.saiInMailControl"
+   ;; "bisos.marmee.saiInMailControl"
    "bisos.marmee.aasInFps"
-   "bisos.marmee.saiInMailOfflineimap"
+   "bisos.marmee.aasInOfflineimap"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.saiInMailControl | bisos.marmee.aasInFps | bisos.marmee.saiInMailOfflineimap |
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.aasInFps | bisos.marmee.aasInOfflineimap |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /6/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /5/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
 from blee.icmPlayer import bleep
 from bisos.bpo import bpo
-from bisos.marmee import saiInMailControl
 from bisos.marmee import aasInFps
-from bisos.marmee import saiInMailOfflineimap
+from bisos.marmee import aasInOfflineimap
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.saiInMailControl', 'bisos.marmee.aasInFps', 'bisos.marmee.saiInMailOfflineimap', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.aasInFps', 'bisos.marmee.aasInOfflineimap', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -224,9 +223,9 @@ class examples(cs.Cmnd):
         bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
         bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
 
-        saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
+        # saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
 
-        saiInMailOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
+        aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
 
         cs.examples.menuChapter('*Service Access Instance*')
 
@@ -262,14 +261,15 @@ class report(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Describe What is going On and a template for other actions.
         #+end_org """)
 
-        controlInst = saiInMailControl.Sai_InMail_Control(bpoId, envRelPath)
-        offlineimapInst = saiInMailOfflineimap.Sai_InMail_Offlineimap(bpoId, envRelPath)
+        #controlInst = saiInMailControl.Sai_InMail_Control(bpoId, envRelPath)
+        offlineimapInst = aasInOfflineimap.Sai_InMail_Offlineimap(bpoId, envRelPath)
 
 
         offlineimapInst.basesUpdate()
         varBase = offlineimapInst.varBasePath_obtain()
 
-        print(f"bpo={offlineimapInst.bpo} bpo={controlInst.bpo} varBase={varBase}")
+        #print(f"bpo={offlineimapInst.bpo} bpo={controlInst.bpo} varBase={varBase}")
+        print(f"bpo={offlineimapInst.bpo} varBase={varBase}")
 
         offlineimpaRcPath = offlineimapInst.offlineimapRcPath()
         print(f"offlineimapRcPath={offlineimpaRcPath}")

@@ -122,16 +122,16 @@ def examples_csu(
     def cpsInit(): return collections.OrderedDict()
     def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
 
-    cs.examples.menuChapter('InMail FileParams Access And Management*')
+    cs.examples.menuChapter('Mail FileParams Access And Management --- Applicable To InMail and OutMail*')
 
     icmWrapper = ""
-    cmndName = "marmeeAasIn_fps"
+    cmndName = "marmeeAasMail_fps"
     cps = cpsInit() ; cps['bpoId'] = bpoId ; cps['envRelPath'] = envRelPath
     cmndArgs = "list" ;
     cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none', icmWrapper=icmWrapper)
 
     icmWrapper = ""
-    cmndName = "marmeeAasIn_fps"
+    cmndName = "marmeeAasMail_fps"
     cps = cpsInit() ; cps['bpoId'] = bpoId ; cps['envRelPath'] = envRelPath
     cmndArgs = "menu" ;
     cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity='none', icmWrapper=icmWrapper)
@@ -145,17 +145,17 @@ def commonParamsSpecify(
 ):
 ####+END:
     """
-** Based on class's static method.
+** Invoked class's static method.
     """
 
-    AasIn_accessFPs.fps_asCsParamsAdd(csParams,)
+    AasMail_FPs.fps_asCsParamsAdd(csParams,)
 
 
-####+BEGIN: bx:dblock:python:class :className "AasIn_accessFPs" :superClass "bpoFpsCls.BpoFpsCls" :comment "" :classType "basic"
+####+BEGIN: bx:dblock:python:class :className "AasMail_FPs" :superClass "bpoFpsCls.BpoFpsCls" :comment "" :classType "basic"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /AasIn_accessFPs/ bpoFpsCls.BpoFpsCls  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /AasMail_FPs/ bpoFpsCls.BpoFpsCls  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
+class AasMail_FPs(bpoFpsCls.BpoFpsCls):
 ####+END:
     """
 ** Abstraction of the PalsBase for LiveTargets
@@ -196,58 +196,17 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
 ####+END:
             csParams,
     ):
-        """staticmethod: takes in icmParms and augments it with fileParams. returns csParams."""
+        """staticmethod: takes in csParms and augments it with fileParams. returns csParams."""
         csParams.parDictAdd(
-            parName='userName',
+            parName='oauthCreds',
             parDescription="",
             parDataType=None,
             parDefault=None,
             parChoices=list(),
             #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
             argparseShortOpt=None,
-            argparseLongOpt='--userName',
+            argparseLongOpt='--oauthCreds',
         )
-        csParams.parDictAdd(
-            parName='svcProvider',
-            parDescription="",
-            parDataType=None,
-            parDefault=None,
-            parChoices=list(),
-            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
-            argparseShortOpt=None,
-            argparseLongOpt='--svcProvider',
-        )
-        csParams.parDictAdd(
-            parName='svcInMail',
-            parDescription="",
-            parDataType=None,
-            parDefault=None,
-            parChoices=list(),
-            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
-            argparseShortOpt=None,
-            argparseLongOpt='--svcInMail',
-        )
-        csParams.parDictAdd(
-            parName='svcInstance',
-            parDescription="",
-            parDataType=None,
-            parDefault=None,
-            parChoices=list(),
-            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
-            argparseShortOpt=None,
-            argparseLongOpt='--svcInstance',
-        )
-        csParams.parDictAdd(
-            parName='imapServer',
-            parDescription="",
-            parDataType=None,
-            parDefault=None,
-            parChoices=list(),
-            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
-            argparseShortOpt=None,
-            argparseLongOpt='--imapServer',
-        )
-
         return csParams
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "fps_manifestDict" :deco ""
@@ -263,11 +222,7 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
         csParams = cs.G.icmParamDictGet()
         self._manifestDict = {}
         paramsList = [
-            'userName',
-            'svcProvider',
-            'svcInMail',
-            'svcInstance',
-            # 'newOne',    #  Should match params, we also need a file based listing.
+            'oauthCreds',
         ]
         for eachParam in paramsList:
             thisCsParam = csParams.parNameFind(eachParam)   # type: ignore
@@ -276,10 +231,6 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
                 fileParam=None,
             )
             self._manifestDict[eachParam] = thisFpCmndParam
-        #
-        # Assign subBases -- Nested Params -- Not Implemented
-        #
-        #self._manifestDict[eachParam] = FpCsParamsBase_name
 
         return self._manifestDict
 
@@ -308,7 +259,7 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
                 os.path.join(
                     bpo.bpoBaseDir_obtain(self.bpoId),
                     self.envRelPath,
-                    "control/fp/access"
+                    "control/fp"
                 )
             )
         )
@@ -344,50 +295,17 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
         #return self.fpsBaseInst
         pass
 
-
 ####+BEGIN: bx:cs:py3:section :title "CS ro_sap Cmnds"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS ro_sap Cmnds*  [[elisp:(org-cycle)][| ]]
 #+end_org """
 ####+END:
 
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmeeAasIn_accessUpdate"  :comment "" :parsMand "bpoId envRelPath" :parsOpt "firstName" :argsMin 0 :argsMax 0
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmeeAasMail_fps" :comment "" :extent "verify" :parsMand "bpoId envRelPath" :argsMin 1 :argsMax 9999 :pyInv ""
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<marmeeAasIn_accessUpdate>>  =verify= parsMand=bpoId envRelPath parsOpt=firstName ro=cli   [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<marmeeAasMail_fps>>  =verify= parsMand=bpoId envRelPath argsMin=1 argsMax=9999 ro=cli   [[elisp:(org-cycle)][| ]]
 #+end_org """
-class marmeeAasIn_accessUpdate(cs.Cmnd):
-    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
-    cmndParamsOptional = [ 'firstName', ]
-    cmndArgsLen = {'Min': 0, 'Max': 0,}
-
-    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmnd(self,
-             rtInv: cs.RtInvoker,
-             cmndOutcome: b.op.Outcome,
-             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
-             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
-             firstName: typing.Optional[str]=None,  # Cs Optional Param
-    ) -> b.op.Outcome:
-
-        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, 'firstName': firstName, }
-        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
-            return b_io.eh.badOutcome(cmndOutcome)
-####+END:
-        """\
-***** [[elisp:(org-cycle)][| *CmndDesc:* | ]] Initial settings.
-        """
-
-        basedFps = b.pattern.sameInstance(AasIn_accessFPs, bpoId=bpoId, envRelPath=envRelPath,)
-
-        basedFps.fps_setParam('firstName', firstName)
-
-        return(cmndOutcome)
-
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmeeAasIn_fps" :comment "" :extent "verify" :parsMand "bpoId envRelPath" :argsMin 1 :argsMax 9999 :pyInv ""
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<marmeeAasIn_fps>>  =verify= parsMand=bpoId envRelPath argsMin=1 argsMax=9999 ro=cli   [[elisp:(org-cycle)][| ]]
-#+end_org """
-class marmeeAasIn_fps(cs.Cmnd):
+class marmeeAasMail_fps(cs.Cmnd):
     cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
     cmndParamsOptional = [ ]
     cmndArgsLen = {'Min': 1, 'Max': 9999,}
@@ -417,12 +335,12 @@ class marmeeAasIn_fps(cs.Cmnd):
 
         #fpsBase = os.path.join(bpo.bpoBaseDir_obtain(bpoId), envRelPath)
 
-        basedFps = b.pattern.sameInstance(AasIn_accessFPs, bpoId, envRelPath)
+        basedFps = b.pattern.sameInstance(AasMail_FPs, bpoId, envRelPath)
 
         fpsBase = basedFps.basePath_obtain()
 
         if action == "list":
-            print(f"With fpBase={fpsBase} and cls={AasIn_accessFPs} name={basedFps.__class__.__name__}.")
+            print(f"With fpBase={fpsBase} and cls={AasMail_FPs} name={basedFps.__class__.__name__}.")
             if b.fpCls.fpParamsReveal(cmndOutcome=cmndOutcome).cmnd(
                     rtInv=rtInv,
                     cmndOutcome=cmndOutcome,
@@ -432,7 +350,7 @@ class marmeeAasIn_fps(cs.Cmnd):
             ).isProblematic(): return(b_io.eh.badOutcome(cmndOutcome))
 
         elif action == "menu":
-            print(f"With fpBase={fpsBase} and cls={AasIn_accessFPs} NOTYET.")
+            print(f"With fpBase={fpsBase} and cls={AasMail_FPs} NOTYET.")
         else:
             print(f"bad input {action}")
 
