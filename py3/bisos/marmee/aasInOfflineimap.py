@@ -98,7 +98,7 @@ from bisos.bpo import bpoRunBases
 from bisos.bpo import bpo
 
 #from bisos.marmee import saiInMailControl
-from bisos.marmee import aasInFps
+from bisos.marmee import aasInMailFps
 
 from bisos import b
 
@@ -284,7 +284,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         outcome = b.op.Outcome()
 
         basedFps = b.pattern.sameInstance(
-            aasInFps.AasIn_accessFPs,
+            aasInMailFps.AasInMail_FPs,
             bpoId=self.bpoId,
             envRelPath=self.envRelPath,
         )
@@ -313,7 +313,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         import bisos.marmee.gmailOauth2
 
         basedFps = b.pattern.sameInstance(
-            aasInFps.AasIn_accessFPs,
+            aasInMailFps.AasInMail_FPs,
             bpoId=self.bpoId,
             envRelPath=self.envRelPath,
         )

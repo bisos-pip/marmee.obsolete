@@ -259,7 +259,7 @@ class AasMail_FPs(bpoFpsCls.BpoFpsCls):
                 os.path.join(
                     bpo.bpoBaseDir_obtain(self.bpoId),
                     self.envRelPath,
-                    "control/fp"
+                    "control/mail/fp"
                 )
             )
         )
@@ -294,12 +294,6 @@ class AasMail_FPs(bpoFpsCls.BpoFpsCls):
         #)
         #return self.fpsBaseInst
         pass
-
-####+BEGIN: bx:cs:py3:section :title "CS ro_sap Cmnds"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS ro_sap Cmnds*  [[elisp:(org-cycle)][| ]]
-#+end_org """
-####+END:
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "marmeeAasMail_fps" :comment "" :extent "verify" :parsMand "bpoId envRelPath" :argsMin 1 :argsMax 9999 :pyInv ""
 """ #+begin_org

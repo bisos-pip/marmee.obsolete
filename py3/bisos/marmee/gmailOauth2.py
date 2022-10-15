@@ -365,7 +365,8 @@ https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-wit
 
         """
 
-        refreshTokenObtain(bpoId, envRelPath)
+        creds = credsObtain(bpoId, envRelPath)
+        print(f"{creds.refresh_token}")
 
         cmndOutcome = self.getOpOutcome()
 
@@ -383,14 +384,15 @@ def credsObtain(
         envRelPath: typing.Optional[str]=None,
 ) -> google.oauth2.credentials.Credentials:
     """ #+begin_org
-** [[elisp:(org-cycle)][| *DocStr* | ] Returns a token
+** [[elisp:(org-cycle)][| *DocStr* | ] Returns Credentials. Based on google sample code
     #+end_org """
 
     runEnvBases = b.pattern.sameInstance(bpoRunBases.BpoRunEnvBases, bpoId, envRelPath)
     controlBase = runEnvBases.controlBasePath_obtain()
 
-    credsJsonFile = controlBase.joinpath('credentials.json')
-    tokenPickleFile = controlBase.joinpath('token.pickle')
+    credsJsonFile = controlBase.joinpath('mail/credentials.json')
+    tokenPickleFile = controlBase.joinpath('mail/token.pickle')
+
     creds = None
 
     # The file token.pickle stores the user's access and refresh tokens, and is
@@ -425,12 +427,12 @@ def credsObtain(
 
 
 
-####+BEGIN: b:py3:cs:func/typing :funcName "refreshTokenObtain" :funcType "eType" :deco "default"
+####+BEGIN: b:py3:cs:func/typing :funcName "refreshTokenObtain_UNUSED" :funcType "eType" :deco "default"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /refreshTokenObtain/  deco=default  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /refreshTokenObtain_UNUSED/  deco=default  [[elisp:(org-cycle)][| ]]
 #+end_org """
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-def refreshTokenObtain(
+def refreshTokenObtain_UNUSED(
 ####+END:
         bpoId: typing.Optional[str]=None,
         envRelPath: typing.Optional[str]=None,
@@ -442,8 +444,8 @@ def refreshTokenObtain(
     runEnvBases = b.pattern.sameInstance(bpoRunBases.BpoRunEnvBases, bpoId, envRelPath)
     controlBase = runEnvBases.controlBasePath_obtain()
 
-    credsJsonFile = controlBase.joinpath('credentials.json')
-    tokenPickleFile = controlBase.joinpath('token.pickle')
+    credsJsonFile = controlBase.joinpath('mail/credentials.json')
+    tokenPickleFile = controlBase.joinpath('mail/token.pickle')
     creds = None
 
     # The file token.pickle stores the user's access and refresh tokens, and is

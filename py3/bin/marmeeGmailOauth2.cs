@@ -226,10 +226,10 @@ class examples(cs.Cmnd):
                 cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i usgCursParsSet {each}={curParsDictValue[each]}')
 ####+END:
 
-        def cpsInit(): return collections.OrderedDict()
-        cmndArgs = "" ; cps=cpsInit() ;
-        def menuItem(verbosity, **kwArgs): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity, **kwArgs)
-        def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
+        #def cpsInit(): return collections.OrderedDict()
+        #cmndArgs = "" ; cps=cpsInit() ;
+        #def menuItem(verbosity, **kwArgs): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity, **kwArgs)
+        #def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
         cs.examples.myName(cs.G.icmMyName(), cs.G.icmMyFullName())
 
@@ -240,7 +240,7 @@ class examples(cs.Cmnd):
         cs.examples.menuChapter('*Currents Examples Settings*')
         cur_examples()
 
-        gmailOauth2.examples_csu(cur_aasMarmee_bpoId, "aas/marmee/gmail/mail/mohsen.byname", sectionTitle="default")
+        gmailOauth2.examples_csu(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
 
         return(cmndOutcome)
     

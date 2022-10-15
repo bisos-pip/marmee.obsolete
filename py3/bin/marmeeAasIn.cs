@@ -119,12 +119,12 @@ import pathlib
    "blee.icmPlayer.bleep"
    "bisos.bpo.bpo"
    ;; "bisos.marmee.saiInMailControl"
-   "bisos.marmee.aasInFps"
+   "bisos.marmee.aasInMailFps"
    "bisos.marmee.aasInOfflineimap"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.aasInFps | bisos.marmee.aasInOfflineimap |
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.aasInMailFps | bisos.marmee.aasInOfflineimap |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
@@ -135,11 +135,11 @@ import pathlib
 from bisos.b.cs import ro
 from blee.icmPlayer import bleep
 from bisos.bpo import bpo
-from bisos.marmee import aasInFps
+from bisos.marmee import aasInMailFps
 from bisos.marmee import aasInOfflineimap
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.aasInFps', 'bisos.marmee.aasInOfflineimap', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.aasInMailFps', 'bisos.marmee.aasInOfflineimap', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -185,10 +185,10 @@ class examples(cs.Cmnd):
         _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_svcInMail', 'aasMarmee_svcOutMail', 'aasMarmee_svcProvider', 'aasMarmee_svcInstance', 'aasMarmee_envRelPath',]
         if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=cmndOutcome).results): return(cmndOutcome)
         cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
-        cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
-        cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
-        cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
-        cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
+        #cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
+        #cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
+        #cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
+        #cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
         cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
         def cur_examples():
             cs.examples.execInsert(execLine='bx-currents.cs')
@@ -202,8 +202,7 @@ class examples(cs.Cmnd):
         def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
         def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
-        cur_marmeeEnvRelPath = f"marmee/{cur_aasMarmee_svcProvider}/{cur_aasMarmee_svcInMail}/{cur_aasMarmee_svcInstance}"
-        def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = cur_aasMarmee_bpoId ; cps['envRelPath'] = cur_marmeeEnvRelPath
+        def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = cur_aasMarmee_bpoId ; cps['envRelPath'] = cur_aasMarmee_envRelPath
 
         cmndOutcome = self.getOpOutcome()
 
@@ -221,11 +220,11 @@ class examples(cs.Cmnd):
 
         #  RunBases Examples
         bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
-        bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath)
+        bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath)
 
-        # saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
+        # saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
 
-        aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
+        aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
 
         cs.examples.menuChapter('*Service Access Instance*')
 

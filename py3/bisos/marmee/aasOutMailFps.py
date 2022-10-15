@@ -259,7 +259,7 @@ class AasOutMail_FPs(bpoFpsCls.BpoFpsCls):
                 os.path.join(
                     bpo.bpoBaseDir_obtain(self.bpoId),
                     self.envRelPath,
-                    "control/fp"
+                    "control/outMail/fp"
                 )
             )
         )

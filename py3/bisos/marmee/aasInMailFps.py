@@ -148,14 +148,14 @@ def commonParamsSpecify(
 ** Based on class's static method.
     """
 
-    AasIn_accessFPs.fps_asCsParamsAdd(csParams,)
+    AasInMail_FPs.fps_asCsParamsAdd(csParams,)
 
 
-####+BEGIN: bx:dblock:python:class :className "AasIn_accessFPs" :superClass "bpoFpsCls.BpoFpsCls" :comment "" :classType "basic"
+####+BEGIN: bx:dblock:python:class :className "AasInMail_FPs" :superClass "bpoFpsCls.BpoFpsCls" :comment "" :classType "basic"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /AasIn_accessFPs/ bpoFpsCls.BpoFpsCls  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /AasInMail_FPs/ bpoFpsCls.BpoFpsCls  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
+class AasInMail_FPs(bpoFpsCls.BpoFpsCls):
 ####+END:
     """
 ** Abstraction of the PalsBase for LiveTargets
@@ -308,7 +308,7 @@ class AasIn_accessFPs(bpoFpsCls.BpoFpsCls):
                 os.path.join(
                     bpo.bpoBaseDir_obtain(self.bpoId),
                     self.envRelPath,
-                    "control/fp/access"
+                    "control/inMail/fp"
                 )
             )
         )
@@ -377,7 +377,7 @@ class marmeeAasIn_accessUpdate(cs.Cmnd):
 ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]] Initial settings.
         """
 
-        basedFps = b.pattern.sameInstance(AasIn_accessFPs, bpoId=bpoId, envRelPath=envRelPath,)
+        basedFps = b.pattern.sameInstance(AasInMail_FPs, bpoId=bpoId, envRelPath=envRelPath,)
 
         basedFps.fps_setParam('firstName', firstName)
 
@@ -417,12 +417,12 @@ class marmeeAasIn_fps(cs.Cmnd):
 
         #fpsBase = os.path.join(bpo.bpoBaseDir_obtain(bpoId), envRelPath)
 
-        basedFps = b.pattern.sameInstance(AasIn_accessFPs, bpoId, envRelPath)
+        basedFps = b.pattern.sameInstance(AasInMail_FPs, bpoId, envRelPath)
 
         fpsBase = basedFps.basePath_obtain()
 
         if action == "list":
-            print(f"With fpBase={fpsBase} and cls={AasIn_accessFPs} name={basedFps.__class__.__name__}.")
+            print(f"With fpBase={fpsBase} and cls={AasInMail_FPs} name={basedFps.__class__.__name__}.")
             if b.fpCls.fpParamsReveal(cmndOutcome=cmndOutcome).cmnd(
                     rtInv=rtInv,
                     cmndOutcome=cmndOutcome,
@@ -432,7 +432,7 @@ class marmeeAasIn_fps(cs.Cmnd):
             ).isProblematic(): return(b_io.eh.badOutcome(cmndOutcome))
 
         elif action == "menu":
-            print(f"With fpBase={fpsBase} and cls={AasIn_accessFPs} NOTYET.")
+            print(f"With fpBase={fpsBase} and cls={AasInMail_FPs} NOTYET.")
         else:
             print(f"bad input {action}")
 
