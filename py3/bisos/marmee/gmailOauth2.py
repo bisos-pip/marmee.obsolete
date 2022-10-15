@@ -160,6 +160,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from googleapiclient import errors
 #from google.oauth2.credentials import Credentials
+import google.oauth2.credentials
 
 # If modifying these scopes, delete the file token.pickle.
 #SCOPES = ['https://www.googleapis.com/auth/postmaster.readonly']
@@ -371,6 +372,59 @@ https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-wit
         return(cmndOutcome)
 
 
+####+BEGIN: b:py3:cs:func/typing :funcName "credsObtain" :funcType "eType" :deco "default"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /credsObtain/  deco=default  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def credsObtain(
+####+END:
+        bpoId: typing.Optional[str]=None,
+        envRelPath: typing.Optional[str]=None,
+) -> google.oauth2.credentials.Credentials:
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr* | ] Returns a token
+    #+end_org """
+
+    runEnvBases = b.pattern.sameInstance(bpoRunBases.BpoRunEnvBases, bpoId, envRelPath)
+    controlBase = runEnvBases.controlBasePath_obtain()
+
+    credsJsonFile = controlBase.joinpath('credentials.json')
+    tokenPickleFile = controlBase.joinpath('token.pickle')
+    creds = None
+
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists(tokenPickleFile):
+        with open(tokenPickleFile, 'rb') as token:
+            creds = pickle.load(token)
+            # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds:
+            print(f"creds.valid={creds.valid}")
+        if creds and creds.expired and creds.refresh_token:
+            if creds:
+                print(f"creds.expired={creds.expired}")
+                print(f"creds.refresh_token={creds.refresh_token}")
+                creds.refresh(Request())
+                #
+                # if the above fails like below:
+                # google.auth.exceptions.RefreshError: ('invalid_grant: Token has been expired or revoked.', {'error': 'invalid_grant', 'error_description': 'Token has been expired or revoked.'})
+                # remove the token.pickle file and run again
+                #
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                credsJsonFile, SCOPES)
+            creds = flow.run_local_server(port=0)
+            # Save the credentials for the next run
+        with open(tokenPickleFile, 'wb') as token:
+            pickle.dump(creds, token)
+
+    return creds
+
+
+
 ####+BEGIN: b:py3:cs:func/typing :funcName "refreshTokenObtain" :funcType "eType" :deco "default"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /refreshTokenObtain/  deco=default  [[elisp:(org-cycle)][| ]]
@@ -378,8 +432,8 @@ https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-wit
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
 def refreshTokenObtain(
 ####+END:
-        bpoId: str,
-        envRelPath: str,
+        bpoId: typing.Optional[str]=None,
+        envRelPath: typing.Optional[str]=None,
 ) -> str:
     """ #+begin_org
 ** [[elisp:(org-cycle)][| *DocStr* | ] Returns a token

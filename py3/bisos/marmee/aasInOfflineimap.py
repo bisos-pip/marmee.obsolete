@@ -244,14 +244,14 @@ starttls = no
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 ssl_version=tls1_2
 
-### You'll need to configure the gmail API stuff here:
+###  gmail API information:
 # https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf#L858
 # https://github.com/OfflineIMAP/offlineimap/blob/master/offlineimap.conf#L886-L894
 auth_mechanisms = XOAUTH2
-oauth2_client_id = 377167941016-d08lcj3hlcrnlb3nk5fgtlass6heqoqr.apps.googleusercontent.com
-oauth2_client_secret = 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
+oauth2_client_id = {oauth2_client_id}
+oauth2_client_secret = {oauth2_client_secret}
 oauth2_request_url = https://accounts.google.com/o/oauth2/token
-oauth2_refresh_token = 1//06Zgb6afI1ULICgYIARAAGAYSNwF-L9IrCjdK4qrkRqjE4c8nGwLo8wWihRlgFR_N63E2B-v7savDiSSByhqW0p2pmz_WhRn_G3k
+oauth2_refresh_token = {oauth2_refresh_token}
 nametrans = lambda f: f.replace('[Gmail]/', '') if f.startswith('[Gmail]/') else f
 
 [Repository LocalIMAP]
@@ -268,7 +268,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         return templateStr
 
 
-####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString" :methodType "eType" :retType "" :deco "default" :argsList ""
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString" :methodType "eType" :retType "" :deco "default"
     """ #+begin_org
 **  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
     #+end_org """
@@ -283,19 +283,18 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 
         outcome = b.op.Outcome()
 
-        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)  # This should be obsoleted in favor of aasInFps.AasIn_accessFPs
+        basedFps = b.pattern.sameInstance(
+            aasInFps.AasIn_accessFPs,
+            bpoId=self.bpoId,
+            envRelPath=self.envRelPath,
+        )
 
-        if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
-            return b_io.eh.badOutcome(outcome)
-
-        #print(accessPars)
-        svcProvider = accessPars['svcProvider'].parValueGet()
+        svcProvider = basedFps.fps_getParam('svcProvider').parValueGet()
         if not svcProvider: return b_io.eh.badOutcome(outcome)
 
         offlineimapRcString_svcProvider = getattr(self, f"offlineimapRcString_{svcProvider}")
 
         return offlineimapRcString_svcProvider()
-
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_gmail" :methodType "eType" :retType "" :deco "default" :argsList ""
     """ #+begin_org
@@ -310,10 +309,21 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 *** [[elisp:(org-cycle)][| DocStr| ]]  ~self~ is an instance of XXX. Outputs on stdout, a complete offlineimapRc based on template.
         #+end_org """
 
+        #import google.oauth2.credentials
+        import bisos.marmee.gmailOauth2
+
         basedFps = b.pattern.sameInstance(
             aasInFps.AasIn_accessFPs,
             bpoId=self.bpoId,
             envRelPath=self.envRelPath,
+        )
+
+        # below should be better done
+        mail_envRelPath = self.envRelPath.replace('inMail', 'mail')
+
+        creds = bisos.marmee.gmailOauth2.credsObtain(
+            bpoId=self.bpoId,
+            envRelPath=mail_envRelPath,
         )
 
         userName = basedFps.fps_getParam('userName').parValueGet()
@@ -321,14 +331,21 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 
         somePasswd = basedFps.fpCrypt_getParam('somePasswd').parValueGet()
 
-        print(f"Example of how to access encrypted params: {somePasswd}")
+        #print(f"Example of how to access encrypted params: {somePasswd}")
 
         if svcProvider == "gmail":
             imapServer = "imap.gmail.com"
         else:
             return
 
-        mailDirFullPath = 'NOTYEY_inMailAcctMboxesPath'
+        runEnvBases = b.pattern.sameInstance(
+            bpoRunBases.BpoRunEnvBases,
+            self.bpoId,
+            self.envRelPath,
+        )
+        dataBase = runEnvBases.dataBasePath_obtain()
+
+        mailDirFullPath = os.path.join(dataBase, 'mailDir')
 
         #mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
         #if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
@@ -345,7 +362,6 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 
             folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
                 foldersListStr=foldersListStr)
-
 
         resStr = self.offlineimapRcTemplate("gmail").format(
             inMailAcctMboxesPath=mailDirFullPath,
@@ -353,62 +369,12 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             userName=userName,
             foldersListStr=foldersListStr,
             folderFilterLine=folderFilterLineStr,
+            oauth2_client_id=creds.client_id,
+            oauth2_client_secret=creds.client_secret,
+            oauth2_refresh_token=creds.refresh_token,
         )
 
         return resStr
-
-
-####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_gmailOBSOLETED" :methodType "eType" :retType "" :deco "default" :argsList ""
-    """ #+begin_org
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString_gmailOBSOLETED/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
-    #+end_org """
-    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-    def offlineimapRcString_gmailOBSOLETED(
-####+END:
-            self,
-    ):
-        """ #+begin_org
-*** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
-        #+end_org """
-        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
-
-        outcome = b.op.Outcome()
-
-        if not (accessPars := controlInst.accessFps_wOp(outcome=outcome).results):
-            return b_io.eh.badOutcome(outcome)
-
-        if not (retrievalPars := controlInst.retrievalFps_wOp(outcome=outcome).results):
-            return b_io.eh.badOutcome(outcome)
-
-        mailDirFullPath = 'NOTYEY_inMailAcctMboxesPath'
-
-        #mailDirFullPath = retrievalPars['inMailAcctMboxesPath'].parValueGet()
-        #if not mailDirFullPath: return b_io.eh.badOutcome(outcome)
-
-        #mboxesList = retrievalPars['mboxesList'].parValueGet()
-        mboxesList = "all"
-
-        foldersListStr = ""
-        if mboxesList == "all":
-            folderFilterLineStr = "#"
-        else:
-            for each in mboxesList.split():
-                foldersListStr += "'INBOX.{}',".format(each)
-
-            folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
-                foldersListStr=foldersListStr)
-
-
-        resStr = self.offlineimapRcTemplate("gmail").format(
-            inMailAcctMboxesPath=mailDirFullPath,
-            imapServer=accessPars['imapServer'].parValueGet(),
-            userName=accessPars['userName'].parValueGet(),
-            foldersListStr=foldersListStr,
-            folderFilterLine=folderFilterLineStr,
-        )
-
-        return resStr
-
 
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_generic" :methodType "eType" :retType "" :deco "default" :argsList ""
@@ -580,7 +546,7 @@ class offlineimapRun(cs.Cmnd):
 
         if not (resStr := b.subProc.WOpW(invedBy=self, log=1).bash(
                 f"""echo offlineimap -c {offlineimapRcPath}""",
-        ).stdout):  return(io.eh.badOutcome(cmndOutcome))
+        ).stdout):  return(b_io.eh.badOutcome(cmndOutcome))
 
         #print(resStr)
 

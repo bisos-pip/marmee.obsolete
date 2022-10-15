@@ -10,7 +10,7 @@
 * [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-mu
 #+BEGIN_SRC emacs-lisp
 (setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
-(put 'b:dblockControls 'py3:cs:Classification "cs-mu") ; one of cs-mu, cs-u, cs-lib, b-lib, pyLibPure
+(put 'b:dblockControls 'py3:cs:Classification "cs-mu") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
 #+END_SRC
 #+RESULTS:
 : cs-mu
@@ -29,7 +29,7 @@
 ####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
 """ #+begin_org
 * *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
-** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bin/bx822-qmail-remote.cs
+** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bin/qmail-remote.cs
 ** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
 #+end_org """
 ####+END:
@@ -39,16 +39,16 @@
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
 import typing
-csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['bx822-qmail-remote'], }
-csInfo['version'] = '202209282432'
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['qmail-remote'], }
+csInfo['version'] = '202210150153'
 csInfo['status']  = 'inUse'
-csInfo['panel'] = 'bx822-qmail-remote-Panel.org'
+csInfo['panel'] = 'qmail-remote-Panel.org'
 csInfo['groupingType'] = 'IcmGroupingType-pkged'
 csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
 """ #+begin_org
-* /[[elisp:(org-cycle)][| Description |]]/ :: Active --- In Progress
+* [[elisp:(org-cycle)][| ~Description~ |]] :: A replacement module for qmail-remote
 Module description comes here.
 ** Status: In use with blee3
 ** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
@@ -149,9 +149,9 @@ Account = namedtuple(
 )
 
 
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examples" :cmndType "ICM-Cmnd-FWrk"  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examples" :cmndType ""  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-ICM-Cmnd-FWrk [[elisp:(outline-show-subtree+toggle)][||]] <<examples>>  *FrameWrk: ICM Examples*  =verify= ro=cli   [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<examples>>  *FrameWrk: ICM Examples*  =verify= ro=cli   [[elisp:(org-cycle)][| ]]
 #+end_org """
 class examples(cs.Cmnd):
     cmndParamsMandatory = [ ]
@@ -191,10 +191,11 @@ class examples(cs.Cmnd):
 
         return(cmndOutcome)
 
-
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  out,zero,temp_dns,temp_control    [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:icm:py3:section :title "Functions: out,zero,temp_dns,temp_control"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: out,zero,temp_dns,temp_control*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
 
 def out(str): sys.stdout.write(str)
 def zero():  sys.stdout.write("\0")
@@ -263,24 +264,23 @@ def perm_ambigmx():
 Sorry. Although I'm listed as a best-preference MX or A for that host,\n\
 it isn't in my control/locals file, so I don't treat it as local. (#5.4.6)\n");
     zerodie()
-    
 
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  outsmtptext    [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: bx:icm:py3:section :title "Functions: outsmtptext"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: outsmtptext*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
 
 def outsmtptext():
     out("KRemote host said: ")
     #out("NotYet: Somthing like: 250 ok 1495256578 qp 14280")
     out("250 ok --And more Text Comes Here")    
     zero()
-    
 
-    
 
-####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "noCmndProcessor" :cmndType "ICM-Cmnd-FWrk"  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 4 :pyInv ""
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "noCmndProcessor" :cmndType ""  :comment "No Cmnds Dispatch" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 4 :pyInv ""
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-ICM-Cmnd-FWrk [[elisp:(outline-show-subtree+toggle)][||]] <<noCmndProcessor>>  *FrameWrk: ICM Examples*  =verify= argsMax=4 ro=cli   [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<noCmndProcessor>>  *No Cmnds Dispatch*  =verify= argsMax=4 ro=cli   [[elisp:(org-cycle)][| ]]
 #+end_org """
 class noCmndProcessor(cs.Cmnd):
     cmndParamsMandatory = [ ]
@@ -293,7 +293,7 @@ class noCmndProcessor(cs.Cmnd):
              cmndOutcome: b.op.Outcome,
              argsList: typing.Optional[list[str]]=None,  # CsArgs
     ) -> b.op.Outcome:
-        """FrameWrk: ICM Examples"""
+        """No Cmnds Dispatch"""
         callParamsDict = {}
         if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
             return b_io.eh.badOutcome(cmndOutcome)
@@ -448,13 +448,6 @@ def sender(fromaddr, toaddrs, msg, oauth, acct, debug=False):
         out("TLS -- ")
     out("OAUTH2")
     zero()
-
-
-####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Main" :anchor ""  :extraInfo "Framework Dblock"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _Main_: |]]  Framework Dblock  [[elisp:(org-shifttab)][<)]] E|
-#+end_org """
-####+END:
 
 ####+BEGIN: b:py3:cs:framework/main :csInfo "csInfo" :noCmndEntry "examples" :extraParamsHook "g_extraParams" :importedCmndsModules "g_importedCmndsModules"
 """ #+begin_org
