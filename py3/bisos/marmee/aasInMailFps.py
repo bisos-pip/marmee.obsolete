@@ -90,7 +90,7 @@ from bisos.bpo import bpoFpsCls
 
 import pathlib
 import os
-import abc
+#import abc
 
 ####+BEGIN: bx:cs:py3:section :title "Service Specification"
 """ #+begin_org

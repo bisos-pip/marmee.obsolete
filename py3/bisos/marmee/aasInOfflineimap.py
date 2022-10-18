@@ -99,6 +99,7 @@ from bisos.bpo import bpo
 
 #from bisos.marmee import saiInMailControl
 from bisos.marmee import aasInMailFps
+from bisos.marmee import gmailOauth2
 
 from bisos import b
 
@@ -318,13 +319,20 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             envRelPath=self.envRelPath,
         )
 
-        # below should be better done
-        mail_envRelPath = self.envRelPath.replace('inMail', 'mail')
-
-        creds = bisos.marmee.gmailOauth2.credsObtain(
+        credsFps = b.pattern.sameInstance(
+            gmailOauth2.AasMail_googleCreds_FPs,
             bpoId=self.bpoId,
-            envRelPath=mail_envRelPath,
+            envRelPath=self.envRelPath,
         )
+
+
+        # # below should be better done
+        # mail_envRelPath = self.envRelPath.replace('inMail', 'mail')
+
+        # creds = bisos.marmee.gmailOauth2.credsObtain(
+        #     bpoId=self.bpoId,
+        #     envRelPath=mail_envRelPath,
+        # )
 
         userName = basedFps.fps_getParam('userName').parValueGet()
         svcProvider = basedFps.fps_getParam('svcProvider').parValueGet()
@@ -369,10 +377,11 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             userName=userName,
             foldersListStr=foldersListStr,
             folderFilterLine=folderFilterLineStr,
-            oauth2_client_id=creds.client_id,
-            oauth2_client_secret=creds.client_secret,
-            oauth2_refresh_token=creds.refresh_token,
+            oauth2_client_id=credsFps.fps_getParam('googleCreds_client_id').parValueGet(),
+            oauth2_client_secret=credsFps.fpCrypt_getParam('googleCreds_client_secret').parValueGet(),
+            oauth2_refresh_token=credsFps.fpCrypt_getParam('googleCreds_refresh_token').parValueGet(),
         )
+
 
         return resStr
 
