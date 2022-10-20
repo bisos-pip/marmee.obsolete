@@ -198,14 +198,54 @@ class AasOutMail_FPs(bpoFpsCls.BpoFpsCls):
     ):
         """staticmethod: takes in csParms and augments it with fileParams. returns csParams."""
         csParams.parDictAdd(
-            parName='smtpServer',
+            parName='outMail_userName',
             parDescription="",
             parDataType=None,
             parDefault=None,
             parChoices=list(),
             #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
             argparseShortOpt=None,
-            argparseLongOpt='--smtpServer',
+            argparseLongOpt='--outMail_userName',
+        )
+        csParams.parDictAdd(
+            parName='outMail_smtpServer',
+            parDescription="",
+            parDataType=None,
+            parDefault=None,
+            parChoices=list(),
+            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
+            argparseShortOpt=None,
+            argparseLongOpt='--outMail_smtpServer',
+        )
+        csParams.parDictAdd(
+            parName='outMail_port',
+            parDescription="",
+            parDataType=None,
+            parDefault=None,
+            parChoices=list(),
+            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
+            argparseShortOpt=None,
+            argparseLongOpt='--outMail_port',
+        )
+        csParams.parDictAdd(
+            parName='outMail_useSsl',
+            parDescription="",
+            parDataType=None,
+            parDefault=None,
+            parChoices=list(),
+            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
+            argparseShortOpt=None,
+            argparseLongOpt='--outMail_useSsl',
+        )
+        csParams.parDictAdd(
+            parName='outMail_useTls',
+            parDescription="",
+            parDataType=None,
+            parDefault=None,
+            parChoices=list(),
+            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
+            argparseShortOpt=None,
+            argparseLongOpt='--outMail_useTls',
         )
         return csParams
 
@@ -222,7 +262,11 @@ class AasOutMail_FPs(bpoFpsCls.BpoFpsCls):
         csParams = cs.G.icmParamDictGet()
         self._manifestDict = {}
         paramsList = [
-            'smtpServer',
+            'outMail_userName',
+            'outMail_smtpServer',
+            'outMail_port',
+            'outMail_useSsl',
+            'outMail_useTls',
         ]
         for eachParam in paramsList:
             thisCsParam = csParams.parNameFind(eachParam)   # type: ignore

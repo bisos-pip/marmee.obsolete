@@ -131,7 +131,7 @@ IMAPFE and pass it as the second argument to the AUTHENTICATE command.
 #+end_org """
 ####+END:
 
-####+BEGIN: b:py3:cs:framework/imports :basedOn "classification"
+####+BEGINNOT: b:py3:cs:framework/imports :basedOn "classification"
 """ #+begin_org
 ** Imports Based On Classification=cs-mu
 #+end_org """
@@ -139,7 +139,7 @@ from bisos import b
 from bisos.b import cs
 from bisos.b import b_io
 
-import collections
+#import collections
 ####+END:
 
 from bisos.currents import currentsConfig
@@ -165,9 +165,9 @@ from bisos.currents import currentsConfig
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /4/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
-from bisos.b.cs import ro
+#from bisos.b.cs import ro
 from blee.csPlayer import bleep
-from bisos.bpo import bpo
+#from bisos.bpo import bpo
 from bisos.marmee import gmailOauth2
 
 
@@ -207,17 +207,15 @@ class examples(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
-####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
+#### :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
+
+####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_envRelPath")
         """ #+begin_org
-***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_svcInMail aasMarmee_svcOutMail aasMarmee_svcProvider aasMarmee_svcInstance aasMarmee_envRelPath)
+***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_envRelPath)
         #+end_org """
-        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_svcInMail', 'aasMarmee_svcOutMail', 'aasMarmee_svcProvider', 'aasMarmee_svcInstance', 'aasMarmee_envRelPath',]
+        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_envRelPath',]
         if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=cmndOutcome).results): return(cmndOutcome)
         cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
-        cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
-        cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
-        cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
-        cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
         cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
         def cur_examples():
             cs.examples.execInsert(execLine='bx-currents.cs')

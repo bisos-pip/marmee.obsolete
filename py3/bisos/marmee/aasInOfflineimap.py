@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """ #+begin_org
-* ~[Summary]~ :: A =CS-Lib= for InMail Service Access Instance (sai) Offline Imap.
+* ~[Summary]~ :: A =CS-Lib= for InMail Abstracted Accessible Service (aas) Offline Imap.
 #+end_org """
 
 ####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
@@ -28,7 +28,7 @@
 ####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
 """ #+begin_org
 * *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
-** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bisos/marmee/saiInMailOfflineimap.py
+** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bisos/marmee/aasInMailOfflineimap.py
 ** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
 #+end_org """
 ####+END:
@@ -38,10 +38,10 @@
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
 import typing
-csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['saiInMailOfflineimap'], }
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['aasInMailOfflineimap'], }
 csInfo['version'] = '202209281438'
 csInfo['status']  = 'inUse'
-csInfo['panel'] = 'saiInMailOfflineimap-Panel.org'
+csInfo['panel'] = 'aasInMailOfflineimap-Panel.org'
 csInfo['groupingType'] = 'IcmGroupingType-pkged'
 csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
@@ -85,9 +85,7 @@ from bisos.b import b_io
 
 ####+END:
 
-import sys
 import collections
-import gnupg
 
 import collections
 import pathlib
@@ -95,9 +93,9 @@ import os
 import shutil
 
 from bisos.bpo import bpoRunBases
-from bisos.bpo import bpo
+#from bisos.bpo import bpo
 
-#from bisos.marmee import saiInMailControl
+#from bisos.marmee import aasInMailControl
 from bisos.marmee import aasInMailFps
 from bisos.marmee import gmailOauth2
 
@@ -111,11 +109,11 @@ from bisos import b
 ####+END:
 
 
-####+BEGIN: b:py3:class/decl :className "Sai_InMail_Offlineimap" :superClass "bpoRunBases.BpoRunEnvBases" :comment "" :classType "basic"
+####+BEGIN: b:py3:class/decl :className "Aas_InMail_Offlineimap" :superClass "bpoRunBases.BpoRunEnvBases" :comment "" :classType "basic"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /Sai_InMail_Offlineimap/  superClass=bpoRunBases.BpoRunEnvBases  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Cls-basic  [[elisp:(outline-show-subtree+toggle)][||]] /Aas_InMail_Offlineimap/  superClass=bpoRunBases.BpoRunEnvBases  [[elisp:(org-cycle)][| ]]
 #+end_org """
-class Sai_InMail_Offlineimap(bpoRunBases.BpoRunEnvBases):
+class Aas_InMail_Offlineimap(bpoRunBases.BpoRunEnvBases):
 ####+END:
     """ #+begin_org
 ** [[elisp:(org-cycle)][| DocStr| ]]  InMail Service Access Instance Class for an Accessible Abstract Service.
@@ -239,7 +237,7 @@ remoterepository = RemoteIMAP
 [Repository RemoteIMAP]
 type = IMAP
 remotehost = {imapServer}
-remoteuser = {userName}
+remoteuser = {userName}@gmail.com
 ssl = yes
 starttls = no
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
@@ -311,7 +309,6 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         #+end_org """
 
         #import google.oauth2.credentials
-        import bisos.marmee.gmailOauth2
 
         basedFps = b.pattern.sameInstance(
             aasInMailFps.AasInMail_FPs,
@@ -325,21 +322,8 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             envRelPath=self.envRelPath,
         )
 
-
-        # # below should be better done
-        # mail_envRelPath = self.envRelPath.replace('inMail', 'mail')
-
-        # creds = bisos.marmee.gmailOauth2.credsObtain(
-        #     bpoId=self.bpoId,
-        #     envRelPath=mail_envRelPath,
-        # )
-
         userName = basedFps.fps_getParam('userName').parValueGet()
         svcProvider = basedFps.fps_getParam('svcProvider').parValueGet()
-
-        somePasswd = basedFps.fpCrypt_getParam('somePasswd').parValueGet()
-
-        #print(f"Example of how to access encrypted params: {somePasswd}")
 
         if svcProvider == "gmail":
             imapServer = "imap.gmail.com"
@@ -378,10 +362,9 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             foldersListStr=foldersListStr,
             folderFilterLine=folderFilterLineStr,
             oauth2_client_id=credsFps.fps_getParam('googleCreds_client_id').parValueGet(),
-            oauth2_client_secret=credsFps.fpCrypt_getParam('googleCreds_client_secret').parValueGet(),
-            oauth2_refresh_token=credsFps.fpCrypt_getParam('googleCreds_refresh_token').parValueGet(),
+            oauth2_client_secret=credsFps.fpCrypt_getParam('googleCreds_client_secret').parValueGet().decode("utf-8"),
+            oauth2_refresh_token=credsFps.fpCrypt_getParam('googleCreds_refresh_token').parValueGet().decode("utf-8"),
         )
-
 
         return resStr
 
@@ -398,7 +381,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Outputs on stdout, a complete offlineimapRc based on template.
         #+end_org """
-        controlInst = saiInMailControl.Sai_InMail_Control(self.bpoId, self.envRelPath)
+        controlInst = Aas_InMail_Control(self.bpoId, self.envRelPath)
 
         outcome = b.op.Outcome()
 
@@ -425,7 +408,6 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
             folderFilterLineStr = """folderfilter = lambda name: name in [ {foldersListStr} ]""".format(
                 foldersListStr=foldersListStr)
 
-
         resStr = self.offlineimapRcTemplate("generic").format(
             inMailAcctMboxesPath=mailDirFullPath,
             imapServer=accessPars['imapServer'].parValueGet(),
@@ -451,7 +433,7 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
         """ #+begin_org
 *** [[elisp:(org-cycle)][| DocStr| ]]  Look in control dir for file params.
         #+end_org """
-        controlBase = self.controlBasePath_obtain()
+        # controlBase = self.controlBasePath_obtain()
 
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvcs" :anchor ""  :extraInfo "Command Services Section"
@@ -548,16 +530,14 @@ class offlineimapRun(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  As subProc, runs offlineimap -c offlineimapRcPath.
         #+end_org """)
 
-        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
-
+        offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
         offlineimapRcPath = offlineimapInst.offlineimapRcPath()
 
-
         if not (resStr := b.subProc.WOpW(invedBy=self, log=1).bash(
-                f"""echo offlineimap -c {offlineimapRcPath}""",
+                f"""offlineimap -c {offlineimapRcPath}""",
         ).stdout):  return(b_io.eh.badOutcome(cmndOutcome))
 
-        #print(resStr)
+        print(resStr)
 
         return cmndOutcome.set(
             opError=b.OpError.Success,
@@ -590,7 +570,7 @@ class offlineimapRcUpdate(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Updates offlineimapRc file using offlineimapRcStr.
         #+end_org """)
 
-        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
+        offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
 
         resStr = offlineimapInst.offlineimapRcString()
 
@@ -600,13 +580,13 @@ class offlineimapRcUpdate(cs.Cmnd):
             shutil.copyfile(offlineimapRcPath, "/tmp/t1")
 
         with open(offlineimapRcPath, "w") as thisFile:
-            thisFile.write(resStr + '\n')
+            thisFile.write(f"{resStr}\n")
 
         if rtInv.outs:
-            icm.ANN_here(f"offlineimapRcPath={offlineimapRcPath}")
+            b_io.tm.here(f"offlineimapRcPath={offlineimapRcPath}")
             if b.subProc.Op(outcome=cmndOutcome, log=1).bash(
                     f"""ls -l {offlineimapRcPath}""",
-            ).isProblematic():  return(io.eh.badOutcome(cmndOutcome))
+            ).isProblematic():  return(b_io.eh.badOutcome(cmndOutcome))
 
 
         return cmndOutcome.set(
@@ -636,7 +616,7 @@ class offlineimapRcStdout(cs.Cmnd):
             return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
 
-        offlineimapInst = Sai_InMail_Offlineimap(bpoId, envRelPath)
+        offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
 
         resStr = offlineimapInst.offlineimapRcString()
 

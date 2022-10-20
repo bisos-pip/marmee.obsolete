@@ -212,7 +212,6 @@ def examples_csu(
     menuItem(verbosity='none', comment="# Under development in parts")
 
 
-
 ####+BEGIN: b:py3:cs:func/args :funcName "commonParamsSpecify" :comment "" :funcType "FmWrk" :retType "Void" :deco "" :argsList "csParams"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-A-FmWrk  [[elisp:(outline-show-subtree+toggle)][||]] /commonParamsSpecify/ deco=  [[elisp:(org-cycle)][| ]]  [[elisp:(org-cycle)][| ]]
@@ -258,11 +257,42 @@ https://stackoverflow.com/questions/51487195/how-can-i-use-python-google-api-wit
 
         """
         creds = credsObtain(bpoId, envRelPath)
+        credsFpsUpdate(creds, bpoId, envRelPath,)
         print(f"{creds.refresh_token}")
 
         cmndOutcome = self.getOpOutcome()
 
         return(cmndOutcome)
+
+
+####+BEGIN: b:py3:cs:func/typing :funcName "credsFpsUpdate" :funcType "eType" :deco "default"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /credsFpsUpdate/  deco=default  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def credsFpsUpdate(
+####+END:
+        creds: google.oauth2.credentials.Credentials,
+        bpoId: typing.Optional[str],
+        envRelPath: typing.Optional[str],
+) -> None:
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr* | ] Assumes that AasMail_googleCreds_FPs.fps_asCsParamsAdd(csParams,) has been called.
+    #+end_org """
+
+    basedFps = b.pattern.sameInstance(
+        AasMail_googleCreds_FPs,
+        bpoId=bpoId,
+        envRelPath=envRelPath,
+    )
+
+    # oauth2_request_url = https://accounts.google.com/o/oauth2/token
+    basedFps.fps_setParam('googleCreds_client_id', creds.client_id)
+    basedFps.fpCrypt_setParam('googleCreds_client_secret', creds.client_secret)
+    basedFps.fps_setParam('googleCreds_client_scopes', creds.scopes)
+    basedFps.fpCrypt_setParam('googleCreds_refresh_token', creds.refresh_token)
+
+    return
 
 
 ####+BEGIN: b:py3:cs:func/typing :funcName "credsJsonFileToFps" :funcType "eType" :deco "default"
@@ -280,20 +310,13 @@ def credsJsonFileToFps(
 ** [[elisp:(org-cycle)][| *DocStr* | ] Assumes that AasMail_googleCreds_FPs.fps_asCsParamsAdd(csParams,) has been called.
     #+end_org """
 
-    basedFps = b.pattern.sameInstance(
-        AasMail_googleCreds_FPs,
-        bpoId=bpoId,
-        envRelPath=envRelPath,
-    )
+    # flow = InstalledAppFlow.from_client_secrets_file(
+    #     credsJsonFile, SCOPES)
+    # creds = flow.run_local_server(port=0)
 
-    flow = InstalledAppFlow.from_client_secrets_file(
-        credsJsonFile, SCOPES)
-    creds = flow.run_local_server(port=0)
+    creds = credsObtain(bpoId, envRelPath,)
 
-    basedFps.fps_setParam('googleCreds_client_id', creds.client_id)
-    basedFps.fpCrypt_setParam('googleCreds_client_secret', creds.client_secret)
-    basedFps.fps_setParam('googleCreds_client_scopes', creds.scopes)
-    basedFps.fpCrypt_setParam('googleCreds_refresh_token', creds.refresh_token)
+    credsFpsUpdate(creds, bpoId, envRelPath,)
 
     return
 
@@ -490,6 +513,16 @@ class AasMail_googleCreds_FPs(bpoFpsCls.BpoFpsCls):
             argparseShortOpt=None,
             argparseLongOpt='--googleCreds_refresh_token',
         )
+        csParams.parDictAdd(
+            parName='googleCreds_request_url',
+            parDescription="",
+            parDataType=None,
+            parDefault=None,
+            parChoices=list(),
+            #parScope=icm.ICM_ParamScope.TargetParam,  # type: ignore
+            argparseShortOpt=None,
+            argparseLongOpt='--googleCreds_request_url',
+        )
         return csParams
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "fps_manifestDict" :deco ""
@@ -509,6 +542,7 @@ class AasMail_googleCreds_FPs(bpoFpsCls.BpoFpsCls):
             'googleCreds_client_secret',
             'googleCreds_client_scopes',
             'googleCreds_refresh_token',
+            'googleCreds_request_url',
         ]
         for eachParam in paramsList:
             thisCsParam = csParams.parNameFind(eachParam)   # type: ignore

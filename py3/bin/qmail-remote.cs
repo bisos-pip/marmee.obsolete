@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """ #+begin_org
-* ~[Summary]~ :: A replacement module for qmail-remote with complete Python SMTP implementation.
+* ~[Summary]~ :: A replacement module for qmail-remote with a complete Python SMTP implementation.
 #+end_org """
 
 ####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-mu"
@@ -85,7 +85,6 @@ from bisos.b import b_io
 import collections
 ####+END:
 
-
 import os
 
 import sys
@@ -96,8 +95,10 @@ from configparser import ConfigParser
 from collections import namedtuple
 
 import smtplib
+import http
 import urllib
 import urllib.request
+import requests
 import json
 import base64
 
@@ -111,22 +112,26 @@ import tempfile
   (list
    "bisos.b.cs.ro"
    "blee.icmPlayer.bleep"
+   "bisos.marmee.gmailOauth2"
+   "bisos.marmee.aasOutMailFps"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep |
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.marmee.gmailOauth2 | bisos.marmee.aasOutMailFps |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /2/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /4/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
 from blee.icmPlayer import bleep
+from bisos.marmee import gmailOauth2
+from bisos.marmee import aasOutMailFps
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.marmee.gmailOauth2', 'bisos.marmee.aasOutMailFps', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -299,111 +304,162 @@ class noCmndProcessor(cs.Cmnd):
             return b_io.eh.badOutcome(cmndOutcome)
         cmndArgsSpecDict = self.cmndArgsSpec()
 ####+END:
-        cmndOutcome = self.getOpOutcome()
+        """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ] Dispatch examples cmnd when nor args, otherwiseprocess args as qmail-remote does.
+        #+end_org """
+
         if argsList:
-            pass
             #print(f"argsList={argsList}")
+            qmailRemote(argsList)
         else:
-            examples().cmnd()
-            return(cmndOutcome)
-
-        body = sys.stdin.read()
-            
-        fd, tmpPath = tempfile.mkstemp(suffix=".mail", prefix="qmail-remote-")
-        try:
-            with os.fdopen(fd, 'w') as tmp:
-                tmp.write(f"argsList={argsList}\n")
-                tmp.write(body)                
-        finally:
-            #os.remove(tmpPath)
-            #print(f"{tmpPath}")
-            pass
-
-        #outsmtptext()        
-
-        #return(cmndOutcome)
-        
-        arg_host = argsList[0]
-        arg_sender = argsList[1]
-        argsList.pop(0)
-        argsList.pop(0)
-
-        #print(f"host={arg_host} sender={arg_sender} argsList={argsList}")
-
-        # TODO: set defaults
-        config = ConfigParser()
-        config.read(expanduser(CONFIG_PATH))
-
-        request_url = config.get("oauth2", "request_url")
-        client_id = config.get("oauth2", "client_id")
-        client_secret = config.get("oauth2", "client_secret")
-
-        accounts = build_accounts(config)
-
-        fromaddr = None
-        toaddrs = list()
-
-        email_parser = Parser()
-        msg = email_parser.parsestr(body)
-
-        tos = list()
-        ccs = list()
-        bccs = list()
-
-        fromaddr = parseaddr(msg["from"])[1]
-
-        # email!
-        tos = getaddresses(msg.get_all("to", []))
-        ccs = getaddresses(msg.get_all("cc", []))
-        bccs = getaddresses(msg.get_all("bcc", []))
-        resent_tos = getaddresses(msg.get_all("resent-to", []))
-        resent_ccs = getaddresses(msg.get_all("resent-cc", []))
-        resent_bccs = getaddresses(msg.get_all("resent-bcc", []))
-
-        tos = [x[1] for x in tos + resent_tos]
-        ccs = [x[1] for x in ccs + resent_ccs]
-        bccs = [x[1] for x in bccs + resent_bccs]
-
-        if msg.get_all("bcc", False):
-            msg.replace_header("bcc", None)  # wipe out from message
-
-        if fromaddr in accounts:
-            acct = accounts[fromaddr]
-            oauth = Oauth(
-                request_url, client_id, client_secret, acct.username, acct.refresh_token
-            )
-            #if args.debug:
-                #print("Sending from:", fromaddr)
-                #print("Sending to:", toaddrs)
-            #sender(fromaddr, tos + ccs + bccs, msg, oauth, acct, args.debug)
-            #sender(arg_sender, tos + ccs + bccs, msg, oauth, acct)
-            sender(arg_sender, argsList, msg, oauth, acct)                        
-        else:
-            raise KeyError("Configuration file has no section for: ", fromaddr)
-
+            examples().cmnd(rtInv, cmndOutcome)
 
         return(cmndOutcome)
 
 
-def build_accounts(config):
-    accts = dict()
-    acct_sections = [x for x in config.sections() if x.startswith("account ")]
-    for section in acct_sections:
-        username = config.get(section, "username")
-        refresh_token = config.get(section, "refresh_token")
-        address = config.get(section, "address")
-        port = config.getint(section, "port")
-        use_ssl = config.getboolean(section, "use_ssl")
-        use_tls = config.getboolean(section, "use_tls")
+####+BEGIN: b:py3:cs:func/typing :funcName "qmailRemote" :funcType "extTyped" :deco "track"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /qmailRemote/  deco=track  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def qmailRemote(
+####+END:
+        argsList: list[str],
+) -> None:
+    """#+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ] This =qmailRemote= is a plugin replacement (a wrapper) for qmail-remote.
 
-        accts[username] = Account(
-            username, refresh_token, address, port, use_ssl, use_tls
-        )
+As such see the qmail-remote man page for additional details.
+:
+qmail-remote reads a mail message from its input and sends the message to one or
+more recipients (sepcified in ~argsList~) at a remote host.
 
-    return accts
+The remote host is qmail-remote's first argument (~argsList[0]~),  _host_.
+
+qmail-remote sends the message to _host_, or to a mail exchanger for _host_ listed
+in the Domain Name System, via SMTP. host can be either a fully-qualified domain
+name or an IP address enclosed in brackets. The envelope recipient addresses are
+listed as _recip_ arguments  (~argsList[2:]~) to qmail-remote.
+
+The envelope sender address is listed as _sender_ (~argsList[1]~).
+    #+end_org """
 
 
-def oauth_handler(oauth):
+    body = sys.stdin.read()
+
+    fd, tmpPath = tempfile.mkstemp(suffix=".mail", prefix="qmail-remote-")
+    try:
+        with os.fdopen(fd, 'w') as tmp:
+            tmp.write(f"argsList={argsList}\n")
+            tmp.write(body)
+    finally:
+        #os.remove(tmpPath)
+        #print(f"{tmpPath}")
+        pass
+
+    arg_host = argsList[0]
+    arg_sender = argsList[1]
+
+    arg_recipients = []
+    for each in argsList[2:]:
+        arg_recipients.append(each)
+
+    print(f"host={arg_host} sender={arg_sender} recipients={arg_recipients}")
+
+    fromaddr = None
+    toaddrs = list()
+
+    email_parser = Parser()
+    msg = email_parser.parsestr(body)
+
+    tos = list()
+    ccs = list()
+    bccs = list()
+
+    fromaddr = parseaddr(msg["from"])[1]
+
+    tos = getaddresses(msg.get_all("to", []))
+    ccs = getaddresses(msg.get_all("cc", []))
+    bccs = getaddresses(msg.get_all("bcc", []))
+    resent_tos = getaddresses(msg.get_all("resent-to", []))
+    resent_ccs = getaddresses(msg.get_all("resent-cc", []))
+    resent_bccs = getaddresses(msg.get_all("resent-bcc", []))
+
+    tos = [x[1] for x in tos + resent_tos]
+    ccs = [x[1] for x in ccs + resent_ccs]
+    bccs = [x[1] for x in bccs + resent_bccs]
+
+    if msg.get_all("bcc", False):
+        msg.replace_header("bcc", None)  # wipe out from message
+
+    bpoId = msg.get_all("x-bpoid")
+    if not bpoId:
+        raise KeyError("Missing BpoId")
+
+    bpoRunEnv = msg.get_all("x-bporunenv")
+    if not bpoRunEnv:
+        raise KeyError("Missing BpoRunEnv")
+
+    print(f"bpoId={bpoId} bpoRunEnv={bpoRunEnv}")
+
+    outMailFps = b.pattern.sameInstance(
+        aasOutMailFps.AasOutMail_FPs,
+        bpoId=bpoId[0],
+        envRelPath=bpoRunEnv[0],
+    )
+
+    credsFps = b.pattern.sameInstance(
+        gmailOauth2.AasMail_googleCreds_FPs,
+        bpoId=bpoId[0],
+        envRelPath=bpoRunEnv[0],
+    )
+
+    request_url = "https://accounts.google.com/o/oauth2/token"
+    client_id = credsFps.fps_getParam('googleCreds_client_id').parValueGet()
+    client_secret = credsFps.fpCrypt_getParam('googleCreds_client_secret').parValueGet().decode("utf-8")
+    refresh_token = credsFps.fpCrypt_getParam('googleCreds_refresh_token').parValueGet().decode("utf-8")
+
+    userName = outMailFps.fps_getParam('outMail_userName').parValueGet()
+    address = outMailFps.fps_getParam('outMail_smtpServer').parValueGet()
+    port = outMailFps.fps_getParam('outMail_port').parValueGet()
+    use_ssl = outMailFps.fps_getParam('outMail_useSsl').parValueGet()
+    use_tls = outMailFps.fps_getParam('outMail_useTls').parValueGet()
+
+    if use_ssl == "True": use_ssl = True
+    if use_ssl == "False": use_ssl = False
+    if use_tls == "True": use_tls = True
+    if use_tls == "False": use_tls = False
+
+    oauth = Oauth(
+        request_url, client_id, client_secret, userName, refresh_token
+    )
+
+    acct = Account(
+            userName, refresh_token, address, port, use_ssl, use_tls
+    )
+
+    #if args.debug:
+        #print("Sending from:", fromaddr)
+        #print("Sending to:", toaddrs)
+    #sender(fromaddr, tos + ccs + bccs, msg, oauth, acct, args.debug)
+    #sender(arg_sender, tos + ccs + bccs, msg, oauth, acct)
+
+    sender(arg_sender, argsList, msg, oauth, acct)
+
+
+
+####+BEGIN: b:py3:cs:func/typing :funcName "oauth_handler" :funcType "extTyped" :deco "track"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /oauth_handler/  deco=track  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def oauth_handler(
+####+END:
+        oauth,
+):
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ]
+    #+end_org """
     params = dict()
     params["client_id"] = oauth.client_id
     params["client_secret"] = oauth.client_secret
@@ -411,8 +467,9 @@ def oauth_handler(oauth):
     params["grant_type"] = "refresh_token"
 
     response = urllib.request.urlopen(
-        oauth.request_url, urllib.parse.urlencode(params).encode("utf-8")
+         oauth.request_url, urllib.parse.urlencode(params).encode("utf-8")
     ).read()
+
     resp = json.loads(response)
     access_token = resp["access_token"]
 
@@ -421,7 +478,24 @@ def oauth_handler(oauth):
     return auth_string
 
 
-def sender(fromaddr, toaddrs, msg, oauth, acct, debug=False):
+####+BEGIN: b:py3:cs:func/typing :funcName "sender" :funcType "extTyped" :deco "track"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /sender/  deco=track  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def sender(
+####+END:
+        fromaddr,
+        toaddrs,
+        msg,
+        oauth,
+        acct,
+        debug=False,
+):
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ] stagedSender envlpOriginator, envlpRecipients, msg
+    #+end_org """
+
     if acct.use_ssl:
         server = smtplib.SMTP_SSL(host=acct.address, port=acct.port)
     else:
@@ -449,15 +523,15 @@ def sender(fromaddr, toaddrs, msg, oauth, acct, debug=False):
     out("OAUTH2")
     zero()
 
-####+BEGIN: b:py3:cs:framework/main :csInfo "csInfo" :noCmndEntry "examples" :extraParamsHook "g_extraParams" :importedCmndsModules "g_importedCmndsModules"
+####+BEGIN: b:py3:cs:framework/main :csInfo "csInfo" :noCmndEntry "noCmndProcessor" :extraParamsHook "g_extraParams" :importedCmndsModules "g_importedCmndsModules"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =g_csMain= (csInfo, _examples_, g_extraParams, g_importedCmndsModules)
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =g_csMain= (csInfo, _noCmndProcessor_, g_extraParams, g_importedCmndsModules)
 #+end_org """
 
 if __name__ == '__main__':
     cs.main.g_csMain(
         csInfo=csInfo,
-        noCmndEntry=examples,  # specify a Cmnd name
+        noCmndEntry=noCmndProcessor,  # specify a Cmnd name
         extraParamsHook=g_extraParams,
         importedCmndsModules=g_importedCmndsModules,
     )
