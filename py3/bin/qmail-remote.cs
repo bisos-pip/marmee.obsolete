@@ -142,10 +142,6 @@ def g_extraParams():
 
 ####+END:
 
-
-#CONFIG_PATH = "~/.sendpyrc"
-CONFIG_PATH = "/bxo/usg/bystar/sendpyrc"
-
 Oauth = namedtuple(
     "Oauth", "request_url, client_id, client_secret, username, user_refresh_token"
 )
@@ -196,93 +192,6 @@ class examples(cs.Cmnd):
 
         return(cmndOutcome)
 
-####+BEGIN: bx:icm:py3:section :title "Functions: out,zero,temp_dns,temp_control"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: out,zero,temp_dns,temp_control*  [[elisp:(org-cycle)][| ]]
-#+end_org """
-####+END:
-
-def out(str): sys.stdout.write(str)
-def zero():  sys.stdout.write("\0")
-def zerodie(): sys.stdout.write("\0")
-def outsafe(str): sys.stdout.write(str)
-def temp_nomem(): out("ZOut of memory. (#4.3.0)\n") ; zerodie()
-
-def temp_oserr():
-    out("Z\
-System resources temporarily unavailable. (#4.3.0)\n")
-    zerodie()
-
-def temp_noconn():
-    out("Z\
-Sorry, I wasn't able to establish an SMTP connection. (#4.4.1)\n")
-    zerodie()
-
-def temp_read():
-    out("ZUnable to read message. (#4.3.0)\n")
-    zerodie()
-
-def temp_dnscanon():
-    out("Z\
-CNAME lookup failed temporarily. (#4.4.3)\n")
-    zerodie()
-
-def temp_dns():
-    out("Z\
-Sorry, I couldn't find any host by that name. (#4.1.2)\n")
-    zerodie()
-
-def temp_chdir():
-    out("Z\
-Unable to switch to home directory. (#4.3.0)\n")
-    zerodie()
-
-def temp_control():
-    out("Z\
-Unable to read control files. (#4.3.0)\n")
-    zerodie()
-    
-def perm_partialline():
-    out("D\
-SMTP cannot transfer messages with partial final lines. (#5.6.2)\n")
-    zerodie()
-
-def perm_usage():
-    out("D\
-I (qmail-remote) was invoked improperly. (#5.3.5)\n")
-    zerodie()
-
-def perm_dns(host):
-    out("D\
-Sorry, I couldn't find any host named ")
-    outsafe(host);
-    out(". (#5.1.2)\n")
-    zerodie()
-
-def  perm_nomx():
-    out("D\
-Sorry, I couldn't find a mail exchanger or IP address. (#5.4.4)\n");
-    zerodie()
-    
-def perm_ambigmx():
-    out("D\
-Sorry. Although I'm listed as a best-preference MX or A for that host,\n\
-it isn't in my control/locals file, so I don't treat it as local. (#5.4.6)\n");
-    zerodie()
-
-####+BEGIN: bx:icm:py3:section :title "Functions: outsmtptext"
-""" #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: outsmtptext*  [[elisp:(org-cycle)][| ]]
-#+end_org """
-####+END:
-
-def outsmtptext():
-    out("KRemote host said: ")
-    #out("NotYet: Somthing like: 250 ok 1495256578 qp 14280")
-    out("250 ok --And more Text Comes Here")    
-    zero()
-
-
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "noCmndProcessor" :cmndType ""  :comment "No Cmnds Dispatch" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 4 :pyInv ""
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<noCmndProcessor>>  *No Cmnds Dispatch*  =verify= argsMax=4 ro=cli   [[elisp:(org-cycle)][| ]]
@@ -317,9 +226,9 @@ class noCmndProcessor(cs.Cmnd):
         return(cmndOutcome)
 
 
-####+BEGIN: b:py3:cs:func/typing :funcName "qmailRemote" :funcType "extTyped" :deco "track"
+####+BEGIN: b:py3:cs:func/typing :funcName "qmailRemote" :funcType "ExtTyp" :deco "track"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /qmailRemote/  deco=track  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-ExtTyp [[elisp:(outline-show-subtree+toggle)][||]] /qmailRemote/  deco=track  [[elisp:(org-cycle)][| ]]
 #+end_org """
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
 def qmailRemote(
@@ -330,14 +239,14 @@ def qmailRemote(
 ** [[elisp:(org-cycle)][| *DocStr | ] This =qmailRemote= is a plugin replacement (a wrapper) for qmail-remote.
 
 As such see the qmail-remote man page for additional details.
-:
+
 qmail-remote reads a mail message from its input and sends the message to one or
 more recipients (sepcified in ~argsList~) at a remote host.
 
 The remote host is qmail-remote's first argument (~argsList[0]~),  _host_.
 
 qmail-remote sends the message to _host_, or to a mail exchanger for _host_ listed
-in the Domain Name System, via SMTP. host can be either a fully-qualified domain
+in the Domain Name System, via SMTP. Host can be either a fully-qualified domain
 name or an IP address enclosed in brackets. The envelope recipient addresses are
 listed as _recip_ arguments  (~argsList[2:]~) to qmail-remote.
 
@@ -448,9 +357,9 @@ The envelope sender address is listed as _sender_ (~argsList[1]~).
 
 
 
-####+BEGIN: b:py3:cs:func/typing :funcName "oauth_handler" :funcType "extTyped" :deco "track"
+####+BEGIN: b:py3:cs:func/typing :funcName "oauth_handler" :funcType "ExtTyp" :deco "track"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /oauth_handler/  deco=track  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-ExtTyp [[elisp:(outline-show-subtree+toggle)][||]] /oauth_handler/  deco=track  [[elisp:(org-cycle)][| ]]
 #+end_org """
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
 def oauth_handler(
@@ -478,9 +387,9 @@ def oauth_handler(
     return auth_string
 
 
-####+BEGIN: b:py3:cs:func/typing :funcName "sender" :funcType "extTyped" :deco "track"
+####+BEGIN: b:py3:cs:func/typing :funcName "sender" :funcType "ExtTyp" :deco "track"
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-extTyped [[elisp:(outline-show-subtree+toggle)][||]] /sender/  deco=track  [[elisp:(org-cycle)][| ]]
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-ExtTyp [[elisp:(outline-show-subtree+toggle)][||]] /sender/  deco=track  [[elisp:(org-cycle)][| ]]
 #+end_org """
 @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
 def sender(
@@ -493,7 +402,7 @@ def sender(
         debug=False,
 ):
     """ #+begin_org
-** [[elisp:(org-cycle)][| *DocStr | ] stagedSender envlpOriginator, envlpRecipients, msg
+** [[elisp:(org-cycle)][| *DocStr | ] submissionStaged envlpOriginator, envlpRecipients, msg
     #+end_org """
 
     if acct.use_ssl:
@@ -523,6 +432,94 @@ def sender(
     out("OAUTH2")
     zero()
 
+
+####+BEGIN: bx:icm:py3:section :title "Functions: out,zero,temp_dns,temp_control"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: out,zero,temp_dns,temp_control*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+def out(str): sys.stdout.write(str)
+def zero():  sys.stdout.write("\0")
+def zerodie(): sys.stdout.write("\0")
+def outsafe(str): sys.stdout.write(str)
+def temp_nomem(): out("ZOut of memory. (#4.3.0)\n") ; zerodie()
+
+def temp_oserr():
+    out("Z\
+System resources temporarily unavailable. (#4.3.0)\n")
+    zerodie()
+
+def temp_noconn():
+    out("Z\
+Sorry, I wasn't able to establish an SMTP connection. (#4.4.1)\n")
+    zerodie()
+
+def temp_read():
+    out("ZUnable to read message. (#4.3.0)\n")
+    zerodie()
+
+def temp_dnscanon():
+    out("Z\
+CNAME lookup failed temporarily. (#4.4.3)\n")
+    zerodie()
+
+def temp_dns():
+    out("Z\
+Sorry, I couldn't find any host by that name. (#4.1.2)\n")
+    zerodie()
+
+def temp_chdir():
+    out("Z\
+Unable to switch to home directory. (#4.3.0)\n")
+    zerodie()
+
+def temp_control():
+    out("Z\
+Unable to read control files. (#4.3.0)\n")
+    zerodie()
+
+def perm_partialline():
+    out("D\
+SMTP cannot transfer messages with partial final lines. (#5.6.2)\n")
+    zerodie()
+
+def perm_usage():
+    out("D\
+I (qmail-remote) was invoked improperly. (#5.3.5)\n")
+    zerodie()
+
+def perm_dns(host):
+    out("D\
+Sorry, I couldn't find any host named ")
+    outsafe(host);
+    out(". (#5.1.2)\n")
+    zerodie()
+
+def  perm_nomx():
+    out("D\
+Sorry, I couldn't find a mail exchanger or IP address. (#5.4.4)\n");
+    zerodie()
+
+def perm_ambigmx():
+    out("D\
+Sorry. Although I'm listed as a best-preference MX or A for that host,\n\
+it isn't in my control/locals file, so I don't treat it as local. (#5.4.6)\n");
+    zerodie()
+
+####+BEGIN: bx:icm:py3:section :title "Functions: outsmtptext"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *Functions: outsmtptext*  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+def outsmtptext():
+    out("KRemote host said: ")
+    #out("NotYet: Somthing like: 250 ok 1495256578 qp 14280")
+    out("250 ok --And more Text Comes Here")
+    zero()
+
+    
 ####+BEGIN: b:py3:cs:framework/main :csInfo "csInfo" :noCmndEntry "noCmndProcessor" :extraParamsHook "g_extraParams" :importedCmndsModules "g_importedCmndsModules"
 """ #+begin_org
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =g_csMain= (csInfo, _noCmndProcessor_, g_extraParams, g_importedCmndsModules)
