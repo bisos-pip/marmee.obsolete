@@ -93,10 +93,7 @@ import shutil
 
 import collections
 
-from bisos.marmee import marmeAcctsLib
-#from bisos.marmee import saiInMailControl
 from bisos.marmee import aasInOfflineimap
-
 from bisos.currents import currentsConfig
 
 from bisos.bpo import bpo

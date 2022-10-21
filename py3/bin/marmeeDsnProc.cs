@@ -1,76 +1,88 @@
-#! /usr/bin/env python
+#!/bin/env python
 # -*- coding: utf-8 -*-
-"""\
-* TODO *[Summary]* :: An =ICM=: Process Incoming DSN (Delivery Status Notifications)
-"""
 
-####+BEGIN: bx:cs:python:top-of-file :partof "bystar" :copyleft "halaal+minimal"
-"""
-*  This file:/acct/smb/com/dev-py/LUE/Sync/pypi/pkgs/bisos.marmee/dev/bin/inMailDsnProc.py :: [[elisp:(org-cycle)][| ]]
- is part of The Libre-Halaal ByStar Digital Ecosystem. http://www.by-star.net
- *CopyLeft*  This Software is a Libre-Halaal Poly-Existential. See http://www.freeprotocols.org
- A Python Interactively Command Module (PyICM). Part Of ByStar.
- Best Developed With COMEEGA-Emacs And Best Used With Blee-ICM-Players.
- Warning: All edits wityhin Dynamic Blocks may be lost.
-"""
+""" #+begin_org
+* ~[Summary]~ :: A =CmndSvc= for Process Incoming DSN (Delivery Status Notifications)
+#+end_org """
+
+####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
+""" #+begin_org
+* [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
+#+BEGIN_SRC emacs-lisp
+(setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
+#+END_SRC
+#+RESULTS:
+: cs-u
+#+end_org """
 ####+END:
 
-"""
-*  [[elisp:(org-cycle)][| *ICM-INFO:* |]] :: Author, Copyleft and Version Information
-"""
-####+BEGIN: bx:cs:python:name :style "fileName"
-__icmName__ = "inMailDsnProc"
+####+BEGIN: b:prog:file/proclamations :outLevel 1
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Proclamations |]]* :: Libre-Halaal Software --- Part Of BISOS ---  Poly-COMEEGA Format.
+** This is Libre-Halaal Software. © Neda Communications, Inc. Subject to AGPL.
+** It is part of BISOS (ByStar Internet Services OS)
+** Best read and edited  with Blee in Poly-COMEEGA (Polymode Colaborative Org-Mode Enhance Emacs Generalized Authorship)
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:global:timestamp:version-py :style "date"
-__version__ = "201805293523"
+####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
+** This File: /bisos/git/auth/bxRepos/bisos-pip/marmee/py3/bin/marmeeTracking.cs
+** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:global:icm:status-py :status "Production"
-__status__ = "Production"
+####+BEGIN: b:py3:file/particulars-csInfo :status "inUse"
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
+#+end_org """
+import typing
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['marmeeTracking'], }
+csInfo['version'] = '202210205606'
+csInfo['status']  = 'inUse'
+csInfo['panel'] = 'marmeeTracking-Panel.org'
+csInfo['groupingType'] = 'IcmGroupingType-pkged'
+csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
 
-__credits__ = [""]
+""" #+begin_org
+* [[elisp:(org-cycle)][| ~Description~ |]] :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/COMEEGA/_nodeBase_/fullUsagePanel-en.org][BISOS COMEEGA Panel]]
+Module description comes here.
+** Relevant Panels:
+** Status: In use with BISOS
+** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
+*** TODO complete fileName in particulars.
+#+end_org """
 
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/csInfo-mbNedaGpl.py"
-csInfo = {
-    'authors':         ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]"],
-    'copyright':       "Copyright 2017, [[http://www.neda.com][Neda Communications, Inc.]]",
-    'licenses':        ["[[https://www.gnu.org/licenses/agpl-3.0.en.html][Affero GPL]]", "Libre-Halaal Services License", "Neda Commercial License"],
-    'maintainers':     ["[[http://mohsen.1.banan.byname.net][Mohsen Banan]]",],
-    'contacts':        ["[[http://mohsen.1.banan.byname.net/contact]]",],
-    'partOf':          ["[[http://www.by-star.net][Libre-Halaal ByStar Digital Ecosystem]]",]
-}
-####+END:
-
-####+BEGIN: bx:cs:python:topControls :partof "bystar" :copyleft "halaal+minimal"
-"""
-*  [[elisp:(org-cycle)][|/Controls/| ]] :: [[elisp:(org-show-subtree)][|=]]  [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[file:Panel.org][Panel]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(delete-other-windows)][(1)]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
+####+BEGIN: b:prog:file/orgTopControls :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Controls |]] :: [[elisp:(delete-other-windows)][(1)]] | [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
 ** /Version Control/ ::  [[elisp:(call-interactively (quote cvs-update))][cvs-update]]  [[elisp:(vc-update)][vc-update]] | [[elisp:(bx:org:agenda:this-file-otherWin)][Agenda-List]]  [[elisp:(bx:org:todo:this-file-otherWin)][ToDo-List]]
-"""
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:cs:python:section :title "ContentsList"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *ContentsList*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+####+BEGIN: b:py3:file/workbench :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Workbench |]] :: [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pyclbr %s" (bx:buf-fname))))][pyclbr]] || [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pydoc ./%s" (bx:buf-fname))))][pydoc]] || [[elisp:(python-check (format "/bisos/pipx/bin/pyflakes %s" (bx:buf-fname)))][pyflakes]] | [[elisp:(python-check (format "/bisos/pipx/bin/pychecker %s" (bx:buf-fname))))][pychecker (executes)]] | [[elisp:(python-check (format "/bisos/pipx/bin/pycodestyle %s" (bx:buf-fname))))][pycodestyle]] | [[elisp:(python-check (format "/bisos/pipx/bin/flake8 %s" (bx:buf-fname))))][flake8]] | [[elisp:(python-check (format "/bisos/pipx/bin/pylint %s" (bx:buf-fname))))][pylint]]  [[elisp:(org-cycle)][| ]]
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:cs:python:icmItem :itemType "=Imports=" :itemTitle "*IMPORTS*"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || =Imports=      :: *IMPORTS*  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: b:py3:cs:framework/imports :basedOn "classification"
+""" #+begin_org
+** Imports Based On Classification=cs-u
+#+end_org """
+from bisos import b
+from bisos.b import cs
+from bisos.b import b_io
+
+import collections
 ####+END:
+
 
 import sys
 import os
-
-import collections
-
-from unisos import ucf
-from unisos import icm
-
-from blee.icmPlayer import bleep
 
 from bisos.currents import bxCurrentsConfig
 
@@ -94,185 +106,46 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 
 
-g_importedCmnds = {        # Enumerate modules from which CMNDs become invokable
-    'bleep': bleep.__file__,
-    'marmeAcctsLib': marmeAcctsLib.__file__,    
-}
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~csuList emacs-list Specifications~  [[elisp:(blee:org:code-block/above-run)][ /Eval Below/ ]] [[elisp:(org-cycle)][| ]]
+#+BEGIN_SRC emacs-lisp
+(setq  b:py:cs:csuList
+  (list
+   "bisos.b.cs.ro"
+   "blee.icmPlayer.bleep"
+   "bisos.marmee.marmeeTrackingLib"
+ ))
+#+END_SRC
+#+RESULTS:
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.marmee.marmeeTrackingLib |
+#+end_org """
+
+####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /3/ in csuList pyImports=t csuImports=t csuParams=t
+#+end_org """
+
+from bisos.b.cs import ro
+from blee.icmPlayer import bleep
+from bisos.marmee import marmeeTrackingLib
 
 
-####+BEGIN: bx:cs:python:section :title "= =Framework::= ICM  Description (Overview) ="
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::= ICM  Description (Overview) =*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.marmee.marmeeTrackingLib', ]
 
+g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
-####+BEGIN: b:py3:cs:cmnd/classHead :modPrefix "new" :cmndName "icmOverview" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 3 :pyInv ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || ICM-Cmnd       :: /icmOverview/ parsMand= parsOpt= argsMin=0 argsMax=3 asFunc= interactive=  [[elisp:(org-cycle)][| ]]
-"""
-class icmOverview(cs.Cmnd):
-    cmndParamsMandatory = [ ]
-    cmndParamsOptional = [ ]
-    cmndArgsLen = {'Min': 0, 'Max': 3,}
+def g_extraParams():
+    csParams = cs.param.CmndParamDict()
+    cs.csuList_commonParamsSpecify(csuList, csParams)
+    cs.argsparseBasedOnCsParams(csParams)
 
-    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmnd(self,
-        interactive=False,        # Can also be called non-interactively
-        argsList=[],         # or Args-Input
-    ):
-        cmndOutcome = self.getOpOutcome()
-        if rtInv.outs:
-            if not self.cmndLineValidate(outcome=cmndOutcome):
-                return cmndOutcome
-            effectiveArgsList = G.icmRunArgsGet().cmndArgs
-        else:
-            effectiveArgsList = argsList
-
-        callParamsDict = {}
-        if not cs.cmndCallParamsValidate(callParamsDict, interactive, outcome=cmndOutcome):
-            return cmndOutcome
-
-        cmndArgsSpecDict = self.cmndArgsSpec()
-        if not self.cmndArgsValidate(effectiveArgsList, cmndArgsSpecDict, outcome=cmndOutcome):
-            return cmndOutcome
-####+END:
-
-        moduleDescription="""
-*       [[elisp:(org-show-subtree)][|=]]  [[elisp:(org-cycle)][| *Description:* | ]]
-**  [[elisp:(org-cycle)][| ]]  [Xref]          :: *[Related/Xrefs:]*  <<Xref-Here->>  -- External Documents  [[elisp:(org-cycle)][| ]]
-
-**  [[elisp:(org-cycle)][| ]]   Model and Terminology                                      :Overview:
-*** See BISOS Documentation for ICM's model and terminology
-**      [End-Of-Description]
-"""
-        
-        moduleUsage="""
-*       [[elisp:(org-show-subtree)][|=]]  [[elisp:(org-cycle)][| *Usage:* | ]]
-
-**      How-Tos:
-*** TODO Edit csInfo to identify author, etc
-*** TODO Select ICM type in g_icmChars
-*** TODO Enhance g_argsExtraSpecify for your parameters
-*** TODO Add your Commands
-*** TODO Enhance Examples Cmnd
-**      [End-Of-Usage]
-"""
-        
-        moduleStatus="""
-*       [[elisp:(org-show-subtree)][|=]]  [[elisp:(org-cycle)][| *Status:* | ]]
-**  [[elisp:(org-cycle)][| ]]  [Info]          :: *[Current-Info:]* Status/Maintenance -- General TODO List [[elisp:(org-cycle)][| ]]
-** TODO [[elisp:(org-cycle)][| ]]  Current         :: Just getting started [[elisp:(org-cycle)][| ]]
-**      [End-Of-Status]
-"""
-
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/moduleOverview.py"
-        icm.unusedSuppressForEval(moduleUsage, moduleStatus)
-        actions = self.cmndArgsGet("0&2", cmndArgsSpecDict, argsList)
-        if actions[0] == "all":
-            cmndArgsSpec = cmndArgsSpecDict.argPositionFind("0&2")
-            argChoices = cmndArgsSpec.argChoicesGet()
-            argChoices.pop(0)
-            actions = argChoices
-        for each in actions:
-            print(each)
-            if rtInv.outs:
-                #print( str( __doc__ ) )  # This is the Summary: from the top doc-string
-                #version(interactive=True)
-                exec("""print({})""".format(each))
-                
-        return(format(str(__doc__)+moduleDescription))
-
-    """
-**  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Method-anyOrNone :: /cmndArgsSpec/ retType=bool argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-    @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndArgsSpec(self):
-        """
-***** Cmnd Args Specification
-"""
-        cmndArgsSpecDict = cs.CmndArgsSpecDict()
-        cmndArgsSpecDict.argsDictAdd(
-            argPosition="0&2",
-            argName="actions",
-            argDefault='all',
-            argChoices=['all', 'moduleDescription', 'moduleUsage', 'moduleStatus'],
-            argDescription="Output relevant information",
-        )
-
-        return cmndArgsSpecDict
-####+END:
-
-####+BEGIN: bx:cs:python:section :title "Common Module Support Facilities (BxoIdSr)"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Common Module Support Facilities (BxoIdSr)*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-
-####+BEGIN: bx:dblock:global:file-insert :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/curGetBxOSr.py"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-BxoIdSr   :: /curGet_{bxoId,sr}/ retType=str argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
-
-def curGet_bxoId(): return bxCurrentsConfig.bxoId_fpObtain(configBaseDir=None)
-def curGet_sr(): return bxCurrentsConfig.sr_fpObtain(configBaseDir=None)
-def cmndParsCurBxoSr(cps): cps['bxoId'] = curGet_bxoId(); cps['sr'] = curGet_sr()
-
-####+END:
-
-
-####+BEGIN: bx:cs:python:section :title "= =Framework::= ICM Hooks ="
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::= ICM Hooks =*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-
-####+BEGIN: bx:cs:python:func :funcName "g_icmChars" :comment "ICM Characteristics Spec" :funcType "FrameWrk" :retType "Void" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-FrameWrk  :: /g_icmChars/ =ICM Characteristics Spec= retType=Void argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
-def g_icmChars():
-####+END:
-    csInfo['panel'] = "{}-Panel.org".format(__icmName__)
-    csInfo['groupingType'] = "IcmGroupingType-pkged"
-    csInfo['cmndParts'] = "IcmCmndParts[common] IcmCmndParts[param]"
-    
-g_icmChars()
-
-
-####+BEGIN: bx:cs:python:func :funcName "g_icmPreCmnds" :funcType "FrameWrk" :retType "Void" :deco "default" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-FrameWrk  :: /g_icmPreCmnds/ retType=Void argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-def g_icmPreCmnds():
-####+END:
-    """ PreHook """
-    pass
-
-
-####+BEGIN: bx:cs:python:func :funcName "g_icmPostCmnds" :funcType "FrameWrk" :retType "Void" :deco "default" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-FrameWrk  :: /g_icmPostCmnds/ retType=Void argsList=nil deco=default  [[elisp:(org-cycle)][| ]]
-"""
-@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
-def g_icmPostCmnds():
-####+END:
-    """ PostHook """
-    pass
-
-
-####+BEGIN: bx:cs:python:section :title "= =Framework::= Options, Arguments and Examples Specifications ="
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::= Options, Arguments and Examples Specifications =*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
 ####+END:
 
 
 ####+BEGIN: bx:cs:python:func :funcName "g_argsExtraSpecify" :comment "FrameWrk: ArgsSpec" :funcType "FrameWrk" :retType "Void" :deco "" :argsList "parser"
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-FrameWrk  :: /g_argsExtraSpecify/ =FrameWrk: ArgsSpec= retType=Void argsList=(parser)  [[elisp:(org-cycle)][| ]]
-"""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-FrameWrk [[elisp:(outline-show-subtree+toggle)][||]] /g_argsExtraSpecify/ =FrameWrk: ArgsSpec= retType=Void argsList=(parser)  [[elisp:(org-cycle)][| ]]
+#+end_org """
 def g_argsExtraSpecify(
     parser,
 ):
@@ -304,16 +177,74 @@ def g_argsExtraSpecify(
         argparseShortOpt=None,
         argparseLongOpt='--inFile',
     )
-    
+
     bleep.commonParamsSpecify(csParams)
-    marmeAcctsLib.commonParamsSpecify(csParams)        
-    
+    marmeAcctsLib.commonParamsSpecify(csParams)
+
     cs.argsparseBasedOnCsParams(parser, csParams)
 
     # So that it can be processed later as well.
     G.icmParamDictSet(csParams)
-    
+
     return
+
+
+####+BEGIN: b:py3:cs:main/exposedSymbols :classes ()
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~Exposed Symbols List Specification~ with /0/ in Classes List
+#+end_org """
+####+END:
+
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvcs" :anchor ""  :extraInfo "Command Services Section"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _CmndSvcs_: |]]  Command Services Section  [[elisp:(org-shifttab)][<)]] E|
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "examplesOther" :extent "verify" :ro "noCli" :comment "FrameWrk: CS-Main-Examples" :parsMand "" :parsOpt "" :argsMin "0" :argsMax "0" :asFunc "" :interactiveP ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<examplesOther>>  *FrameWrk: CS-Main-Examples*  =verify= argsMin=0 argsMax=0 ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class examplesOther(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
+        """FrameWrk: CS-Main-Examples"""
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+        cmndArgsSpecDict = self.cmndArgsSpec()
+####+END:
+        self.cmndDocStr(f""" #+begin_org ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
+        #+end_org """)
+
+        def cpsInit(): return collections.OrderedDict()
+        def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
+        def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
+
+        #logControler = b_io.log.Control()
+        #logControler.loggerSetLevel(20)
+
+        cs.examples.myName(cs.G.icmMyName(), cs.G.icmMyFullName())
+
+        cs.examples.commonBrief()
+
+        bleep.examples_icmBasic()
+
+        marmeeTrackingLib.examples_deliveryTrackings()
+
+        b.ignore(ro.__doc__,)  # We are not using these modules, but they are auto imported.
+
+        return(cmndOutcome)
+
 
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :modPrefix "new" :cmndName "examples" :cmndType "ICM-Cmnd-FWrk"  :comment "FrameWrk: ICM Examples" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
@@ -340,77 +271,77 @@ class examples(cs.Cmnd):
 
 ####+END:
         def cpsInit(): return collections.OrderedDict()
-        def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'        
+        def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
         def execLineEx(cmndStr): cs.examples.execInsert(execLine=cmndStr)
 
         logControler = b_io.log.Control()
         logControler.loggerSetLevel(20)
 
         cs.examples.myName(G.icmMyName(), G.icmMyFullName())
-        
-        cs.examples.commonBrief()    
+
+        cs.examples.commonBrief()
 
         bleep.examples_icmBasic()
 
 ####+BEGIN: bx:cs:python:cmnd:subSection :title "Real Invokations"
         """
-**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Real Invokations*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Real Invokations*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
         cs.examples.menuChapter('*Real Invokations*')
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnProcessAndRefile"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) # ; cps['runMode'] = 'dryRun' COMMENTED-OUT
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
 
-        cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='full')        
+        cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper="echo", verbosity='full')
 
 ####+BEGIN: bx:cs:python:cmnd:subSection :title "Examples   ::  Testing -- /DryRun/ -- devTest -- Maildir Apply To Message Processor"
         """
-**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Examples   ::  Testing -- /DryRun/ -- devTest -- Maildir Apply To Message Processor*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *Examples   ::  Testing -- /DryRun/ -- devTest -- Maildir Apply To Message Processor*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
-        
+
         cs.examples.menuChapter('*Testing -- /DryRun/ -- devTest -- Maildir Apply To Message Processor*')
 
         # menuLine = """--runMode dryRun --inMailAcct={inMailAcct} --inMbox={inMbox} {cmndAction} {cmndArgs}""".format(
         #    inMailAcct=inMailAcct, inMbox=inMbox, cmndAction=cmndAction, cmndArgs=cmndArgs)
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "msgDisect"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; #cps['controlProfile'] = enabledControlProfile ; cps['inMailAcct'] = enabledMailAcct
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnReportLong"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; #cps['controlProfile'] = enabledControlProfile ; cps['inMailAcct'] = enabledMailAcct
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnProcessAndRefile"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; cps['runMode'] = 'dryRun'
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
-        
-        cmndName = "maildirApplyToMsg"        
+
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnTestSendToCoRecipients"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; cps['runMode'] = 'dryRun'
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnTestSendToCoRecipients"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; cps['runMode'] = 'runDebug'
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
 
-        cmndName = "maildirApplyToMsg"        
+        cmndName = "maildirApplyToMsg"
         cmndArgs = "dsnTestSendToCoRecipients"
         cps = collections.OrderedDict(); cmndParsCurBxoSr(cps) ; cps['runMode'] = 'fullRun'
         cs.examples.cmndInsert(cmndName, cps, cmndArgs, icmWrapper=None, verbosity='little')
-        
+
 ####+BEGIN: bx:cs:python:cmnd:subSection :title "From  marmeAcctsLib.py"
         """
-**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *From  marmeAcctsLib.py*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
+**  [[elisp:(beginning-of-buffer)][Top]] ================ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]          *From  marmeAcctsLib.py*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]]
 """
 ####+END:
 
@@ -418,19 +349,50 @@ class examples(cs.Cmnd):
 
         #marmeAcctsLib.examples_marmeAcctsLibControls()
 
-        marmeAcctsLib.examples_select_mailBox()        
+        marmeAcctsLib.examples_select_mailBox()
 
         marmeAcctsLib.examples_inMailAcctAccessPars()
 
-        marmeAcctsLib.examples_outMailAcctAccessPars()        
-        
+        marmeAcctsLib.examples_outMailAcctAccessPars()
 
 
-####+BEGIN: bx:cs:python:section :title "ICM Commands"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *ICM Commands*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+
+    
+####+BEGIN: bx:icm:py3:section :title "CS-Commands"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Commands*  [[elisp:(org-cycle)][| ]]
+#+end_org """
 ####+END:
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "someCmnd" :comment "" :extent "verify" :ro "cli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<someCmnd>>  =verify= ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class someCmnd(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  A starting point command.
+        #+end_org """)
+
+        if b.subProc.WOpW(invedBy=self, log=1).bash(
+                f"""echo hello World""",
+        ).isProblematic():  return(b_io.eh.badOutcome(cmndOutcome))
+
+        return(cmndOutcome)
+
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "maildirApplyToMsg" :comment "" :parsMand "" :parsOpt "bxoId sr controlProfile inMailAcct inMbox" :argsMin 1 :argsMax 1000 :pyInv ""
 """
@@ -473,9 +435,9 @@ class maildirApplyToMsg(cs.Cmnd):
             return cmndOutcome
 ####+END:
         #cmndArgsSpec = {0: ['msgDisect', 'coRecepientNdr']}
-        
+
         cmndArgs = self.cmndArgsGet("0&-1", cmndArgsSpecDict, argsList)
-        
+
         inMailDir = marmeAcctsLib.getPathForAcctMbox(
             controlProfile,
             inMailAcct,
@@ -491,8 +453,8 @@ class maildirApplyToMsg(cs.Cmnd):
             factory=None,  # important!! default does not work
         )
 
-        for msgProc in cmndArgs:            
-            
+        for msgProc in cmndArgs:
+
             #icm.ANN_here("thisArg={thisArg}".format(thisArg=msgProc))
 
             #for msg in mbox:
@@ -502,15 +464,15 @@ class maildirApplyToMsg(cs.Cmnd):
                 except email.errors.MessageParseError:
                     b_io.eh.problem_info(msg)
                     continue                # The message is malformed. Just leave it.
-            
+
                 try:
                     eval(msgProc + '(bxoId, sr, inMailDir, mbox, key, msg)')
                 except Exception as e:
                     b_io.eh.critical_exception(e)
                     b_io.eh.problem_info("Invalid Action: {msgProc}"
-                                        .format(msgProc=msgProc))            
+                                        .format(msgProc=msgProc))
                     raise   # NOTYET, in production, the raise should be commented out
-        
+
         return cmndOutcome.set(
             opError=b.OpError.Success,
             opResults=None,
@@ -522,7 +484,7 @@ class maildirApplyToMsg(cs.Cmnd):
 """
     @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndArgsSpec(self):
-####+END:        
+####+END:
         """
 ***** Cmnd Args Specification
 """
@@ -536,7 +498,7 @@ class maildirApplyToMsg(cs.Cmnd):
         )
 
         return cmndArgsSpecDict
-    
+
 
 ####+BEGIN: b:py3:cs:method/typing :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
     """
@@ -544,7 +506,7 @@ class maildirApplyToMsg(cs.Cmnd):
 """
     @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
     def cmndDocStr(self):
-####+END:        
+####+END:
         return """
 ***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Place holder for this commands doc string.
 """
@@ -577,7 +539,7 @@ def msgDisect(
 def dsnReportLong(
     bxoId,
     sr,
-    maildir,        
+    maildir,
     mbox,
     key,
     inMsg,
@@ -607,7 +569,7 @@ def dsnReportLong(
 
     dsnTypeReports(inMsg, dsnType, "long")
 
-    
+
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Msg-Apply    ::  dsnTestSendToCoRecipients    [[elisp:(org-cycle)][| ]]
 """
@@ -615,18 +577,18 @@ def dsnReportLong(
 def dsnTestSendToCoRecipients(
         bxoId,
         sr,
-        maildir,        
+        maildir,
         mbox,
         key,
         inMsg,
 ):
-    """ 
+    """
 ** inMsg is analyzed to see if it contains a bounce. based on that it is catgorized as one of the following:
 """
     dsnProcessAndRefileWithGivenActions(
         bxoId,
         sr,
-        maildir,        
+        maildir,
         mbox,
         key,
         inMsg,
@@ -637,7 +599,7 @@ def dsnTestSendToCoRecipients(
         action_tmpNonDeliveryReport=None,
         action_notADsn=None,
     )
-      
+
 
 
 """
@@ -646,19 +608,19 @@ def dsnTestSendToCoRecipients(
 @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def dsnProcessAndRefile(
     bxoId,
-    sr,    
-    maildir,        
+    sr,
+    maildir,
     mbox,
     key,
     inMsg,
 ):
-    """ 
+    """
 ** inMsg is analyzed to see if it contains a bounce. based on that it is catgorized as one of the following:
 """
     dsnProcessAndRefileWithGivenActions(
         bxoId,
         sr,
-        maildir,        
+        maildir,
         mbox,
         key,
         inMsg,
@@ -677,7 +639,7 @@ def dsnProcessAndRefile(
 def dsnProcessAndRefileWithGivenActions(
         bxoId,
         sr,
-        maildir,        
+        maildir,
         mbox,
         key,
         inMsg,
@@ -688,9 +650,9 @@ def dsnProcessAndRefileWithGivenActions(
         action_tmpNonDeliveryReport=None,
         action_notADsn=None,
 ):
-    """ 
+    """
 ** inMsg is analyzed to see if it contains a bounce. based on that it is catgorized as one of the following:
-*** envNotADsn: If it is not a Delivery Status Notification (DSN) it is filed 
+*** envNotADsn: If it is not a Delivery Status Notification (DSN) it is filed
 *** envTmpNdr:  A temporary Non-Delivery Report (NDR)
 *** envNdrNoCoRecip:  A permanent Non-Delivery Report without any co-recipients
 *** envNdrWithCoRecipNotified: A permanent NDR with co-recipients that were notified
@@ -700,7 +662,7 @@ def dsnProcessAndRefileWithGivenActions(
 """
     G = cs.globalContext.get()
     runMode = G.icmRunArgsGet().runMode
-    
+
     tempFailedRecipients, permFailedRecipients = flufl.bounce.all_failures(inMsg)
 
     failedMsg = fromNonDeliveryReportGetFailedMsg(
@@ -725,7 +687,7 @@ def dsnProcessAndRefileWithGivenActions(
 
     dsnTypeReports(inMsg, dsnType, "short")
 
-    
+
     if dsnType == DsnType.deliveryReport:
         if action_deliveryReport:
             action_deliveryReport(
@@ -736,7 +698,7 @@ def dsnProcessAndRefileWithGivenActions(
                 coRecipients,
                 dsnType,
             )
-      
+
     elif dsnType == DsnType.receiptNotification:
         if action_receiptNotification:
             action_receiptNotification(
@@ -747,7 +709,7 @@ def dsnProcessAndRefileWithGivenActions(
                 coRecipients,
                 dsnType,
             )
-    
+
     elif dsnType == DsnType.ndrNoCoRecipients:
         if runMode == 'dryRun':
             pass
@@ -775,7 +737,7 @@ def dsnProcessAndRefileWithGivenActions(
         else:
             b_io.eh.critical_oops()
 
-        
+
     elif dsnType == DsnType.ndrWithCoRecipients:
         if runMode == 'dryRun':
             pass
@@ -803,7 +765,7 @@ def dsnProcessAndRefileWithGivenActions(
                     coRecipients,
                     dsnType,
                 )
-            msgMoveToFolder("envNdrWithCoRecipNotified", maildir, mbox, key, inMsg,)            
+            msgMoveToFolder("envNdrWithCoRecipNotified", maildir, mbox, key, inMsg,)
             marmeTrackingLib.deliveryEvent_coRecipientNotified(
                 bxoId,
                 sr,
@@ -847,8 +809,8 @@ def dsnProcessAndRefileWithGivenActions(
             )
         else:
             b_io.eh.critical_oops()
-            
-        
+
+
     elif dsnType == DsnType.notADsn:
         if runMode == 'dryRun':
             pass
@@ -876,13 +838,13 @@ def dsnProcessAndRefileWithGivenActions(
 
     else:
         b_io.eh.critical_oops()
-        
+
 
 
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *DSN (Delivery Status Notification) Type Processors*
 """
-        
+
 
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Enum         ::  DsnType    [[elisp:(org-cycle)][| ]]
@@ -906,14 +868,14 @@ def msgDsnTypeDetect(
     failedMsg,
     tempFailedRecipients,
     permFailedRecipients,
-    coRecipients,        
-):        
-    """ 
+    coRecipients,
+):
+    """
 ** Returns a DsnType.
 """
     if tempFailedRecipients:
         return DsnType.tmpNonDeliveryReport
- 
+
     elif permFailedRecipients:
         if coRecipients:
             return DsnType.ndrWithCoRecipients
@@ -923,10 +885,10 @@ def msgDsnTypeDetect(
     # Delivery Report Needs To Be Detected
 
     # Receipt Notification Needs To Be Detected
-    
+
     elif inMsg['subject'] == "Delivery delay notification":
         return DsnType.tmpNonDeliveryReport
-        
+
     else:
         return DsnType.notADsn
 
@@ -941,10 +903,10 @@ def dsnTypeShortReport(
     icm.ANN_note("""{typeStr:15}:: {msgId}""".format(
         typeStr=typeStr, msgId=str(inMsg['message-id']),))
 
-    
+
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  dsnTypeLongReport    [[elisp:(org-cycle)][| ]]
-"""    
+"""
 @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def dsnTypeLongReport(
         inMsg,
@@ -954,7 +916,7 @@ def dsnTypeLongReport(
         typeStr=typeStr, msgId=str(inMsg['message-id']),
         date=str(inMsg['date']), subject=str(inMsg['subject']),
         ))
-    
+
 
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  dsnTypeReports    [[elisp:(org-cycle)][| ]]
@@ -980,21 +942,21 @@ def dsnTypeReports(
 
     if dsnType == DsnType.deliveryReport:
         dsnTypeStrReport(inMsg, "Delivery Report", reportType,)
-        
+
     elif dsnType == DsnType.receiptNotification:
         dsnTypeStrReport(inMsg, "Receipt Notification", reportType,)
-    
+
     elif dsnType == DsnType.ndrNoCoRecipients:
         dsnTypeStrReport(inMsg, "ndrNoCoRecipients", reportType,)
 
     elif dsnType == DsnType.ndrWithCoRecipients:
         dsnTypeStrReport(inMsg, "ndrWithCoRecipients", reportType,)
- 
+
     elif dsnType == DsnType.tmpNonDeliveryReport:
-        dsnTypeStrReport(inMsg, "tmpNonDeliveryReport", reportType,)        
+        dsnTypeStrReport(inMsg, "tmpNonDeliveryReport", reportType,)
 
     elif dsnType == DsnType.notADsn:
-        dsnTypeStrReport(inMsg, "Not A DSN", reportType,)        
+        dsnTypeStrReport(inMsg, "Not A DSN", reportType,)
 
     else:
         b_io.eh.critical_oops()
@@ -1010,11 +972,11 @@ def dsnTypeReports(
 """
 @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def fromNonDeliveryReportGetFailedMsg(
-    nonDeliveryReportMsg,        
+    nonDeliveryReportMsg,
     tempFailedRecipients,
     permFailedRecipients,
 ):
-    """ 
+    """
 ** returns the extracted failed message from the non-delivery-report. Or None.
 """
 
@@ -1024,7 +986,7 @@ def fromNonDeliveryReportGetFailedMsg(
 
     #
     # Get the failed message as an attachement
-    # 
+    #
     for part in nonDeliveryReportMsg.walk():
         if part.get_content_type() == 'message/rfc822':
             failedMsgList = part.get_payload()
@@ -1040,7 +1002,7 @@ def fromNonDeliveryReportGetFailedMsg(
     #
     # So,the failed message was not included and is part of the body.
     #
-    
+
     #scre = re.compile(b'mail to the following recipients could not be delivered')
     scre = re.compile(b'-- The header and top 20 lines of the message follows --')
 
@@ -1071,7 +1033,7 @@ def fromFailedMsgGetCoRecipients(
     tempFailedRecipients,
     permFailedRecipients,
 ):
-    """ 
+    """
 ** Return list of CoRecipients or None
 """
     if not (tempFailedRecipients or permFailedRecipients):
@@ -1081,7 +1043,7 @@ def fromFailedMsgGetCoRecipients(
     if not failedMsg:
         b_io.eh.critical_unassigedError("UnFound FailedMsg")
         return None
-   
+
     allRecipients= None
 
     tos = failedMsg.get_all('to', [])
@@ -1089,7 +1051,7 @@ def fromFailedMsgGetCoRecipients(
     resent_tos = failedMsg.get_all('resent-to', [])
     resent_ccs = failedMsg.get_all('resent-cc', [])
     allRecipients = email.utils.getaddresses(tos + ccs + resent_tos + resent_ccs)
-                
+
     if not allRecipients:
         b_io.eh.problem_unassignedError("allRecipients is None")
         return None
@@ -1099,7 +1061,7 @@ def fromFailedMsgGetCoRecipients(
         allRecipientsSet.add(thisRecipient[1])
 
     failedRecipients = tempFailedRecipients | permFailedRecipients
-        
+
     coRecipientsSet = allRecipientsSet - failedRecipients
 
     if coRecipientsSet:
@@ -1111,7 +1073,7 @@ def fromFailedMsgGetCoRecipients(
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *Msg ReFiling*
 """
-    
+
 
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgMoveToFolder    [[elisp:(org-cycle)][| ]]
@@ -1119,12 +1081,12 @@ def fromFailedMsgGetCoRecipients(
 @io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def msgMoveToFolder(
         destFolder,
-        srcMaildir,        
+        srcMaildir,
         srcMbox,
         srcKey,
         srcMsg,
 ):
-    """ 
+    """
 ** Given a srcMbox and a srcMsg, move it to the specified  destination.
 """
     srcMailBase = os.path.dirname(srcMaildir)
@@ -1150,7 +1112,7 @@ def msgMoveToFolder(
 
     destMbox.close()
 
-    
+
 
 """
 *  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(delete-other-windows)][(1)]]      *Msg Sending*
@@ -1180,29 +1142,29 @@ def msgSend_test_permanentNdrToCoRecipients(
 
     failedFromLine = failedMsg['From']
     failedSubjectLine = failedMsg['Subject']
-    failedDateLine = failedMsg['date']                                              
+    failedDateLine = failedMsg['date']
 
-    msg = MIMEMultipart()    
+    msg = MIMEMultipart()
 
     msg['Date'] = email.utils.formatdate(localtime = 1)
     msg['Message-ID'] = email.utils.make_msgid()
-    
+
     msg['Subject'] = """Co-Recipient Non-Delivery-Report  -- Was: {failedSubjectLine}""".format(
         failedSubjectLine=failedSubjectLine)
 
     msg['From'] = failedFromLine
 
     toLine = ""
-    
+
     for thisRecipient in coRecipients:
         if toLine:
             toLine = toLine + ', ' + thisRecipient
         else:
-            toLine = thisRecipient            
+            toLine = thisRecipient
 
     msg['To'] = testToLine
-        
-    
+
+
     msg.preamble = 'Multipart massage.\n'
 
     #pp = pprint.PrettyPrinter(indent=4)
@@ -1211,13 +1173,13 @@ def msgSend_test_permanentNdrToCoRecipients(
 
 Real To Line: {toLine}
 
-A previous message 
+A previous message
     Dated: {failedDateLine}
-    To: {failedRecipients} 
-for which you were also a recipient, failed. 
+    To: {failedRecipients}
+for which you were also a recipient, failed.
 
 This is to let you know that we have received a non-delivery-report (bounce message)
-for that email and since you were also a recepient of that email, we are letting you 
+for that email and since you were also a recepient of that email, we are letting you
 know that {failedRecipients} did not recieve that email.
 
 A full copy of the non-delivery-report that we received is attached.
@@ -1241,7 +1203,7 @@ This is a machine generated email and is purely informational.
     msg.attach(part)
 
     sendingMethod = msgOut.SendingMethod.submit
-        
+
     if msgOut.sendingMethodSet(msg, sendingMethod).isProblematic():
         return b_io.eh.badLastOutcome()
 
@@ -1271,7 +1233,7 @@ def msgSend_permanentNdrToCoRecepietsObsoleted(
     """ Given a nonDeliveryReportMsg, We focus on the failedMsg
     """
 
- 
+
 
     allRecipients= None
 
@@ -1289,8 +1251,8 @@ def msgSend_permanentNdrToCoRecepietsObsoleted(
                 allRecipients = email.utils.getaddresses(tos + ccs + resent_tos + resent_ccs)
                 failedFromLine = failedMsg['From']
                 failedSubjectLine = failedMsg['Subject']
-                failedDateLine = failedMsg['date']                                              
-                
+                failedDateLine = failedMsg['date']
+
             break
 
     if failedMsgWasFound is False:
@@ -1304,30 +1266,30 @@ def msgSend_permanentNdrToCoRecepietsObsoleted(
     allRecipientsSet = set()
     for thisRecipient in allRecipients:
         allRecipientsSet.add(thisRecipient[1])
- 
+
     coRecipientsSet = allRecipientsSet - failedRecipients
 
-    msg = MIMEMultipart()    
+    msg = MIMEMultipart()
 
     msg['Date'] = email.utils.formatdate(localtime = 1)
     msg['Message-ID'] = email.utils.make_msgid()
-    
+
     msg['Subject'] = """Co-Recipient Non-Delivery-Report  -- Was: {failedSubjectLine}""".format(
         failedSubjectLine=failedSubjectLine)
 
     msg['From'] = failedFromLine
 
     toLine = ""
-    
+
     for thisRecipient in coRecipientsSet:
         if toLine:
             toLine = toLine + ', ' + thisRecipient
         else:
-            toLine = thisRecipient            
+            toLine = thisRecipient
 
     msg['To'] = "test@mohsen.banan.1.byname.net"
-        
-    
+
+
     msg.preamble = 'Multipart massage.\n'
 
     #pp = pprint.PrettyPrinter(indent=4)
@@ -1336,13 +1298,13 @@ def msgSend_permanentNdrToCoRecepietsObsoleted(
 
 Real To Line: {toLine}
 
-A previous message 
+A previous message
     Dated: {failedDateLine}
-    To: {failedRecipients} 
-for which you were also a recipient, failed. 
+    To: {failedRecipients}
+for which you were also a recipient, failed.
 
 This is to let you know that we have received a non-delivery-report (bounce message)
-for that email and since you were also a recepient of that email, we are letting you 
+for that email and since you were also a recepient of that email, we are letting you
 know that {failedRecipients} did not recieve that email.
 
 A full copy of the non-delivery-report that we received is attached.
@@ -1376,133 +1338,35 @@ This is a machine generated email and is purely informational.
     return
 
 
-
-    
-
-####+BEGIN: bx:cs:python:section :title "Supporting Classes And Functions"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Supporting Classes And Functions*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-"""
-*       /Empty/  [[elisp:(org-cycle)][| ]]
-"""
-    
-####+BEGIN: bx:cs:python:section :title "Common/Generic Facilities -- Library Candidates"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Common/Generic Facilities -- Library Candidates*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-"""
-*       /Empty/  [[elisp:(org-cycle)][| ]]
-"""
-
-    
-####+BEGIN: bx:cs:python:section :title "= =Framework::=   G_main -- Instead Of ICM Dispatcher ="
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::=   G_main -- Instead Of ICM Dispatcher =*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "Main" :anchor ""  :extraInfo "Framework Dblock"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _Main_: |]]  Framework Dblock  [[elisp:(org-shifttab)][<)]] E|
+#+end_org """
 ####+END:
 
-####+BEGIN: bx:cs:python:func :funcName "G_main" :funcType "FrameWrk" :retType "Void" :deco "" :argsList ""
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func-FrameWrk  :: /G_main/ retType=Void argsList=nil  [[elisp:(org-cycle)][| ]]
-"""
-def G_main():
-####+END:
-    """ 
-** Replaces ICM dispatcher for other command line args parsings.
-"""
-    pass
+####+BEGIN: b:py3:cs:framework/main :csInfo "csInfo" :noCmndEntry "examples" :extraParamsHook "g_extraParams" :importedCmndsModules "g_importedCmndsModules"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =g_csMain= (csInfo, _examples_, g_extraParams, g_importedCmndsModules)
+#+end_org """
 
-####+BEGIN: bx:cs:python:icmItem :itemType "Configuration" :itemTitle "= =Framework::= g_ Settings -- ICMs Imports ="
-"""
-*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] [[elisp:(show-children 10)][|V]] [[elisp:(org-tree-to-indirect-buffer)][|>]] [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Configuration  :: = =Framework::= g_ Settings -- ICMs Imports =  [[elisp:(org-cycle)][| ]]
-"""
-####+END:
-
-
-g_examples = examples  # or None 
-g_mainEntry = None  # or G_main
-
-####+BEGIN: bx:dblock:global:file-insert :file "/libre/ByStar/InitialTemplates/update/sw/icm/py/icm2.G_main.py"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] # /Dblk-Begin/ # [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::= ICM main() =*
-"""
-
-def classedCmndsDict():
-    """
-** Should be done here, can not be done in icm library because of the evals.
-"""
-    callDict = dict()
-    for eachCmnd in icm.cmndList_mainsMethods().cmnd(
-            interactive=False,
-            importedCmnds=g_importedCmnds,
-            mainFileName=__file__,
-    ):
-        try:
-            callDict[eachCmnd] = eval("{}".format(eachCmnd))
-            continue
-        except NameError:
-            pass
-
-        for mod in g_importedCmnds:
-            try:
-                eval("{mod}.{cmnd}".format(mod=mod, cmnd=eachCmnd))
-            except AttributeError:
-                continue
-            try:                
-                callDict[eachCmnd] = eval("{mod}.{cmnd}".format(mod=mod, cmnd=eachCmnd))
-                break
-            except NameError:
-                pass
-    return callDict
-
-csInfo['icmName'] = __icmName__
-csInfo['version'] = __version__
-csInfo['status'] = __status__
-csInfo['credits'] = __credits__
-
-G = cs.globalContext.get()
-G.csInfo = csInfo
-
-def g_icmMain():
-    """This ICM's specific information is passed to G_mainWithClass"""
-    sys.exit(
-        icm.G_mainWithClass(
-            inArgv=sys.argv[1:],                 # Mandatory
-            extraArgs=g_argsExtraSpecify,        # Mandatory
-            G_examples=g_examples,               # Mandatory            
-            classedCmndsDict=classedCmndsDict(),   # Mandatory
-            mainEntry=g_mainEntry,
-            g_icmPreCmnds=g_icmPreCmnds,
-            g_icmPostCmnds=g_icmPostCmnds,
-        )
+if __name__ == '__main__':
+    cs.main.g_csMain(
+        csInfo=csInfo,
+        noCmndEntry=examples,  # specify a Cmnd name
+        extraParamsHook=g_extraParams,
+        importedCmndsModules=g_importedCmndsModules,
     )
 
-g_icmMain()
-
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ## /Dblk-End/ ## [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *= =Framework::= ICM main() =*
-"""
-
 ####+END:
 
-####+BEGIN: bx:cs:python:section :title "Unused Facilities -- Temporary Junk Yard"
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *Unused Facilities -- Temporary Junk Yard*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-"""
-*       /Empty/  [[elisp:(org-cycle)][| ]]
-"""
+####+BEGIN: b:py3:cs:framework/endOfFile :basedOn "classification"
+""" #+begin_org
+* [[elisp:(org-cycle)][| *End-Of-Editable-Text* |]] :: emacs and org variables and control parameters
+#+end_org """
 
-####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :title " ~End Of Editable Text~ "
-"""
-*  [[elisp:(beginning-of-buffer)][Top]] ################ [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(delete-other-windows)][(1)]]    *End Of Editable Text*  [[elisp:(org-cycle)][| ]]  [[elisp:(org-show-subtree)][|=]] 
-"""
-####+END:
-
-####+BEGIN: bx:dblock:global:file-insert-cond :cond "./blee.el" :file "/libre/ByStar/InitialTemplates/software/plusOrg/dblock/inserts/endOfFileControls.org"
 #+STARTUP: showall
+
+### local variables:
+### no-byte-compile: t
+### end:
 ####+END:

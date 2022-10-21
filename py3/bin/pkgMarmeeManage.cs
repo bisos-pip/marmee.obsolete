@@ -84,7 +84,7 @@ from  bisos.platform import bxPlatformThis
 from  bisos.platform import bxPlatformConfig
 
 from unisos.common import icmsPkgLib
-from bisos.marmee import marmePkgThis
+from bisos.marmee import marmeePkgThis
 
 import os
 
@@ -230,8 +230,8 @@ class examples(cs.Cmnd):
         # ICMs PKG Information
         #
 
-        icmsPkgInfoBaseDir = marmePkgThis.pkgBase_configDir()
-        icmsPkgModuleBaseDir = marmePkgThis.pkgBase_baseDir()
+        icmsPkgInfoBaseDir = marmeePkgThis.pkgBase_configDir()
+        icmsPkgModuleBaseDir = marmeePkgThis.pkgBase_baseDir()
 
         icmsPkgLib.examples_pkgInfoParsFull(
             icmsPkgNameSpecification(),
@@ -275,10 +275,10 @@ bisosGroupName = bxPlatformConfig.bisosGroupName_fpObtain(configBaseDir)
 #icm.unusedSuppressForEval(moduleDescription, moduleUsage, moduleStatus)
 
 #b_io.ann.write(configBaseDir)
-#icm.ANN_here(platformConfigFpBase)
-#icm.ANN_here(bisosUserName)
-#icm.ANN_here(bisosGroupName)
-#icm.ANN_here(platformControlBaseDir)
+#b_io.ann.here(platformConfigFpBase)
+#b_io.ann.here(bisosUserName)
+#b_io.ann.here(bisosGroupName)
+#b_io.ann.here(platformControlBaseDir)
 
 
 

@@ -180,18 +180,6 @@ class sendCompleteMessage(cs.Cmnd):
         # )
 
 
-####+BEGIN: b:py3:cs:method/typing :methodName "cmndDocStr" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList ""
-    """ #+begin_org
-**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndDocStr/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
-    #+end_org """
-    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
-    def cmndDocStr(
-####+END:
-        return """
-***** TODO [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Place holder for this commands doc string.
-"""
-
-
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  bx822Set_sendWithEnabledAcct    [[elisp:(org-cycle)][| ]]
 """
@@ -243,7 +231,6 @@ def bx822Set_setMandatoryFields(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  bx822Get_sendingFieldsPipelineLoad    [[elisp:(org-cycle)][| ]]
 """
-@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
 def bx822Get_sendingFieldsPipelineLoad(
     bxoId,
     sr,
@@ -278,7 +265,7 @@ def bx822Get_sendingFieldsPipelineLoad(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgSendingPipelineLoadFromAcct    [[elisp:(org-cycle)][| ]]
 """
-@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+
 def msgSendingPipelineLoadFromAcct(
         bxoId,
         sr,
@@ -304,7 +291,7 @@ def msgSendingPipelineLoadFromAcct(
 """
 *  [[elisp:(org-cycle)][| ]]  [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] [[elisp:(beginning-of-buffer)][Top]] [[elisp:(delete-other-windows)][(1)]] || Func         ::  msgSendingPipelineLoadFromAcctBaseDir    [[elisp:(org-cycle)][| ]]
 """
-@io.track.subjectToTracking(fnLoc=True, fnEntry=True, fnExit=True)
+
 def msgSendingPipelineLoadFromAcctBaseDir(
         msg,
         acctBaseDir,
