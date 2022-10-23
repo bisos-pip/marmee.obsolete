@@ -236,11 +236,7 @@ class examples(cs.Cmnd):
 
         aasOutMailFps.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
 
-        #aasInMailFps.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
         aasInMailFps.examples_csu(cur_aasMarmee_bpoId, cur_marmeeEnvRelPath, sectionTitle="default")
-
-        execLineEx("""marmeeSaiInMail.cs""")
-        execLineEx(f"""echo marmeeSaiInMail.cs --bpoId="piu_mbFullUsage" --envRelPath={cur_marmeeEnvRelPath}  -i inMailAcctAccessParsSet userName="UserName" userPasswd="UserPasswd" imapServer="IMAPServer" """)
 
         b.niche.examplesNicheRun("usageEnvs")
 

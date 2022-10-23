@@ -86,25 +86,12 @@ from bisos.b import b_io
 import collections
 ####+END:
 
-import sys
-import os
-
-import shutil
-
-import collections
-
 from bisos.marmee import aasInOfflineimap
 from bisos.currents import currentsConfig
 
-from bisos.bpo import bpo
+# from bisos.bpo import bpo
 from bisos.bpo import bpoRunBases
 
-#from bisos.icm import clsMethod
-
-from bisos import b
-
-from datetime import datetime
-import pathlib
 
 
 """ #+begin_org
@@ -115,7 +102,6 @@ import pathlib
    "bisos.b.cs.ro"
    "blee.icmPlayer.bleep"
    "bisos.bpo.bpo"
-   ;; "bisos.marmee.saiInMailControl"
    "bisos.marmee.aasInMailFps"
    "bisos.marmee.gmailOauth2"
    "bisos.marmee.aasInOfflineimap"
@@ -174,20 +160,17 @@ class examples(cs.Cmnd):
         if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
             return b_io.eh.badOutcome(cmndOutcome)
 ####+END:
-        self.cmndDocStr(f""" #+begin_org ***** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
-####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_svcInMail" "aasMarmee_svcOutMail" "aasMarmee_svcProvider" "aasMarmee_svcInstance" "aasMarmee_envRelPath")
+####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_envRelPath")
         """ #+begin_org
-***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_svcInMail aasMarmee_svcOutMail aasMarmee_svcProvider aasMarmee_svcInstance aasMarmee_envRelPath)
+***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_envRelPath)
         #+end_org """
-        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_svcInMail', 'aasMarmee_svcOutMail', 'aasMarmee_svcProvider', 'aasMarmee_svcInstance', 'aasMarmee_envRelPath',]
+        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_envRelPath',]
         if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=cmndOutcome).results): return(cmndOutcome)
         cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
-        #cur_aasMarmee_svcInMail = curParsDictValue['aasMarmee_svcInMail']
-        #cur_aasMarmee_svcOutMail = curParsDictValue['aasMarmee_svcOutMail']
-        #cur_aasMarmee_svcProvider = curParsDictValue['aasMarmee_svcProvider']
-        #cur_aasMarmee_svcInstance = curParsDictValue['aasMarmee_svcInstance']
         cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
         def cur_examples():
             cs.examples.execInsert(execLine='bx-currents.cs')
@@ -203,11 +186,6 @@ class examples(cs.Cmnd):
 
         def cmndParsCurBpoAndEnvRelPath(cps): cps['bpoId'] = cur_aasMarmee_bpoId ; cps['envRelPath'] = cur_aasMarmee_envRelPath
 
-        cmndOutcome = self.getOpOutcome()
-
-        #logControler = b_io.log.Control()
-        #logControler.loggerSetLevel(20)
-
         cs.examples.myName(cs.G.icmMyName(), cs.G.icmMyFullName())
 
         cs.examples.commonBrief()
@@ -217,11 +195,9 @@ class examples(cs.Cmnd):
         cs.examples.menuChapter('*Currents Examples Settings*')
         cur_examples()
 
-        #  RunBases Examples
-        bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
-        bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath)
-
-        # saiInMailControl.csExamples(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
+        #  RunBases Examples -- Should be done in -niche.cs
+        # bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
+        # bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath)
 
         aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
 

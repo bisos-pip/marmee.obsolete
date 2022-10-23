@@ -88,6 +88,9 @@ import collections
 from bisos.bpo import bpo
 from bisos.bpo import bpoFpsCls
 
+from bisos.currents import currentsConfig
+from bisos.common import csParam
+
 import pathlib
 import os
 #import abc
@@ -410,6 +413,9 @@ class marmeeAasIn_fps(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  A starting point command.
         #+end_org """)
 
+        bpoId = csParam.mappedValue('bpoId', bpoId)
+        envRelPath = csParam.mappedValue('envRelPath', envRelPath)
+
         cmndArgsSpecDict = self.cmndArgsSpec()
 
         action = self.cmndArgsGet("0", cmndArgsSpecDict, argsList)
@@ -465,7 +471,36 @@ class marmeeAasIn_fps(cs.Cmnd):
 
         return cmndArgsSpecDict
 
+####+BEGIN: b:py3:cs:func/typing :funcName "effectiveParValue_obsolted" :funcType "eType" :retType "" :deco "default"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /effectiveParValue_obsolted/  deco=default  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def effectiveParValue_obsolted(
+####+END:
+        parName: str,
+        parValue: str,
+) -> str:
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr | ] Need to go under b.par
+    #+end_org """
 
+    retVal = parValue
+
+    cmndOutcome = b.op.Outcome()
+    currentsConfig.curParsGetAsDictValue_wOp("", cmndOutcome)
+    results = cmndOutcome.results
+
+    if parName == 'bpoId':
+        if parValue == 'cur':
+            retVal = results['aasMarmee_bpoId']
+    elif parName == 'envRelPath':
+        if parValue == 'cur':
+            retVal = results['aasMarmee_envRelPath']
+    else:
+        pass
+
+    return retVal
 
 ####+BEGIN: b:py3:cs:framework/endOfFile :basedOn "classification"
 """ #+begin_org
