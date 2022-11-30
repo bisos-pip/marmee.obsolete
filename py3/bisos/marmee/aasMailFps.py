@@ -148,6 +148,17 @@ def commonParamsSpecify(
 ** Invoked class's static method.
     """
 
+    csParams.parDictAdd(
+        parName='aasMarmeeBase',
+        parDescription="AAS Marmee Base",
+        parDataType=None,
+        parDefault=None,
+        parChoices=["any"],
+        # parScope=icm.CmndParamScope.TargetParam,
+        argparseShortOpt=None,
+        argparseLongOpt='--aasMarmeeBase',
+    )
+
     AasMail_FPs.fps_asCsParamsAdd(csParams,)
 
 

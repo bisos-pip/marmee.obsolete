@@ -93,7 +93,10 @@ import os
 import shutil
 
 from bisos.bpo import bpoRunBases
-#from bisos.bpo import bpo
+from bisos.bpo import bpo
+
+from bisos.currents import currentsConfig
+from bisos.common import csParam
 
 #from bisos.marmee import aasInMailControl
 from bisos.marmee import aasInMailFps
@@ -295,6 +298,32 @@ nametrans = lambda f: '[Gmail]/' + f if f in ['Drafts', 'Starred', 'Important', 
 
         return offlineimapRcString_svcProvider()
 
+####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapMaildirPath" :methodType "eType" :retType "" :deco "default" :argsList ""
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapMaildirPath/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def offlineimapMaildirPath(
+####+END:
+            self,
+    ):
+        """ #+begin_org
+*** [[elisp:(org-cycle)][| DocStr| ]]  ~self~ is an instance of XXX. Outputs on stdout, a complete offlineimapRc based on template.
+        #+end_org """
+
+        runEnvBases = b.pattern.sameInstance(
+            bpoRunBases.BpoRunEnvBases,
+            self.bpoId,
+            self.envRelPath,
+        )
+        dataBase = runEnvBases.dataBasePath_obtain()
+
+        mailDirFullPath = os.path.join(dataBase, 'mailDir')
+
+        return mailDirFullPath
+
+
+
 ####+BEGIN: b:py3:cs:method/typing :methodName "offlineimapRcString_gmail" :methodType "eType" :retType "" :deco "default" :argsList ""
     """ #+begin_org
 **  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-eType [[elisp:(outline-show-subtree+toggle)][||]] /offlineimapRcString_gmail/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
@@ -458,6 +487,7 @@ def examples_csu(
 ####+END:
         bpoId: typing.Optional[str],
         envRelPath: typing.Optional[str],
+        marmeeBase: typing.Optional[str],
         sectionTitle: typing.AnyStr = "",
 ) -> None:
     """ #+begin_org
@@ -492,6 +522,19 @@ def examples_csu(
     cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
     menuItem(verbosity='none') #; menuItem(verbosity='full')
 
+    cmndName = "offlineimapRunAll" ;  cmndArgs = ""
+    cps=cpsInit(); cps['aasMarmeeBase'] = marmeeBase
+    menuItem(verbosity='none') #; menuItem(verbosity='full')
+
+
+    cmndName = "offlineimapRcPath" ;  cmndArgs = ""
+    cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+    menuItem(verbosity='none') #; menuItem(verbosity='full')
+
+    cmndName = "offlineimapMaildirPath" ;  cmndArgs = ""
+    cps=cpsInit(); cmndParsCurBpoAndEnvRelPath(cps);
+    menuItem(verbosity='none') #; menuItem(verbosity='full')
+
 
 ####+BEGIN: bx:cs:py3:section :title "CS-Params  --- Place Holder, Empty"
 """ #+begin_org
@@ -504,6 +547,83 @@ def examples_csu(
 *  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CS-Commands*  [[elisp:(org-cycle)][| ]]
 #+end_org """
 ####+END:
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRcPath" :extent "verify" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapRcPath>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapRcPath(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+        bpoId = csParam.mappedValue('bpoId', bpoId)
+        envRelPath = csParam.mappedValue('envRelPath', envRelPath)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  As subProc, runs offlineimap -c offlineimapRcPath.
+        #+end_org """)
+
+        offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
+        offlineimapRcPath = offlineimapInst.offlineimapRcPath()
+
+        print(offlineimapRcPath)
+
+        return cmndOutcome.set(
+            opError=b.OpError.Success,
+            opResults=True,
+        )
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapMaildirPath" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapMaildirPath>>  =verify= parsMand=bpoId envRelPath ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapMaildirPath(cs.Cmnd):
+    cmndParamsMandatory = [ 'bpoId', 'envRelPath', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             bpoId: typing.Optional[str]=None,  # Cs Mandatory Param
+             envRelPath: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'bpoId': bpoId, 'envRelPath': envRelPath, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+        bpoId = csParam.mappedValue('bpoId', bpoId)
+        envRelPath = csParam.mappedValue('envRelPath', envRelPath)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  As subProc, runs offlineimap -c offlineimapRcPath.
+        #+end_org """)
+
+        offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
+        offlineimapMaildirPath = offlineimapInst.offlineimapMaildirPath()
+
+        print(offlineimapMaildirPath)
+
+        return cmndOutcome.set(
+            opError=b.OpError.Success,
+            opResults=True,
+        )
+
+
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRun" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
 """ #+begin_org
@@ -543,6 +663,61 @@ class offlineimapRun(cs.Cmnd):
             opError=b.OpError.Success,
             opResults=True,
         )
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRunAll" :comment "" :parsMand "aasMarmeeBase" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<offlineimapRunAll>>  =verify= parsMand=aasMarmeeBase ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class offlineimapRunAll(cs.Cmnd):
+    cmndParamsMandatory = [ 'aasMarmeeBase', ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             aasMarmeeBase: typing.Optional[str]=None,  # Cs Mandatory Param
+    ) -> b.op.Outcome:
+
+        callParamsDict = {'aasMarmeeBase': aasMarmeeBase, }
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return b_io.eh.badOutcome(cmndOutcome)
+        aasMarmeeBase = csParam.mappedValue('aasMarmeeBase', aasMarmeeBase)
+####+END:
+        self.cmndDocStr(f""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  As subProc, runs offlineimap -c offlineimapRcPath.
+        #+end_org """)
+
+        def runEach(bpoId, envRelPath):
+            offlineimapInst = Aas_InMail_Offlineimap(bpoId, envRelPath)
+            offlineimapRcPath = offlineimapInst.offlineimapRcPath()
+
+            if not (resStr := b.subProc.WOpW(invedBy=self, log=1).bash(
+                    f"""offlineimap -c {offlineimapRcPath}""",
+            ).stdout):  return(b_io.eh.badOutcome(cmndOutcome))
+
+            print(resStr)
+
+
+        bpoId = bpo.givenPathObtainBpoId(aasMarmeeBase)
+        baseRelPath = pathlib.Path(bpo.givenPathObtainRelPath(aasMarmeeBase))
+
+        aasMarmeeBasePath = pathlib.Path(aasMarmeeBase)
+        for eachProv in aasMarmeeBasePath.iterdir():
+            if eachProv.is_dir():
+                svcProvBase = aasMarmeeBasePath.joinpath(eachProv)
+                svcProvRelPath = baseRelPath.joinpath(eachProv.name)
+                for eachInst in svcProvBase.iterdir():
+                    #print(eachInst)
+                    runEach(bpoId, svcProvRelPath.joinpath(eachInst.name))
+
+        return cmndOutcome.set(
+            opError=b.OpError.Success,
+            opResults=True,
+        )
+
 
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "offlineimapRcUpdate" :comment "" :parsMand "bpoId envRelPath" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""

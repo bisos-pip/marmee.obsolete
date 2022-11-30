@@ -102,29 +102,31 @@ from bisos.bpo import bpoRunBases
    "bisos.b.cs.ro"
    "blee.icmPlayer.bleep"
    "bisos.bpo.bpo"
+   "bisos.marmee.aasMailFps"
    "bisos.marmee.aasInMailFps"
    "bisos.marmee.gmailOauth2"
    "bisos.marmee.aasInOfflineimap"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.aasInMailFps | bisos.marmee.gmailOauth2 | bisos.marmee.aasInOfflineimap |
+| bisos.b.cs.ro | blee.icmPlayer.bleep | bisos.bpo.bpo | bisos.marmee.aasMailFps | bisos.marmee.aasInMailFps | bisos.marmee.gmailOauth2 | bisos.marmee.aasInOfflineimap |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /6/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /7/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
 from bisos.b.cs import ro
 from blee.icmPlayer import bleep
 from bisos.bpo import bpo
+from bisos.marmee import aasMailFps
 from bisos.marmee import aasInMailFps
 from bisos.marmee import gmailOauth2
 from bisos.marmee import aasInOfflineimap
 
 
-csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.aasInMailFps', 'bisos.marmee.gmailOauth2', 'bisos.marmee.aasInOfflineimap', ]
+csuList = [ 'bisos.b.cs.ro', 'blee.icmPlayer.bleep', 'bisos.bpo.bpo', 'bisos.marmee.aasMailFps', 'bisos.marmee.aasInMailFps', 'bisos.marmee.gmailOauth2', 'bisos.marmee.aasInOfflineimap', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -164,12 +166,13 @@ class examples(cs.Cmnd):
 ** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Conventional top level example.
         #+end_org """)
 
-####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_bpoId" "aasMarmee_envRelPath")
+####+BEGIN: b:py3:cs:module/cur_paramsAssign  :curParsList ("aasMarmee_base" "aasMarmee_bpoId" "aasMarmee_envRelPath")
         """ #+begin_org
-***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_bpoId aasMarmee_envRelPath)
+***  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Currents   [[elisp:(outline-show-subtree+toggle)][||]] ~cur_examples~ (aasMarmee_base aasMarmee_bpoId aasMarmee_envRelPath)
         #+end_org """
-        _parNamesList = [ 'aasMarmee_bpoId', 'aasMarmee_envRelPath',]
+        _parNamesList = [ 'aasMarmee_base', 'aasMarmee_bpoId', 'aasMarmee_envRelPath',]
         if not (curParsDictValue := currentsConfig.curParsGetAsDictValue_wOp(_parNamesList, outcome=cmndOutcome).results): return(cmndOutcome)
+        cur_aasMarmee_base = curParsDictValue['aasMarmee_base']
         cur_aasMarmee_bpoId = curParsDictValue['aasMarmee_bpoId']
         cur_aasMarmee_envRelPath = curParsDictValue['aasMarmee_envRelPath']
         def cur_examples():
@@ -178,7 +181,6 @@ class examples(cs.Cmnd):
             for each in _parNamesList:
                 cs.examples.execInsert(execLine=f'bx-currents.cs -v 20 -i usgCursParsSet {each}={curParsDictValue[each]}')
 ####+END:
-
 
         def cpsInit(): return collections.OrderedDict()
         def menuItem(verbosity): cs.examples.cmndInsert(cmndName, cps, cmndArgs, verbosity=verbosity) # 'little' or 'none'
@@ -199,7 +201,7 @@ class examples(cs.Cmnd):
         # bpoRunBases.examples_bpo_runBases(None, None, sectionTitle="default")
         # bpoRunBases.examples_bpo_runBases(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath)
 
-        aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, sectionTitle="default")
+        aasInOfflineimap.examples_csu(cur_aasMarmee_bpoId, cur_aasMarmee_envRelPath, cur_aasMarmee_base, sectionTitle="default")
 
         cs.examples.menuChapter('*Service Access Instance*')
 
